@@ -2,4 +2,5 @@
 
 Projeto web referente ao trabalho final da disciplina INF 220 (Banco de Dados).
 
-[Repositório Backend](https://github.com/PhilipeFernandino/INF-220)
+
+Para instalar dependecias do front usar 'npm i --legacy-peer-deps'
