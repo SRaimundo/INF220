@@ -9,7 +9,7 @@ app.use(express.json());
 app.use("/",router);
 
 const httpServer = http.createServer(app);
-const PORT : any = 3000;
+const PORT : any = 3080;
 
 httpServer.listen(PORT, () => 
     console.log(`O servidor esta rodando na porta ${PORT}`)
