@@ -1,6 +1,6 @@
-export interface Vacanciy{
-    codigo: number;
-    status: boolean;
-    cliente: number;
-    hotel: number;
+export interface Vacancy{
+    idVaga: number;
+    Status: boolean;
+    Cliente: number;
+    Hotel: number;
 }

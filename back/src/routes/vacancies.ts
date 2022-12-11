@@ -4,9 +4,10 @@ import controller from "../controllers/vacancies";
 
 const router = express.Router();
 
-router.get("/");
-router.post("/");
-router.patch("/");
-router.delete("/");
+router.get("/", controller.getAll);
+router.get("/:id", controller.findOne);
+router.post("/", controller.create);
+router.put("/:id", controller.update);
+router.delete("/:id", controller.deleteOne);
 
 export default router;
