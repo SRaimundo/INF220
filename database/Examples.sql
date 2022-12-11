@@ -1,4 +1,4 @@
--- This script just create examples for the tables: HOTEL, TIPO_QUARTO, QUARTO, CLIENTE, FUNCIONARIO, VAGA, Reserva (it simulate the first day of Bom Sono's company)
+-- It simulate the first day of Bom Sono's company (population of data)
 
 INSERT INTO HOTEL (Nome, Rua, Numero, Complemento, Bairro, Cidade, UF)
 VALUES('Durma Bem', 'Rua Avenida', '10', NULL, 'Copacabana', 'Rio de Janeiro', 'RJ');
@@ -182,19 +182,17 @@ INSERT INTO CONTA_HOTEL VALUES(1, 1);
 INSERT INTO CONTA_HOTEL VALUES(2, 2);
 INSERT INTO CONTA_HOTEL VALUES(5, 3);
 
-INSERT INTO DESPESA VALUES(1, 1, 1, '2022-12-06', 'Doce de leite Vicosa', 28.89);
+INSERT INTO DESPESA VALUES(1, 1, 1, '2022-12-06', 'Doce de leite Viçosa', 28.89);
 INSERT INTO DESPESA VALUES(1, 1, 2, '2022-12-09', 'Red Bull', 10.5);
-INSERT INTO DESPESA VALUES(2, 2, 3, '2022-12-13', 'Pao com linguica', 135.5);
-INSERT INTO DESPESA VALUES(1, 1, 4, '2022-12-07', 'Lagosta a parmediana', 0.30);
-INSERT INTO DESPESA VALUES(5, 3, 5, '2022-12-09', 'Shampo 3 em 1', 22.50);
+INSERT INTO DESPESA VALUES(2, 2, 3, '2022-12-13', 'Pão com linguiça', 135.5);
+INSERT INTO DESPESA VALUES(1, 1, 4, '2022-12-07', 'Lagosta à parmagiana', 0.30);
+INSERT INTO DESPESA VALUES(5, 3, 5, '2022-12-09', 'Shampoo 3 em 1', 22.50);
 
-INSERT INTO CONTA_RESTAURANTE VALUES(1,1);
-INSERT INTO CONTA_RESTAURANTE VALUES(3,2);
-INSERT INTO CONTA_RESTAURANTE VALUES(5,3);
+INSERT INTO CONTA_RESTAURANTE VALUES(1, 1);
+INSERT INTO CONTA_RESTAURANTE VALUES(3, 2);
+INSERT INTO CONTA_RESTAURANTE VALUES(5, 3);
 
 INSERT INTO DESPESA_REFEICAO VALUES(1, 1, 1, '2022-12-06', 'Buchada de bode com caviar', 2.89, true);
-INSERT INTO DESPESA_REFEICAO VALUES(1, 1, 2, '2022-12-07', 'Carne moida com limonada', 50.0, false);
+INSERT INTO DESPESA_REFEICAO VALUES(1, 1, 2, '2022-12-07', 'Carne moída com limonada', 50.0, false);
 INSERT INTO DESPESA_REFEICAO VALUES(2, 2, 3, '2022-12-14', 'Coxinha de capifrango', 30.27, true);
-INSERT INTO DESPESA_REFEICAO VALUES(5, 3, 4, '2022-12-09', 'Jilo com beringela', 1.39, false);
-
-
+INSERT INTO DESPESA_REFEICAO VALUES(5, 3, 4, '2022-12-09', 'Jiló com beringela', 1.39, false);
