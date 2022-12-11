@@ -42,7 +42,7 @@ class Client{
         return rows;
     };
 
-    static create = async (id: any, cliente: ClientInterface) => {
+    static create = async (cliente: ClientInterface) => {
         const conn = await connect();
         const [rows, fields] = await conn.query(`INSERT INTO CLIENTE (Nome, Telefone, Pais_origem, Email, Senha, Rua, Numero, Complemento, Bairro, Cidade, UF)
             VALUES ("${cliente.Nome}", "${cliente.Telefone}", "${cliente.Pais_origem}", "${cliente.Email}", "${cliente.Senha}", "${cliente.Rua}", "${cliente.Numero}", "${cliente.Complemento}", "${cliente.Bairro}", "${cliente.Cidade}", "${cliente.UF}")`

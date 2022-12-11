@@ -32,7 +32,7 @@ const update = async (req: Request , res: Response) => {
 
 const create = async (req: Request , res: Response) => {
     try {
-        return res.status(200).json(await Client.create(req.params.id, req.body));
+        return res.status(200).json(await Client.create(req.body));
     } catch (error) {
         return res.status(500).send({message: error});
     } 
