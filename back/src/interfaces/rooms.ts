@@ -1,5 +1,5 @@
 export interface Room{
-    numero: number;
-    tipo: number;
-    hotel: number;
+    Numero: number;
+    Tipo: number;
+    Hotel: number;
 }

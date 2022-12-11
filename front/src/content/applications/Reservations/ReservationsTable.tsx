@@ -148,7 +148,7 @@ const ReservationsTable = () => {
   const formatHotel = (id): string => {
     if (hotels.length > 0) {
       const hotel = hotels.find((hotel) => hotel.idHotel === id);
-      return hotel.cidade;
+      return hotel.Cidade;
     } else {
       return 'Buscando...';
     }
@@ -157,7 +157,7 @@ const ReservationsTable = () => {
   const formatClient = (id): string => {
     if (clients.length > 0) {
       const client = clients.find((client) => client.idCliente === id);
-      return client.nome;
+      return client.Nome;
     } else {
       return 'Buscando...';
     }
@@ -169,11 +169,11 @@ const ReservationsTable = () => {
     if (apartmentTypes.length > 0) {
       const type = apartmentTypes.find((type) => type.idTipo === id);
       return `
-      ${type.numCamasCasal} Camas de Casal &
-      ${type.numCamasSolteiro} Camas de Solteiro |
-      Frigobar: ${formatBoolean(type.possuiFrigobar)} Tv: ${formatBoolean(
-        type.possuiFrigobar
-      )} PCD: ${formatBoolean(type.adaptadoPcd)}`;
+      ${type.Numero_camas_casal} Camas de Casal &
+      ${type.Numero_camas_solteiro} Camas de Solteiro |
+      Tv: ${formatBoolean(
+        type.Tem_tv
+      )} PCD: ${formatBoolean(type.Adaptado)}`;
     } else {
       return 'Buscando...';
     }
@@ -224,7 +224,7 @@ const ReservationsTable = () => {
                           color="text.primary"
                           gutterBottom
                           noWrap
-                          children={`${formatHotel(reservation.idHotel)}`}
+                          children={`${formatHotel(reservation.Codigo)}`}
                         />
                       }
                     />

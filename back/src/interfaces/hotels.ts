@@ -1,10 +1,10 @@
 export interface Hotel {
-    codigo: number;
-    nome : string;
-    rua : string;
-    numero: number;
-    complemento: string;
-    bairro: string;
-    cidade: string;
-    uf: string;
+    Codigo: number;
+    Nome : string;
+    Rua : string;
+    Numero: number;
+    Complemento: string;
+    Bairro: string;
+    Cidade: string;
+    UF: string;
 }

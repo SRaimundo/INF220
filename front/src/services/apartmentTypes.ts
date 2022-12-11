@@ -4,7 +4,7 @@ import api from './api';
 export const findAll = async () => {
   try {
     const response = await api.get('/tipo-apartamento');
-    return response.data.tipoApartamentos as ApartmentTypes[];
+    return response.data as ApartmentTypes[];
   } catch (error) {
     console.error(error);
     return [];

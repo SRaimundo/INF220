@@ -18,7 +18,7 @@ import { create } from 'src/services/hotels';
 import * as yup from 'yup';
 
 const schema = yup.object().shape({
-  cidade: yup.string().required('É obrigatório informar uma cidade para a filial')
+  Cidade: yup.string().required('É obrigatório informar uma Cidade para a filial')
 });
 
 function CreateHotelForm() {
@@ -42,7 +42,7 @@ function CreateHotelForm() {
   } = useForm<Hotels>({ resolver: yupResolver(schema) });
 
   useEffect(() => {
-    register('cidade');
+    register('Cidade');
   }, [register]);
 
   return (
@@ -74,11 +74,11 @@ function CreateHotelForm() {
                     type="city"
                     name="city"
                     fullWidth
-                    error={!!errors?.cidade}
-                    helperText={errors?.cidade?.message || ''}
+                    error={!!errors?.Cidade}
+                    helperText={errors?.Cidade?.message || ''}
                     label="Cidade da Filial"
                     required
-                    onChange={(event) => setValue('cidade', event.target.value)}
+                    onChange={(event) => setValue('Cidade', event.target.value)}
                   />
                 </Grid>
 

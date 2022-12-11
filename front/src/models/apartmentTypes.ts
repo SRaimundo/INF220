@@ -1,9 +1,8 @@
 export interface ApartmentTypes {
   idTipo: number;
-  adaptadoPcd: boolean;
-  possuiTv: boolean;
-  possuiFrigobar: boolean;
-  numCamasSolteiro: number;
-  numCamasCasal: number;
-  valorApartamento: number;
+  Valor:number;
+  Tem_tv:boolean;
+  Adaptado:boolean;
+  Numero_camas_solteiro: number;
+  Numero_camas_casal: number;
 }

@@ -68,7 +68,7 @@ function CreateHotelForm() {
   const formatHotel = (id): string => {
     if (hotels.length > 0) {
       const hotel = hotels.find((hotel) => hotel.idHotel === id);
-      return hotel.cidade;
+      return hotel.Cidade;
     } else {
       return 'Buscando...';
     }
@@ -153,7 +153,7 @@ function CreateHotelForm() {
                         <MenuItem
                           key={tipo.idApartamento}
                           value={tipo.idApartamento}
-                          children={`${formatHotel(tipo.idHotel)} | ${
+                          children={`${formatHotel(tipo.Codigo)} | ${
                             tipo.numero
                           }`}
                         />

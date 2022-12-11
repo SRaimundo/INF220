@@ -1,6 +1,6 @@
 export interface Reservations {
   idReserva: number;
-  idHotel: number;
+  Codigo: number;
   idTipo: number;
   idCliente: number;
   numPessoas: number;

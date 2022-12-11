@@ -102,12 +102,12 @@ function CreateReservationForm() {
           const tipo = types.find((apartment) => apartment.idTipo === idTipo);
 
           if (!!tipo) {
-            setValue('diaria', tipo.valorApartamento);
+            setValue('diaria', tipo.Valor);
           }
 
           const filterApartments = apartmentList.filter(
             (ap) =>
-              ap.idHotel === reserva.idHotel && ap.idTipo === reserva.idTipo
+              ap.Codigo === reserva.Codigo && ap.idTipo === reserva.idTipo
           );
 
           setFilteredApartments(filterApartments);
@@ -164,7 +164,7 @@ function CreateReservationForm() {
   const formatHotel = (id): string => {
     if (hotels.length > 0) {
       const hotel = hotels.find((hotel) => hotel.idHotel === id);
-      return hotel.cidade;
+      return hotel.Cidade;
     } else {
       return 'Buscando...';
     }
@@ -175,7 +175,7 @@ function CreateReservationForm() {
       const apartment = apartmentList.find(
         (apartment) => apartment.idApartamento === id
       );
-      return `Filial ${formatHotel(apartment.idHotel)} | Quarto: ${
+      return `Filial ${formatHotel(apartment.Codigo)} | Quarto: ${
         apartment.numero
       }`;
     } else {

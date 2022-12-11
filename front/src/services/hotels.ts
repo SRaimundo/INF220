@@ -3,8 +3,9 @@ import api from './api';
 
 export const findAll = async () => {
   try {
-    const response = await api.get('/hotel');
-    return response.data.hotels as Hotels[];
+    const response = await api.get('/hotels');
+    // console.log(response);
+    return response.data as Hotels[];
   } catch (error) {
     console.error(error);
     return [];

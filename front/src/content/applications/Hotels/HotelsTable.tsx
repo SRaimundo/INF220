@@ -69,6 +69,7 @@ const HotelsTable = () => {
 
   const fetchHotels = useCallback(async () => {
     const hotels = await findAll();
+    console.log(hotels);
     setHotels(hotels);
   }, []);
 
@@ -170,7 +171,7 @@ const HotelsTable = () => {
                           color="text.primary"
                           gutterBottom
                           noWrap
-                          children={hotel.cidade}
+                          children={hotel.Cidade}
                         />
                       }
                     />
@@ -181,7 +182,7 @@ const HotelsTable = () => {
                         children={
                           <IconButton
                             component={NavLink}
-                            to={`/apartments/new?idHotel=${hotel.idHotel}`}
+                            to={`/apartments/new?Codigo=${hotel.idHotel}`}
                             sx={{
                               '&:hover': {
                                 background: theme.colors.primary.lighter,

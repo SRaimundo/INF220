@@ -65,7 +65,7 @@ function Consultas() {
   useEffect(() => {
     consultaD().then((res) => {
       setHotelList(res);
-      const hoteis = res.map((a) => a.cidade);
+      const hoteis = res.map((a) => a.Cidade);
       const counts = res.map((a) => a.count);
       const colors = res.map(
         (a) =>
@@ -178,7 +178,7 @@ function Consultas() {
                       <ListItemText
                         primary="Filial"
                         primaryTypographyProps={{ variant: 'h5', noWrap: true }}
-                        secondary={hotel.cidade}
+                        secondary={hotel.Cidade}
                         secondaryTypographyProps={{
                           variant: 'subtitle2',
                           noWrap: true,

@@ -132,7 +132,7 @@ const ApartmentsTable = () => {
 
   const handleDelete = async (id) => {
     const hotel: Apartments = await remove(id);
-    if (hotel.idHotel === id) fetchApartments();
+    if (hotel.Codigo === id) fetchApartments();
     else alert('Erro ao deletar o hotel!');
   };
 
@@ -157,7 +157,7 @@ const ApartmentsTable = () => {
   const formatHotel = (id): string => {
     if (hotels.length > 0) {
       const hotel = hotels.find((hotel) => hotel.idHotel === id);
-      return hotel.cidade;
+      return hotel.Cidade;
     } else {
       return 'Buscando...';
     }
@@ -169,11 +169,11 @@ const ApartmentsTable = () => {
     if (apartmentTypes.length > 0) {
       const type = apartmentTypes.find((type) => type.idTipo === id);
       return `
-      ${type.numCamasCasal} Camas de Casal &
-      ${type.numCamasSolteiro} Camas de Solteiro |
-      Frigobar: ${formatBoolean(type.possuiFrigobar)} Tv: ${formatBoolean(
-        type.possuiFrigobar
-      )} PCD: ${formatBoolean(type.adaptadoPcd)}`;
+      ${type.Numero_camas_casal} Camas de Casal &
+      ${type.Numero_camas_solteiro} Camas de Solteiro |
+      Tv: ${formatBoolean(
+        type.Tem_tv
+      )} PCD: ${formatBoolean(type.Adaptado)}`;
     } else {
       return 'Buscando...';
     }
@@ -196,7 +196,7 @@ const ApartmentsTable = () => {
             <TableBody>
               {paginatedApartments.map((apartment) => {
                 return (
-                  <TableRow hover key={apartment.idHotel}>
+                  <TableRow hover key={apartment.Codigo}>
                     <TableCell
                       children={
                         <Typography
@@ -217,7 +217,7 @@ const ApartmentsTable = () => {
                           color="text.primary"
                           gutterBottom
                           noWrap
-                          children={formatHotel(apartment.idHotel)}
+                          children={formatHotel(apartment.Codigo)}
                         />
                       }
                     />

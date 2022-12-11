@@ -4,7 +4,7 @@ import api from './api';
 export const findAll = async () => {
   try {
     const response = await api.get('/cliente');
-    return response.data.clientes as Clients[];
+    return response.data as Clients[];
   } catch (error) {
     console.error(error);
     return [];

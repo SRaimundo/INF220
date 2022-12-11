@@ -1,14 +1,14 @@
 export interface Client{
-    codigo: number;
-    nome: string;
-    telefone: string;
-    pais_origem: string;
-    email: string;
-    senha: string;
-    rua: string;
+    idCliente: number;
+    Nome: string;
+    Telefone: string;
+    Pais_origem: string;
+    Email: string;
+    Senha: string;
+    Rua: string;
     numero: number;
-    complemento: string;
-    bairro: string;
-    cidade: string;
-    uf: string;
+    Complemento: string;
+    Bairro: string;
+    Cidade: string;
+    UF: string;
 }

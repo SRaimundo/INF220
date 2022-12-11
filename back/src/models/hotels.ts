@@ -7,7 +7,7 @@ class Hotel{
         const conn = await connect();
         const q = 'SELECT * FROM HOTEL';
         const linhas = await conn.query(q);
-        return linhas;
+        return linhas[0];
     };
 } 
 

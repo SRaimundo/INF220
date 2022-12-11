@@ -66,12 +66,11 @@ function CreateApartmentTypesForm() {
   } = useForm<ApartmentTypes>({ resolver: yupResolver(schema) });
 
   useEffect(() => {
-    register('adaptadoPcd', { value: false });
-    register('possuiFrigobar', { value: false });
-    register('possuiTv', { value: false });
-    register('numCamasSolteiro');
-    register('numCamasCasal');
-    register('valorApartamento');
+    register('Adaptado', { value: false });
+    register('Tem_tv', { value: false });
+    register('Numero_camas_solteiro');
+    register('Numero_camas_casal');
+    register('Valor');
   }, [register]);
 
   return (
@@ -101,17 +100,17 @@ function CreateApartmentTypesForm() {
                 <Grid item xs={12}>
                   <Label
                     children="Possui televisão?"
-                    color={watch().possuiTv ? 'success' : 'error'}
+                    color={watch().Tem_tv ? 'success' : 'error'}
                   />
                   <Switch
-                    value={watch().possuiTv}
+                    value={watch().Tem_tv}
                     onChange={(event) =>
-                      setValue('possuiTv', !watch().possuiTv)
+                      setValue('Tem_tv', !watch().Tem_tv)
                     }
                   />
                 </Grid>
 
-                <Grid item xs={12}>
+                {/* <Grid item xs={12}>
                   <Label
                     children="Possui frigobar?"
                     color={watch().possuiFrigobar ? 'success' : 'error'}
@@ -122,16 +121,16 @@ function CreateApartmentTypesForm() {
                       setValue('possuiFrigobar', !watch().possuiFrigobar)
                     }
                   />
-                </Grid>
+                </Grid> */}
                 <Grid item xs={12}>
                   <Label
                     children="É adaptado para pessoas com deficiência?"
-                    color={watch().adaptadoPcd ? 'success' : 'error'}
+                    color={watch().Adaptado ? 'success' : 'error'}
                   />
                   <Switch
-                    value={watch().adaptadoPcd}
+                    value={watch().Adaptado}
                     onChange={(event) =>
-                      setValue('adaptadoPcd', !watch().adaptadoPcd)
+                      setValue('Adaptado', !watch().Adaptado)
                     }
                   />
                 </Grid>
@@ -159,12 +158,12 @@ function CreateApartmentTypesForm() {
                     type="number"
                     name="number"
                     fullWidth
-                    error={!!errors?.numCamasSolteiro}
-                    helperText={errors?.numCamasSolteiro?.message || ''}
+                    error={!!errors?.Numero_camas_solteiro}
+                    helperText={errors?.Numero_camas_solteiro?.message || ''}
                     label="Número de Camas de Solteiro"
                     required
                     onChange={(event) =>
-                      setValue('numCamasSolteiro', parseInt(event.target.value))
+                      setValue('Numero_camas_solteiro', parseInt(event.target.value))
                     }
                   />
                 </Grid>
@@ -173,30 +172,30 @@ function CreateApartmentTypesForm() {
                     type="number"
                     name="number"
                     fullWidth
-                    error={!!errors?.numCamasCasal}
-                    helperText={errors?.numCamasCasal?.message || ''}
+                    error={!!errors?.Numero_camas_casal}
+                    helperText={errors?.Numero_camas_casal?.message || ''}
                     label="Número de Camas de Casal"
                     required
                     onChange={(event) =>
-                      setValue('numCamasCasal', parseInt(event.target.value))
+                      setValue('Numero_camas_casal', parseInt(event.target.value))
                     }
                   />
                 </Grid>
                 <Grid item sm={6} md={4} xs={12}>
                   <TextField
                     id="outlined-required"
-                    error={!!errors?.valorApartamento}
+                    error={!!errors?.Valor}
                     label="Preço"
                     required
                     fullWidth
                     value={
-                      !!watch('valorApartamento')
-                        ? watch('valorApartamento').toString()
+                      !!watch('Valor')
+                        ? watch('Valor').toString()
                         : ''
                     }
                     onChange={(ticket) =>
                       setValue(
-                        'valorApartamento',
+                        'Valor',
                         parseFloat(ticket.target.value)
                       )
                     }

@@ -158,7 +158,7 @@ const AccommodationsTable = () => {
   const formatHotel = (id): string => {
     if (hotels.length > 0) {
       const hotel = hotels.find((hotel) => hotel.idHotel === id);
-      return hotel.cidade;
+      return hotel.Cidade;
     } else {
       return 'Buscando...';
     }
@@ -169,7 +169,7 @@ const AccommodationsTable = () => {
       const apartment = apartments.find(
         (apartment) => apartment.idApartamento === id
       );
-      return `Filial ${formatHotel(apartment.idHotel)} | Quarto: ${
+      return `Filial ${formatHotel(apartment.Codigo)} | Quarto: ${
         apartment.numero
       }`;
     } else {
@@ -180,7 +180,7 @@ const AccommodationsTable = () => {
   const formatClient = (id): string => {
     if (clients.length > 0) {
       const client = clients.find((client) => client.idCliente === id);
-      return client.nome;
+      return client.Nome;
     } else {
       return 'Buscando...';
     }

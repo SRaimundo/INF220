@@ -68,6 +68,7 @@ const ClientsTable = () => {
   const fetchClients = async () => {
     let clients = [];
     clients = await findAll();
+    console.log(clients);
     setClients(clients);
   };
   const [clients, setClients] = useState<Clients[]>([]);
@@ -176,7 +177,7 @@ const ClientsTable = () => {
                         color="text.primary"
                         gutterBottom
                         noWrap
-                        children={client.nome}
+                        children={client.Nome}
                       />
                     </TableCell>
                     <TableCell>
@@ -188,10 +189,10 @@ const ClientsTable = () => {
                         noWrap
                         children={
                           <NumberFormat
-                            value={client.telefone}
+                            value={client.Telefone}
                             displayType={'text'}
                             format={
-                              client.telefone?.length > 10
+                              client.Telefone?.length > 10
                                 ? '(##) #####-####'
                                 : '(##) ####-####'
                             }
@@ -204,7 +205,7 @@ const ClientsTable = () => {
                         color="text.primary"
                         gutterBottom
                         noWrap
-                        children={client.email}
+                        children={client.Email}
                       />
                     </TableCell>
                     <TableCell>
@@ -214,7 +215,7 @@ const ClientsTable = () => {
                         color="text.primary"
                         gutterBottom
                         noWrap
-                        children={`${client.rua}, N° ${client.numero}. ${client.bairro}, ${client.cidade} - ${client.estado}, ${client.pais}`}
+                        children={`${client.Rua}, N° ${client.Numero}. ${client.Bairro}, ${client.Cidade} - ${client.UF}`}
                       />
                     </TableCell>
                     <TableCell align="right">

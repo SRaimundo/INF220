@@ -33,7 +33,7 @@ import { create } from 'src/services/reservations';
 import * as yup from 'yup';
 
 const schema = yup.object().shape({
-  idHotel: yup.string().required('É obrigatório informar uma filial'),
+  Codigo: yup.string().required('É obrigatório informar uma filial'),
   idTipo: yup
     .string()
     .required('É obrigatório informar um tipo de apartamento'),
@@ -71,7 +71,7 @@ function CreateReservationForm() {
     const initDate = new Date();
     initDate.setDate(initDate.getDate() + 1);
 
-    register('idHotel');
+    register('Codigo');
     register('idTipo');
     register('idCliente');
     register('numPessoas');
@@ -134,24 +134,24 @@ function CreateReservationForm() {
                 spacing={2}
               >
                 <Grid item md={6} xs={12}>
-                  <FormControl fullWidth error={!!errors?.idHotel}>
+                  <FormControl fullWidth error={!!errors?.Codigo}>
                     <InputLabel children="Selecione a filial do nosso hotel" />
                     <Select
-                      value={watch().idHotel ?? ''}
+                      value={watch().Codigo ?? ''}
                       label="Selecione a filial do nosso hotel"
                       onChange={(hotel: SelectChangeEvent<string>) =>
-                        setValue('idHotel', parseInt(hotel.target.value))
+                        setValue('Codigo', parseInt(hotel.target.value))
                       }
                     >
                       {hotelList.map((hotel) => (
                         <MenuItem
                           key={hotel.idHotel}
                           value={hotel.idHotel}
-                          children={hotel.cidade}
+                          children={hotel.Cidade}
                         />
                       ))}
                     </Select>
-                    <FormHelperText children={errors?.idHotel?.message || ''} />
+                    <FormHelperText children={errors?.Codigo?.message || ''} />
                   </FormControl>
                 </Grid>
                 <Grid item md={6} xs={12}>
@@ -170,7 +170,7 @@ function CreateReservationForm() {
                         <MenuItem
                           key={cliente.idCliente}
                           value={cliente.idCliente}
-                          children={cliente.nome}
+                          children={cliente.idCliente}
                         />
                       ))}
                     </Select>
@@ -194,13 +194,11 @@ function CreateReservationForm() {
                           key={tipo.idTipo}
                           value={tipo.idTipo}
                           children={`
-                          ${tipo.numCamasCasal} Camas de Casal &
-                          ${tipo.numCamasSolteiro} Camas de Solteiro |
-                          Frigobar: ${formatBoolean(
-                            tipo.possuiFrigobar
-                          )} Tv: ${formatBoolean(
-                            tipo.possuiFrigobar
-                          )} PCD: ${formatBoolean(tipo.adaptadoPcd)}`}
+                          ${tipo.Numero_camas_casal} Camas de Casal &
+                          ${tipo.Numero_camas_solteiro} Camas de Solteiro |
+                          Tv: ${formatBoolean(
+                            tipo.Tem_tv
+                          )} PCD: ${formatBoolean(tipo.Adaptado)}`}
                         />
                       ))}
                     </Select>

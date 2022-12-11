@@ -176,7 +176,7 @@ const ApartmentTypesTable = () => {
                             color="text.primary"
                             gutterBottom
                             noWrap
-                            children={`${apartmentType.numCamasCasal} de casal`}
+                            children={`${apartmentType.Numero_camas_casal} de casal`}
                           />
                           <Typography
                             variant="body1"
@@ -184,28 +184,28 @@ const ApartmentTypesTable = () => {
                             color="text.primary"
                             gutterBottom
                             noWrap
-                            children={`${apartmentType.numCamasSolteiro} de solteiro`}
+                            children={`${apartmentType.Numero_camas_solteiro} de solteiro`}
                           />
                         </>
                       }
                     />
                     <TableCell>
                       <Label
-                        color={apartmentType.adaptadoPcd ? 'success' : 'error'}
+                        color={apartmentType.Adaptado ? 'success' : 'error'}
                         children="Adaptado para pessoas com deficiência"
                       />
                       <br />
                       <Label
-                        color={apartmentType.possuiTv ? 'success' : 'error'}
+                        color={apartmentType.Tem_tv ? 'success' : 'error'}
                         children="Possui televisão"
                       />
-                      <br />
+                      {/* <br />
                       <Label
                         color={
                           apartmentType.possuiFrigobar ? 'success' : 'error'
                         }
                         children="Possui Frigobar"
-                      />
+                      /> */}
                     </TableCell>
                     <TableCell
                       children={
@@ -215,7 +215,7 @@ const ApartmentTypesTable = () => {
                           color="text.primary"
                           gutterBottom
                           noWrap
-                          children={`R$ ${apartmentType.valorApartamento}`}
+                          children={`R$ ${apartmentType.Valor}`}
                         />
                       }
                     />

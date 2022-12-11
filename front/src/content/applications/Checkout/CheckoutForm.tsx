@@ -97,7 +97,7 @@ function CheckoutForm() {
                   children={
                     <Typography
                       children={`Nome: ${
-                        cliente ? cliente.nome : 'Buscando...'
+                        cliente ? cliente.Nome : 'Buscando...'
                       }`}
                     />
                   }
@@ -110,7 +110,7 @@ function CheckoutForm() {
                   children={
                     <Typography
                       children={`Nacionalidade: ${
-                        cliente ? cliente.nacionalidade : 'Buscando...'
+                        cliente ? cliente.Pais_origem : 'Buscando...'
                       }`}
                     />
                   }
@@ -123,7 +123,7 @@ function CheckoutForm() {
                   children={
                     <Typography
                       children={`Telefone: ${
-                        cliente ? cliente.telefone : 'Buscando...'
+                        cliente ? cliente.Telefone : 'Buscando...'
                       }`}
                     />
                   }
@@ -136,7 +136,7 @@ function CheckoutForm() {
                   children={
                     <Typography
                       children={`Email: ${
-                        cliente ? cliente.email : 'Buscando...'
+                        cliente ? cliente.Email : 'Buscando...'
                       }`}
                     />
                   }
@@ -150,7 +150,7 @@ function CheckoutForm() {
                     <Typography
                       children={`Endereço: ${
                         cliente
-                          ? `${cliente.rua}, N° ${cliente.numero}. ${cliente.bairro}, ${cliente.cidade} - ${cliente.estado}, ${cliente.pais}`
+                          ? `${cliente.Rua}, N° ${cliente.Numero}. ${cliente.Bairro}, ${cliente.Cidade} - ${cliente.UF}`
                           : 'Buscando...'
                       }`}
                     />

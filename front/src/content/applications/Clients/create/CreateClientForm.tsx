@@ -22,7 +22,7 @@ import * as yup from 'yup';
 
 const schema = yup.object().shape({
   nome: yup.string().required('Nome é um campo obrigatório'),
-  nacionalidade: yup.string().required('Nacionalidade é um campo obrigatório'),
+  Pais_origem: yup.string().required('Pais_origem é um campo obrigatório'),
   telefone: yup.string().required('Telefone é um campo obrigatório'),
   email: yup.string().required('Email é um campo obrigatório'),
   senha: yup.string().required('Senha é um campo obrigatório'),
@@ -56,17 +56,16 @@ function CreateClientsForm() {
   } = useForm<Clients>({ resolver: yupResolver(schema) });
 
   useEffect(() => {
-    register('nome');
-    register('nacionalidade');
-    register('telefone');
-    register('email');
-    register('senha');
-    register('rua');
-    register('numero');
-    register('bairro');
-    register('cidade');
-    register('estado');
-    register('pais');
+    register('Nome');
+    register('Pais_origem');
+    register('Telefone');
+    register('Email');
+    register('Senha');
+    register('Rua');
+    register('Numero');
+    register('Bairro');
+    register('Cidade');
+    register('UF');
   }, [register]);
 
   return (
@@ -98,11 +97,11 @@ function CreateClientsForm() {
                     type="string"
                     name="name"
                     fullWidth
-                    error={!!errors?.nome}
-                    helperText={errors?.nome?.message || ''}
+                    error={!!errors?.Nome}
+                    helperText={errors?.Nome?.message || ''}
                     label="Nome Completo"
                     required
-                    onChange={(event) => setValue('nome', event.target.value)}
+                    onChange={(event) => setValue('Nome', event.target.value)}
                   />
                 </Grid>
                 <Grid item md={6} xs={12}>
@@ -110,25 +109,25 @@ function CreateClientsForm() {
                     type="string"
                     name="nationality"
                     fullWidth
-                    error={!!errors?.nacionalidade}
-                    helperText={errors?.nacionalidade?.message || ''}
-                    label="Nacionalidade"
+                    error={!!errors?.Pais_origem}
+                    helperText={errors?.Pais_origem?.message || ''}
+                    label="Pais_origem"
                     required
                     onChange={(event) =>
-                      setValue('nacionalidade', event.target.value)
+                      setValue('Pais_origem', event.target.value)
                     }
                   />
                 </Grid>
                 <Grid item md={6} xs={12}>
                   <TextField
                     fullWidth
-                    error={!!errors?.telefone}
-                    helperText={errors?.telefone?.message || ''}
+                    error={!!errors?.Telefone}
+                    helperText={errors?.Telefone?.message || ''}
                     label="Telefone"
-                    value={watch('telefone') || ''}
+                    value={watch('Telefone') || ''}
                     required
                     onChange={(event) =>
-                      setValue('telefone', event.target.value)
+                      setValue('Telefone', event.target.value)
                     }
                     InputProps={{
                       inputComponent: PhoneMaskCustom as any,
@@ -160,11 +159,11 @@ function CreateClientsForm() {
                     type="string"
                     name="email"
                     fullWidth
-                    error={!!errors?.email}
-                    helperText={errors?.email?.message || ''}
+                    error={!!errors?.Email}
+                    helperText={errors?.Email?.message || ''}
                     label="Email"
                     required
-                    onChange={(event) => setValue('email', event.target.value)}
+                    onChange={(event) => setValue('Email', event.target.value)}
                   />
                 </Grid>
                 <Grid item md={6} xs={12}>
@@ -172,11 +171,11 @@ function CreateClientsForm() {
                     type="password"
                     name="senha"
                     fullWidth
-                    error={!!errors?.senha}
-                    helperText={errors?.senha?.message || ''}
+                    error={!!errors?.Senha}
+                    helperText={errors?.Senha?.message || ''}
                     label="Senha"
                     required
-                    onChange={(event) => setValue('senha', event.target.value)}
+                    onChange={(event) => setValue('Senha', event.target.value)}
                   />
                 </Grid>
               </Grid>
@@ -203,23 +202,23 @@ function CreateClientsForm() {
                     type="string"
                     name="street"
                     fullWidth
-                    error={!!errors?.rua}
-                    helperText={errors?.rua?.message || ''}
+                    error={!!errors?.Rua}
+                    helperText={errors?.Rua?.message || ''}
                     label="Rua"
                     required
-                    onChange={(event) => setValue('rua', event.target.value)}
+                    onChange={(event) => setValue('Rua', event.target.value)}
                   />
                 </Grid>
                 <Grid item md={3} xs={12}>
                   <TextField
-                    type="string"
+                    type="number"
                     name="number"
                     fullWidth
-                    error={!!errors?.numero}
-                    helperText={errors?.numero?.message || ''}
-                    label="Número"
+                    error={!!errors?.Numero}
+                    helperText={errors?.Numero?.message || ''}
+                    label="0"
                     required
-                    onChange={(event) => setValue('numero', event.target.value)}
+                    onChange={(event) => setValue('Numero', Number(event.target.value))}
                   />
                 </Grid>
                 <Grid item md={3} xs={12}>
@@ -227,11 +226,11 @@ function CreateClientsForm() {
                     type="string"
                     name="neighborhood"
                     fullWidth
-                    error={!!errors?.bairro}
-                    helperText={errors?.bairro?.message || ''}
+                    error={!!errors?.Bairro}
+                    helperText={errors?.Bairro?.message || ''}
                     label="Bairro"
                     required
-                    onChange={(event) => setValue('bairro', event.target.value)}
+                    onChange={(event) => setValue('Bairro', event.target.value)}
                   />
                 </Grid>
                 <Grid item md={6} xs={12}>
@@ -239,11 +238,11 @@ function CreateClientsForm() {
                     type="string"
                     name="city"
                     fullWidth
-                    error={!!errors?.cidade}
-                    helperText={errors?.cidade?.message || ''}
+                    error={!!errors?.Cidade}
+                    helperText={errors?.Cidade?.message || ''}
                     label="Cidade"
                     required
-                    onChange={(event) => setValue('cidade', event.target.value)}
+                    onChange={(event) => setValue('Cidade', event.target.value)}
                   />
                 </Grid>
                 <Grid item md={3} xs={12}>
@@ -251,25 +250,25 @@ function CreateClientsForm() {
                     type="string"
                     name="state"
                     fullWidth
-                    error={!!errors?.estado}
-                    helperText={errors?.estado?.message || ''}
+                    error={!!errors?.UF}
+                    helperText={errors?.UF?.message || ''}
                     label="Estado (UF)"
                     required
-                    onChange={(event) => setValue('estado', event.target.value)}
+                    onChange={(event) => setValue('UF', event.target.value)}
                   />
                 </Grid>
-                <Grid item md={3} xs={12}>
+                {/* <Grid item md={3} xs={12}>
                   <TextField
                     type="string"
                     name="country"
                     fullWidth
-                    error={!!errors?.pais}
-                    helperText={errors?.pais?.message || ''}
+                    error={!!errors?.Pais}
+                    helperText={errors?.Pais?.message || ''}
                     label="País"
                     required
-                    onChange={(event) => setValue('pais', event.target.value)}
+                    onChange={(event) => setValue('Pais', event.target.value)}
                   />
-                </Grid>
+                </Grid> */}
               </Grid>
             </CardContent>
           </Card>

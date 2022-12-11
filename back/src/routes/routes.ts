@@ -17,7 +17,7 @@ import vacanciesRouter from "./vacancies";
 const router = express.Router();
 
 
-router.use("/client", clienteRouter);
+router.use("/cliente", clienteRouter);
 router.use("/employess", employeesRouter);
 router.use("/expenses", expensesRouter);
 router.use("/hotelAccount", hotelAccountsRouter);
@@ -27,7 +27,7 @@ router.use("/mealExpenses", mealExpensesRouter);
 router.use("/reservations", reservationsRouter);
 router.use("/restaurantAccounts", restaurantAccountsRouter);
 router.use("/rooms", roomsRouter);
-router.use("/roomTypes", roomTypesRouter);
+router.use("/tipo-apartamento", roomTypesRouter);
 router.use("/vacancies", vacanciesRouter);
 
 router.use((req, res, next)=> {

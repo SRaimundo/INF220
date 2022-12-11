@@ -45,7 +45,7 @@ function ConsultaF() {
                 </AvatarWrapperSuccess>
               </ListItemAvatar>
               <ListItemText
-                primary={<Text color="black" children={`${conta.cidade}`} />}
+                primary={<Text color="black" children={`${conta.Cidade}`} />}
                 primaryTypographyProps={{
                   variant: 'body1',
                   fontWeight: 'bold',

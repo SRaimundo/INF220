@@ -5,11 +5,11 @@ export interface ConsultaA {
   email: string;
 }
 
-export const consultaA = async (cidade, dataEntrada, dataSaida) => {
+export const consultaA = async (Cidade, dataEntrada, dataSaida) => {
   try {
     const response = await api.get('/consulta-a', {
       params: {
-        cidade,
+        Cidade,
         dataEntrada,
         dataSaida,
       },
@@ -26,7 +26,7 @@ export interface ConsultaB {
 }
 
 export const consultaB = async (
-  cidade,
+  Cidade,
   numeroQuarto,
   dataEntrada,
   dataSaida
@@ -34,7 +34,7 @@ export const consultaB = async (
   try {
     const response = await api.get('/consulta-b', {
       params: {
-        cidade,
+        Cidade,
         numeroQuarto,
         dataEntrada,
         dataSaida,
@@ -48,7 +48,7 @@ export const consultaB = async (
 };
 
 export interface ConsultaC {
-  cidade_hotel: string;
+  Cidade_hotel: string;
   numero_ap: string;
   cliente: string;
 }
@@ -68,7 +68,7 @@ export const consultaC = async (produto) => {
 };
 
 export interface ConsultaD {
-  cidade: string;
+  Cidade: string;
   count: string;
 }
 
@@ -82,11 +82,11 @@ export const consultaD = async () => {
   }
 };
 
-export const consultaE = async (cidade) => {
+export const consultaE = async (Cidade) => {
   try {
     const response = await api.get('/consulta-e', {
       params: {
-        cidade,
+        Cidade,
       },
     });
     return response.data.clientes as ConsultaA[];
@@ -97,7 +97,7 @@ export const consultaE = async (cidade) => {
 };
 
 export interface ConsultaF {
-  cidade: string;
+  Cidade: string;
   nome: string;
   valor_total: number;
 }
