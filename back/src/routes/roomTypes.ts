@@ -4,10 +4,11 @@ import controller from "../controllers/roomTypes";
 
 const router = express.Router();
 
-router.post("/",);
+router.post("/",controller.create);
 router.get("/",controller.getAll);
-router.patch("/");
-router.delete("/");
+router.get("/:id", controller.findOne);
+router.put("/:id", controller.update);
+router.delete("/:id", controller.deleteOne);
 
 
 export default router;
