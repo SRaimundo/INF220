@@ -1,5 +1,12 @@
 import {Request, Response} from "express";
-import Empoyee from "../models/employees";
+import Employee from "../models/employees";
 
+const getAll = async (req: Request, res: Response) => {
+    try {
+        res.status(200).json(await Employee.getAll());
+    } catch (err) {
+        res.status(400);
+    }
+}
 
-export default {};
+export default {getAll};

@@ -6,7 +6,7 @@ export interface Client{
     Email: string;
     Senha: string;
     Rua: string;
-    numero: number;
+    Numero: number;
     Complemento: string;
     Bairro: string;
     Cidade: string;
