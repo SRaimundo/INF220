@@ -1,4 +1,4 @@
-#Trabalho de INF220
+# Trabalho de INF220
 
 ## Instalação
 Clone o repositório e instale os pacotes com 'npm install'.g
@@ -10,4 +10,4 @@ Clone o repositório e instale os pacotes com 'npm install'.g
 * MySQL (https://www.mysql.com/)
 
 ## Execução
-Utiliza 'npm start' executar a aplicação
+Utilize 'npm start' executar a aplicação.
