@@ -68,7 +68,7 @@ CREATE TABLE VAGA (
 CREATE TABLE CONTA_HOTEL (
     Cliente INT NOT NULL,
     Codigo INT NOT NULL,
-    PRIMARY KEY (Cliente, Codigo), 
+    PRIMARY KEY (Cliente, Codigo),
     FOREIGN KEY (Cliente) REFERENCES CLIENTE(idCliente) ON DELETE CASCADE
 );
 
@@ -79,6 +79,7 @@ CREATE TABLE CONTA_RESTAURANTE (
     FOREIGN KEY (Cliente) REFERENCES CLIENTE(idCliente) ON DELETE CASCADE
 );
 
+-- Maybe it's not necessary use Check_in and Check_out
 CREATE TABLE RESERVA (
     Cliente INT NOT NULL,
     Quarto INT NOT NULL,

@@ -18,7 +18,7 @@ const router = express.Router();
 
 
 router.use("/cliente", clienteRouter);
-router.use("/employess", employeesRouter);
+router.use("/employees", employeesRouter);
 router.use("/expenses", expensesRouter);
 router.use("/hotelAccount", hotelAccountsRouter);
 router.use("/hotels", hotelsRouter);
