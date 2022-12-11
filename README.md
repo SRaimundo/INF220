@@ -1,4 +1,4 @@
-#Trabalho de INF220
+# Trabalho de INF220
 
 ## Instalação
 Clone o repositório e instale os pacotes com 'npm install'.
