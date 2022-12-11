@@ -14,7 +14,34 @@ class Hotel{
         const conn = await connect();
         const q = 'DELETE FROM HOTEL WHERE idHotel = ?';
         const remover = await conn.query(q,id);
+    }
 
+    static findOne = async (id: any) => {
+        const conn = await connect();
+        const [rows, fields] = await conn.query(`SELECT * FROM HOTEL WHERE idHotel = ${id}`);
+        return rows;
+    }
+
+    static create = async (hotel: HotelInterface) => {
+        const conn = await connect();
+        const [rows, fields] = await conn.query(`INSERT INTO HOTEL (Nome, Rua, Numero, Complemento, Bairro, Cidade, UF)
+            VALUES ("${hotel.Nome}", "${hotel.Rua}", "${hotel.Numero}", "${hotel.Complemento}", "${hotel.Bairro}", "${hotel.Cidade}", "${hotel.UF}")`);
+        return rows;
+    }
+
+    static update = async (id: any, hotel: HotelInterface) => {
+        const conn = await connect();
+        const [rows, fields] = await conn.query(`UPDATE HOTEL 
+            SET Nome = "${hotel.Nome}",
+            Rua = "${hotel.Rua}",
+            Numero = "${hotel.Numero}",
+            Complemento = "${hotel.Complemento}",
+            Bairro = "${hotel.Bairro}",
+            Cidade = "${hotel.Cidade}",
+            UF = "${hotel.UF}"
+            WHERE idHotel = ${id}`
+        );
+        return rows;
     }
 } 
 
