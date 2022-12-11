@@ -9,6 +9,13 @@ class Hotel{
         const linhas = await conn.query(q);
         return linhas[0];
     };
+
+    static remove = async (id:number) => {
+        const conn = await connect();
+        const q = 'DELETE FROM HOTEL WHERE idHotel = ?';
+        const remover = await conn.query(q,id);
+
+    }
 } 
 
 export default Hotel;

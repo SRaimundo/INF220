@@ -69,7 +69,6 @@ const HotelsTable = () => {
 
   const fetchHotels = useCallback(async () => {
     const hotels = await findAll();
-    console.log(hotels);
     setHotels(hotels);
   }, []);
 
@@ -131,8 +130,7 @@ const HotelsTable = () => {
 
   const handleDelete = async (id) => {
     const hotel: Hotels = await remove(id);
-    if (hotel.idHotel === id) fetchHotels();
-    else alert('Erro ao deletar o hotel!');
+    fetchHotels();
   };
 
   return (
