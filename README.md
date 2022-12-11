@@ -10,4 +10,4 @@ Esqueci como fazer para deixar as senhas ocultas, então cada coloca as informa�
 * MySQL (https://www.mysql.com/)
 
 ## Execução
-Utiliza 'npm start' executar a aplicação.
+Utilize 'npm start' executar a aplicação.
