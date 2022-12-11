@@ -1,7 +1,7 @@
 #Trabalho de INF220
 
 ## Instalação
-Clone o repositório e instale os pacotes com 'npm install'.
+Clone o repositório e instale os pacotes com 'npm install'.g
 > Esqueci como fazer para deixar as senhas ocultas, então cada um coloca as informações da sua conexão em "db.ts"
 
 ## Dependências
@@ -10,4 +10,4 @@ Clone o repositório e instale os pacotes com 'npm install'.
 * MySQL (https://www.mysql.com/)
 
 ## Execução
-Utiliza 'npm start' executar a aplicação.
+Utiliza 'npm start' executar a aplicação
