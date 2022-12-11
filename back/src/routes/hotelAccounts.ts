@@ -3,10 +3,9 @@ import controller from "../controllers/hotelAccounts";
 
 const router = express.Router();
 
-router.post("/",);
-router.get("/",);
-router.patch("/");
-router.delete("/");
-
+router.post("/", controller.create);
+router.get("/", controller.getAll);
+router.get("/:idCliente/:codigo", controller.findOne);
+router.delete("/:idCliente/:codigo", controller.deleteOne);
 
 export default router;

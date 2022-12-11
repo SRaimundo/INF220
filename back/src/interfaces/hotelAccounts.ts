@@ -1,4 +1,4 @@
 export interface HotelAccount{
-    cliente: number;
-    codigo: number;
+    Cliente: number;
+    Codigo: number;
 }
