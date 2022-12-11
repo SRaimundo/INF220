@@ -1,8 +1,8 @@
 export interface Expenses{
-    cliente: number;
-    conta: number;
-    codigo: number;
-    data: Date;
-    descricao: string;
-    valor: number;
+    Cliente: number;
+    Conta: number;
+    Codigo: number;
+    Data: Date;
+    Descricao: string;
+    Valor: number;
 }
