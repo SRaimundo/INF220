@@ -1,5 +1,5 @@
 export interface Housekeeping{
-    funcionario: number;
-    quarto: number;
-    data: Date;
+    Funcionario: number;
+    Quarto: number;
+    Data: Date;
 }

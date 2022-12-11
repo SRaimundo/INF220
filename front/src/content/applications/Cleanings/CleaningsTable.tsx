@@ -93,18 +93,18 @@ const CleaningsTable = () => {
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell children="ID" />
+                {/* <TableCell children="ID" /> */}
                 <TableCell children="Funcionário" />
                 <TableCell children="Apartamento" />
                 <TableCell children="Data" />
-                <TableCell align="right" children="Ações" />
+                {/* <TableCell align="right" children="Ações" /> */}
               </TableRow>
             </TableHead>
             <TableBody>
               {paginatedCleanings.map((faxina) => {
                 return (
-                  <TableRow hover key={faxina.idArruma}>
-                    <TableCell
+                  <TableRow hover key={faxina.Nome}>
+                    {/* <TableCell
                       children={
                         <Typography
                           variant="body1"
@@ -115,7 +115,7 @@ const CleaningsTable = () => {
                           children={faxina.idArruma}
                         />
                       }
-                    />
+                    /> */}
                     <TableCell
                       children={
                         <Typography
@@ -124,7 +124,7 @@ const CleaningsTable = () => {
                           color="text.primary"
                           gutterBottom
                           noWrap
-                          children={faxina.funcionario}
+                          children={faxina.Nome}
                         />
                       }
                     />
@@ -136,7 +136,7 @@ const CleaningsTable = () => {
                           color="text.primary"
                           gutterBottom
                           noWrap
-                          children={`${faxina.hotel} | ${faxina.quarto}`}
+                          children={`${faxina.Hotel} | ${faxina.Quarto}`}
                         />
                       }
                     />
@@ -148,12 +148,12 @@ const CleaningsTable = () => {
                           color="text.primary"
                           gutterBottom
                           noWrap
-                          children={faxina.dataArruma}
+                          children={faxina.Data}
                         />
                       }
                     />
                     <TableCell align="right">
-                      <Tooltip
+                      {/* <Tooltip
                         title="Excluir Faxina"
                         arrow
                         children={
@@ -173,7 +173,7 @@ const CleaningsTable = () => {
                             children={<DeleteTwoToneIcon fontSize="small" />}
                           />
                         }
-                      />
+                      /> */}
                     </TableCell>
                   </TableRow>
                 );

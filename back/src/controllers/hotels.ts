@@ -10,7 +10,7 @@ const remove = async (req: Request, res: Response) =>{
     const { id } = req.params;
     const hotel = await Hotel.remove(Number(id));
     return res.status(200).send();
-}
+};
 
 export default {getAll,remove};
 

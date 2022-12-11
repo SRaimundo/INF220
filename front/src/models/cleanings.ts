@@ -6,11 +6,10 @@ export interface Cleanings {
 }
 
 export interface CleaningsTable {
-  idArruma: number;
-  dataArruma: Date;
-  funcionario: string;
-  hotel: string;
-  quarto: string;
+  Data: Date;
+  Nome: string;
+  Hotel: string;
+  Quarto: string;
 }
 
 export interface Funcionario {

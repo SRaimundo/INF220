@@ -6,7 +6,7 @@ export const connect = async () => {
         host: 'localhost',
         user: 'root',
         database: 'BOM_SONO',
-        password: 'root'
+        password: '986082Sr@'
     });
     return connection;
 }

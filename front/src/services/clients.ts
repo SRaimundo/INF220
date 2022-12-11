@@ -37,5 +37,5 @@ export const update = async (id, data) => {
 
 export const remove = async (id) => {
   const response = await api.delete(`/cliente/${id}`);
-  return response.data.cliente[0] as Clients;
+  return response.data as Clients;
 };

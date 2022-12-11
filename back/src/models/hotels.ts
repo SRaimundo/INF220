@@ -15,7 +15,7 @@ class Hotel{
         const q = 'DELETE FROM HOTEL WHERE idHotel = ?';
         const remover = await conn.query(q,id);
 
-    }
+    };
 } 
 
 export default Hotel;

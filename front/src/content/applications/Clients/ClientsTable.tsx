@@ -135,11 +135,7 @@ const ClientsTable = () => {
   const handleDelete = async (id) => {
     const clientId = id;
     const client: Clients = await remove(clientId);
-    if (client.idCliente === clientId) {
-      fetchClients();
-    } else {
-      alert('Erro ao deletar o cliente!');
-    }
+    fetchClients();
   };
 
   return (

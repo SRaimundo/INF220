@@ -22,7 +22,7 @@ router.use("/employees", employeesRouter);
 router.use("/expenses", expensesRouter);
 router.use("/hotelAccount", hotelAccountsRouter);
 router.use("/hotels", hotelsRouter);
-router.use("/housekeeping", housekeepingRouter);
+router.use("/arruma", housekeepingRouter);
 router.use("/mealExpenses", mealExpensesRouter);
 router.use("/reservations", reservationsRouter);
 router.use("/restaurantAccounts", restaurantAccountsRouter);

@@ -4,7 +4,8 @@ import api from './api';
 export const findAll = async () => {
   try {
     const response = await api.get('/arruma');
-    return response.data.arrumas as CleaningsTable[];
+    console.log(response);
+    return response.data as CleaningsTable[];
   } catch (error) {
     console.error(error);
     return [];
