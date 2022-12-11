@@ -1,4 +1,4 @@
 export interface RestaurantAccount{
-    cliente: number;
-    codigo: number;
+    Cliente: number;
+    Codigo: number;
 }
