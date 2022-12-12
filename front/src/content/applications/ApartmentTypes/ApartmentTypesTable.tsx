@@ -133,8 +133,7 @@ const ApartmentTypesTable = () => {
 
   const handleDelete = async (id) => {
     const apartmentType: ApartmentTypes = await remove(id);
-    if (apartmentType.idTipo === id) fetchApartmentTypes();
-    else alert('Erro ao deletar o apartmentType!');
+    fetchApartmentTypes();
   };
 
   return (

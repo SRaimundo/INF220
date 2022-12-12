@@ -32,5 +32,5 @@ export const update = async (id, data) => {
 
 export const remove = async (id) => {
   const response = await api.delete(`/tipo-apartamento/${id}`);
-  return response.data.tipoApartamento[0] as ApartmentTypes;
+  return response.data as ApartmentTypes;
 };

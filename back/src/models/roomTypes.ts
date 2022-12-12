@@ -6,6 +6,7 @@ class RoomType{
         const conn = await connect();
         const q = 'SELECT * FROM TIPO_QUARTO';
         const linhas = await conn.query(q);
+        // console.log(linhas[0]);
         return linhas[0];
     };
 

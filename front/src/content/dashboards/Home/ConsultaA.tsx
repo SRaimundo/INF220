@@ -25,7 +25,7 @@ const AvatarWrapperPrimary = styled(Avatar)(
 function ConsultaA() {
   const [filial] = useState('Rio de Janeiro');
   const [dataEntrada] = useState('26/02/2022');
-  const [dataSaida] = useState('01/04/2022');
+  const [dataSaida] = useState('01/03/2022');
   const [clientList, setClientList] = useState([]);
 
   useEffect(() => {

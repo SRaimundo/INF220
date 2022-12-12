@@ -50,3 +50,19 @@ WHERE C.idCliente = R.Cliente AND Q.Numero = R.Quarto AND Q.Hotel = H.idHotel AN
 	FROM HOTEL
 	WHERE Cidade = 'Rio de Janeiro'
 );
+
+
+--Nome dos clientes hospedados na Filial Rio de Janeiro, no período 26/fev a 01/mar/22;
+SELECT  DISTINCT C.Nome
+FROM CLIENTE C, RESERVA R, QUARTO Q, HOTEL H
+WHERE R.Data_in <= '2022-03-01' AND R.Data_out >= '2022-02-26' AND
+C.idCliente = R.Cliente AND R.Quarto = Q.Numero AND 
+Q.HOTEL = H.idHotel AND H.Cidade = 'Rio de Janeiro';
+
+--Nome das faxineiras que limparam o quarto 401, Filial Rio de Janeiro, no período 26/fev a 01/mar/22;
+SELECT DISTINCT F.Nome
+FROM FUNCIONARIO F, ARRUMACAO A, HOTEL H, QUARTO Q
+WHERE F.idFuncionario = A.Funcionario AND A.Quarto = Q.Numero
+AND Q.Hotel = H.idHotel and H.Cidade = 'Rio de Janeiro' AND Q.Numero = '401'
+AND A.Data >='2022-02-26' AND A.Data <= '2022-03-01';
+

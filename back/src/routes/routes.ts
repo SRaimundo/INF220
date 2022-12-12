@@ -27,7 +27,7 @@ router.use("/mealExpenses", mealExpensesRouter);
 router.use("/reservations", reservationsRouter);
 router.use("/restaurantAccounts", restaurantAccountsRouter);
 router.use("/rooms", roomsRouter);
-router.use("/roomTypes", roomTypesRouter);
+router.use("/tipo-apartamento", roomTypesRouter);
 router.use("/vacancies", vacanciesRouter);
 
 router.use((req, res, next)=> {
