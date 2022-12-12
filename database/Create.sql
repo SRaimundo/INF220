@@ -32,21 +32,44 @@ CREATE TABLE QUARTO (
     FOREIGN KEY (Hotel) REFERENCES HOTEL(idHotel) ON DELETE CASCADE
 );
 
-CREATE TABLE CLIENTE (
-    idCliente INT NOT NULL AUTO_INCREMENT,
-    Nome VARCHAR(100) NOT NULL,
-    Telefone VARCHAR(11) NOT NULL,
-    Pais_origem VARCHAR(30) NOT NULL,
-    Email VARCHAR(100) NOT NULL,
-    Senha VARCHAR(50) NOT NULL,
-    Rua VARCHAR(100) NOT NULL,
-    Numero INT NOT NULL,
-    Complemento VARCHAR(100),
-    Bairro VARCHAR(50) NOT NULL,
-    Cidade VARCHAR(50) NOT NULL,
-    UF VARCHAR(2) NOT NULL,
-    PRIMARY KEY (idCliente)
-);
+CREATE TABLE CLIENTE {
+  Id_cliente INT NOT NULL AUTO_INCREMENT,
+  Nome VARCHAR(100) NOT NULL,
+  Email VARCHAR(100),
+  CPF CHAR(11),
+  Documento VARCHAR(30),
+  Tipo_documento VARCHAR(30),
+  Orgao_exp VARCHAR(30),
+  DDD_celular CHAR(3), -- CHAR has a fix length (if DDD = 33, put 033) -> necessary for pattern
+  DDI_celular CHAR(4), -- CHAR has a fix length (if DDI = 55, put 0055) -> necessary for pattern
+  Celular VARCHAR(10),
+  DDD_telefone CHAR(3), -- CHAR has a fix length (if DDD = 33, put 033) -> necessary for pattern
+  DDI_telefone CHAR(4), -- CHAR has a fix length (if DDI = 55, put 0055) -> necessary for pattern
+  Telefone VARCHAR(10),
+  Nascimento DATE NOT NULL,
+  Sexo CHAR(1) NOT NULL,
+  Profissao VARCHAR(30),
+  Nacionalidade VARCHAR(50),
+  Endereco VARCHAR(150),
+  Cidade VARCHAR(150),
+  Estado VARCHAR(150),
+  Pais VARCHAR(150),
+  CEP VARCHAR(30),
+  Ultima_cidade VARCHAR(50),
+  Ultima_estado VARCHAR(50),
+  Ultima_pais VARCHAR(50),
+  Proxima_cidade VARCHAR(50),
+  Proxima_estado VARCHAR(50),
+  Proxima_pais VARCHAR(50),
+  Motivo INT,
+  Meio_transporte INT,
+  Observacoes VARCHAR(300),
+  Numero_hospedes INT,
+  UH INT,
+  Data_prev_chegada DATETIME,
+  Data_prev_saida DATETIME,
+  FNRH VARCHAR(100) NOT NULL
+}
 
 CREATE TABLE FUNCIONARIO (
     idFuncionario INT NOT NULL AUTO_INCREMENT,
@@ -121,7 +144,7 @@ CREATE TABLE DESPESA_REFEICAO (
     Data DATE NOT NULL,
     Descricao VARCHAR(100) NOT NULL,
     Valor FLOAT NOT NULL,
-    Entregue BOOLEAN NOT NULL,
+    Entrege BOOLEAN NOT NULL,
     PRIMARY KEY(Cliente, Conta, Codigo),
     FOREIGN KEY (Cliente,Conta) REFERENCES CONTA_RESTAURANTE(Cliente,Codigo) ON DELETE CASCADE
 );
