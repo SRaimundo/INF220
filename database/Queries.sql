@@ -66,3 +66,5 @@ WHERE F.idFuncionario = A.Funcionario AND A.Quarto = Q.Numero
 AND Q.Hotel = H.idHotel and H.Cidade = 'Rio de Janeiro' AND Q.Numero = '401'
 AND A.Data >='2022-02-26' AND A.Data <= '2022-03-01';
 
+
+--Hotel, número do quarto e nome dos clientes que consumiram “RedBull” em qualquer data. 

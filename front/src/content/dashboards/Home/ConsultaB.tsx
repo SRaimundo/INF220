@@ -23,10 +23,10 @@ const AvatarWrapperWarning = styled(Avatar)(
 );
 
 function ConsultaB() {
-  const [filial] = useState('Viçosa');
-  const [quarto] = useState('101');
-  const [dataEntrada] = useState('26/02/2022');
-  const [dataSaida] = useState('02/04/2022');
+  const [filial] = useState('Rio de janeiro');
+  const [quarto] = useState('401');
+  const [dataEntrada] = useState('2022-02-26');
+  const [dataSaida] = useState('2022-03-01');
   const [camareiraList, setCamareiraList] = useState([]);
 
   useEffect(() => {
@@ -37,7 +37,7 @@ function ConsultaB() {
 
   return (
     <Card>
-      <CardHeader title="Faxinas realizadas no quarto" />
+      <CardHeader title="Nome das pessoas que limparam o quarto" />
       <List disablePadding>
         <ListItem sx={{ py: 1 }}>
           <ListItemAvatar>
@@ -69,7 +69,7 @@ function ConsultaB() {
           <Box key={index}>
             <ListItem sx={{ py: 2 }}>
               <ListItemText
-                primary={<Text color="black">{camareira.nome}</Text>}
+                primary={<Text color="black">{camareira.Nome}</Text>}
                 primaryTypographyProps={{
                   variant: 'body1',
                   fontWeight: 'bold',

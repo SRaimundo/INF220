@@ -23,16 +23,16 @@ const AvatarWrapperPrimary = styled(Avatar)(
 );
 
 function ConsultaA() {
-  const [filial] = useState('Rio de Janeiro');
-  const [dataEntrada] = useState('26/02/2022');
-  const [dataSaida] = useState('01/03/2022');
+  const [cidadeHotel] = useState('Rio de Janeiro');
+  const [dataInicio] = useState('2022-02-26');
+  const [dataFim] = useState('2022-03-01');
   const [clientList, setClientList] = useState([]);
 
   useEffect(() => {
-    consultaA(filial, dataEntrada, dataSaida).then((res) => {
+    consultaA(cidadeHotel, dataInicio, dataFim).then((res) => {
       setClientList(res);
     });
-  }, [filial, dataEntrada, dataSaida]);
+  }, [cidadeHotel, dataInicio, dataFim]);
 
   return (
     <Card>
@@ -45,7 +45,7 @@ function ConsultaA() {
             </AvatarWrapperPrimary>
           </ListItemAvatar>
           <ListItemText
-            primary={<Text color="black" children={`${filial}`} />}
+            primary={<Text color="black" children={`${cidadeHotel}`} />}
             primaryTypographyProps={{
               variant: 'body1',
               fontWeight: 'bold',
@@ -55,9 +55,9 @@ function ConsultaA() {
             }}
             secondary={
               <>
-                <Text color="success">Entrada: {dataEntrada}</Text>
+                <Text color="success">Entrada: {dataInicio}</Text>
                 <br />
-                <Text color="success">Saída: {dataSaida}</Text>
+                <Text color="success">Saída: {dataFim}</Text>
               </>
             }
             secondaryTypographyProps={{ variant: 'body2', noWrap: true }}
@@ -68,7 +68,7 @@ function ConsultaA() {
           <Box key={index}>
             <ListItem sx={{ py: 2 }}>
               <ListItemText
-                primary={<Text color="black">{client.nome}</Text>}
+                primary={<Text color="black">{client.Nome}</Text>}
                 primaryTypographyProps={{
                   variant: 'body1',
                   fontWeight: 'bold',
@@ -76,7 +76,7 @@ function ConsultaA() {
                   gutterBottom: true,
                   noWrap: true,
                 }}
-                secondary={<Text color="primary">{client.email}</Text>}
+                secondary={<Text color="primary">{client.Email}</Text>}
                 secondaryTypographyProps={{ variant: 'body2', noWrap: true }}
               />
             </ListItem>

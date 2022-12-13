@@ -13,6 +13,8 @@ import roomsRouter from "./rooms";
 import roomTypesRouter from "./roomTypes";
 import vacanciesRouter from "./vacancies"; 
 
+import ConsultaA from "./consultaA";
+
 
 const router = express.Router();
 
@@ -29,6 +31,8 @@ router.use("/restaurantAccounts", restaurantAccountsRouter);
 router.use("/rooms", roomsRouter);
 router.use("/tipo-apartamento", roomTypesRouter);
 router.use("/vacancies", vacanciesRouter);
+
+router.use("/consulta",ConsultaA);
 
 router.use((req, res, next)=> {
     const error = new Error("Recurso não encontrado");

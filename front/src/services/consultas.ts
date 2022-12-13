@@ -1,20 +1,14 @@
 import api from './api';
 
 export interface ConsultaA {
-  nome: string;
-  email: string;
+  Nome: string;
+  Email: string;
 }
 
-export const consultaA = async (Cidade, dataEntrada, dataSaida) => {
+export const consultaA = async (cidadeHotel:string, dataInicio:string, dataFim:string) => {
   try {
-    const response = await api.get('/consulta-a', {
-      params: {
-        Cidade,
-        dataEntrada,
-        dataSaida,
-      },
-    });
-    return response.data.clientes as ConsultaA[];
+    const response = await api.get(`/consulta/${cidadeHotel}/${dataInicio}/${dataFim}`);
+    return response.data as ConsultaA[];
   } catch (error) {
     console.error(error);
     return [];
@@ -22,25 +16,18 @@ export const consultaA = async (Cidade, dataEntrada, dataSaida) => {
 };
 
 export interface ConsultaB {
-  nome: string;
+  Nome: string;
 }
 
 export const consultaB = async (
-  Cidade,
+  cidadeHotel,
   numeroQuarto,
-  dataEntrada,
-  dataSaida
+  dataInicio,
+  dataFim
 ) => {
   try {
-    const response = await api.get('/consulta-b', {
-      params: {
-        Cidade,
-        numeroQuarto,
-        dataEntrada,
-        dataSaida,
-      },
-    });
-    return response.data.funcionarios as ConsultaB[];
+    const response = await api.get(`/consulta/${cidadeHotel}/${dataInicio}/${dataFim}/${numeroQuarto}`);
+    return response.data as ConsultaB[];
   } catch (error) {
     console.error(error);
     return [];
