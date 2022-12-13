@@ -5,5 +5,6 @@ const router = express.Router();
 
 router.get("/:cidadeHotel/:dataInicio/:dataFim",controller.ConsultaA);
 router.get("/:cidadeHotel/:dataInicio/:dataFim/:numeroQ",controller.ConsultaB);
+router.get("/:descricao",controller.ConsultaC);
 
 export default router;

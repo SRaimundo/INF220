@@ -17,6 +17,15 @@ class Consultas{
         const linhas = await conn.query(q);
         return linhas[0]; 
     };
+
+    static consultaC = async (descricao: string) => {
+        const conn = await connect();
+        // console.log(cidadeHotel, dataInicio,dataFim, numeroQ);
+        const q =`SELECT DISTINCT H.Nome AS Hotel, Q.Numero, C.Nome FROM HOTEL H, QUARTO Q, CLIENTE C, DESPESA D, RESERVA R WHERE D.Descricao = '${descricao}' AND  D.Cliente = C.idCliente AND R.Cliente = C.idCliente AND R.Data_in <= D.Data AND R.Data_out >= D.Data AND R.Quarto = Q.Numero AND Q.Hotel = H.idHotel`;
+        const linhas = await conn.query(q);
+        return linhas[0]; 
+    }
+    
 };
 
 

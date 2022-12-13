@@ -23,14 +23,15 @@ const AvatarWrapperError = styled(Avatar)(
 );
 
 function ConsultaE() {
-  const [filial] = useState('Rio de Janeiro');
+  const [cidade] = useState('Rio de Janeiro');
+  const[data] = useState('2022-12-07');
   const [clientList, setClientList] = useState([]);
 
   useEffect(() => {
-    consultaE(filial).then((res) => {
+    consultaE(cidade,data).then((res) => {
       setClientList(res);
     });
-  }, [filial]);
+  }, [cidade]);
 
   return (
     <Card>
@@ -43,7 +44,7 @@ function ConsultaE() {
             </AvatarWrapperError>
           </ListItemAvatar>
           <ListItemText
-            primary={<Text color="black" children={`${filial}`} />}
+            primary={<Text color="black" children={`${cidade} na data de ${data}`} />}
             primaryTypographyProps={{
               variant: 'body1',
               fontWeight: 'bold',
@@ -58,7 +59,7 @@ function ConsultaE() {
           <Box key={index}>
             <ListItem sx={{ py: 2 }}>
               <ListItemText
-                primary={<Text color="black">{client.nome}</Text>}
+                primary={<Text color="black">{client.Nome}</Text>}
                 primaryTypographyProps={{
                   variant: 'body1',
                   fontWeight: 'bold',
@@ -66,7 +67,7 @@ function ConsultaE() {
                   gutterBottom: true,
                   noWrap: true,
                 }}
-                secondary={<Text color="error">{client.email}</Text>}
+                secondary={<Text color="error">{client.Email}</Text>}
                 secondaryTypographyProps={{ variant: 'body2', noWrap: true }}
               />
             </ListItem>

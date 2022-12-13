@@ -115,9 +115,9 @@ function ConsultaC() {
                     <Typography
                       gutterBottom
                       noWrap
-                      children={`${lista.Cidade_hotel} | ${lista.numero_ap}`}
+                      children={`${lista.Hotel} | ${lista.Numero}`}
                     />
-                    <Typography gutterBottom noWrap children={lista.cliente} />
+                    <Typography gutterBottom noWrap children={lista.Nome} />
                     <Divider />
                   </Box>
                 ))}
@@ -150,9 +150,9 @@ function ConsultaC() {
                     <Typography
                       gutterBottom
                       noWrap
-                      children={`${lista.Cidade_hotel} | ${lista.numero_ap}`}
+                      children={`${lista.Hotel} | ${lista.Numero}`}
                     />
-                    <Typography gutterBottom noWrap children={lista.cliente} />
+                    <Typography gutterBottom noWrap children={lista.Nome} />
                     <Divider />
                   </Box>
                 ))}
@@ -185,9 +185,9 @@ function ConsultaC() {
                     <Typography
                       gutterBottom
                       noWrap
-                      children={`${lista.Cidade_hotel} | ${lista.numero_ap}`}
+                      children={`${lista.Hotel} | ${lista.Numero}`}
                     />
-                    <Typography gutterBottom noWrap children={lista.cliente} />
+                    <Typography gutterBottom noWrap children={lista.Nome} />
                     <Divider />
                   </Box>
                 ))}

@@ -67,4 +67,23 @@ AND Q.Hotel = H.idHotel and H.Cidade = 'Rio de Janeiro' AND Q.Numero = '401'
 AND A.Data >='2022-02-26' AND A.Data <= '2022-03-01';
 
 
---Hotel, número do quarto e nome dos clientes que consumiram “RedBull” em qualquer data. 
+--Hotel, número do quarto e nome dos clientes que consumiram “RedBull” em qualquer data.
+SELECT DISTINCT H.Nome, Q.Numero, C.Nome
+FROM HOTEL H, QUARTO Q, CLIENTE C, DESPESA D, RESERVA R
+WHERE D.Descricao = 'Red Bull' AND  D.Cliente = C.idCliente 
+AND R.Cliente = C.idCliente AND R.Data_in <= D.Data AND R.Data_out >= D.Data
+AND R.Quarto = Q.Numero AND Q.Hotel = H.idHotel;
+
+--Nome dos clientes que fizeram reserva na Filial Rio de Janeiro, mas não se hospedaram;
+SELECT C.Nome
+FROM CLIENTE C, RESERVA R, HOTEL H, QUARTO Q
+WHERE R.Data_in <= "2022-12-07" AND R.Check_in = false 
+AND C.idCliente = R.Cliente AND R.Quarto = Q.Numero 
+AND Q.Hotel = H.idHotel AND H.Cidade = "Rio de Janeiro";
+
+--Número de quartos tipo “1 Cama de Casal” em cada filial;
+SELECT H.Cidade , count(*) AS count
+FROM HOTEL H, QUARTO Q, TIPO_QUARTO T
+WHERE H.idHotel = Q.Hotel AND Q.Tipo = T.idTipo
+AND T.Numero_camas_casal = 1
+GROUP BY H.Cidade;

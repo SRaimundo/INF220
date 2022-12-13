@@ -63,7 +63,7 @@ function Consultas() {
   const [colors, setColors] = useState<string[]>([]);
 
   useEffect(() => {
-    consultaD().then((res) => {
+    consultaD(1).then((res) => {
       setHotelList(res);
       const hoteis = res.map((a) => a.Cidade);
       const counts = res.map((a) => a.count);

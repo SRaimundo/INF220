@@ -206,9 +206,9 @@ VALUES(1, 1, 2, '2022-12-09', 'Red Bull', 10.5);
 INSERT INTO DESPESA
 VALUES(2, 2, 3, '2022-12-13', 'Pão com linguiça', 135.5);
 INSERT INTO DESPESA
-VALUES(1, 1, 4, '2022-12-07', 'Lagosta à parmagiana', 0.30);
+VALUES(1, 1, 4, '2022-12-07', 'Sonho de Valsa', 0.30);
 INSERT INTO DESPESA
-VALUES(5, 3, 5, '2022-12-09', 'Shampoo 3 em 1', 22.50);
+VALUES(5, 3, 5, '2022-12-09', 'Coca Cola', 22.50);
 
 INSERT INTO CONTA_RESTAURANTE
 VALUES(1, 1);

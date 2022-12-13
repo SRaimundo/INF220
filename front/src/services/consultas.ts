@@ -35,19 +35,15 @@ export const consultaB = async (
 };
 
 export interface ConsultaC {
-  Cidade_hotel: string;
-  numero_ap: string;
-  cliente: string;
+  Hotel: string;
+  Numero: string;
+  Nome: string;
 }
 
-export const consultaC = async (produto) => {
+export const consultaC = async (descricao) => {
   try {
-    const response = await api.get('/consulta-c', {
-      params: {
-        produto,
-      },
-    });
-    return response.data.data as ConsultaC[];
+    const response = await api.get(`/consulta/${descricao}`);
+    return response.data as ConsultaC[];
   } catch (error) {
     console.error(error);
     return [];
@@ -59,24 +55,20 @@ export interface ConsultaD {
   count: string;
 }
 
-export const consultaD = async () => {
+export const consultaD = async (camasCasal) => {
   try {
-    const response = await api.get('/consulta-d');
-    return response.data.camasCasal as ConsultaD[];
+    const response = await api.get(`/consulta2/${camasCasal}`);
+    return response.data as ConsultaD[];
   } catch (error) {
     console.error(error);
     return [];
   }
 };
 
-export const consultaE = async (Cidade) => {
+export const consultaE = async (cidade,data) => {
   try {
-    const response = await api.get('/consulta-e', {
-      params: {
-        Cidade,
-      },
-    });
-    return response.data.clientes as ConsultaA[];
+    const response = await api.get(`/consulta2/${cidade}/${data}`);
+    return response.data as ConsultaA[];
   } catch (error) {
     console.error(error);
     return [];

@@ -21,4 +21,13 @@ const ConsultaB = async (req: Request, res: Response) => {
     }
 }
 
-export default {ConsultaA,ConsultaB};
+const ConsultaC = async (req: Request, res: Response) => {
+    try {
+        const resp = await Consultas.consultaC(req.params.descricao);
+        return res.status(200).json( resp);
+    } catch (error) {
+        return res.status(500).send({message: error});
+    }
+}
+
+export default {ConsultaA,ConsultaB,ConsultaC};
