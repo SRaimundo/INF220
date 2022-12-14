@@ -71,6 +71,11 @@ const menuItems: MenuItems[] = [
         link: '/expenditures',
       },
       {
+        name: 'Consumos Restaurante',
+        icon: FastfoodTwoToneIcon,
+        link: '/restaurantexpenditures',
+      },
+      {
         name: 'Faxinas',
         icon: CleaningServicesTwoToneIcon,
         link: '/cleanings',

@@ -63,6 +63,13 @@ const Expenditures = Loader(
 const CreateExpenditure = Loader(
   lazy(() => import('src/content/applications/Expenditures/create'))
 );
+// SECTION ConsumosResturante
+const RestaurantExpenditures = Loader(
+  lazy(() => import('src/content/applications/RestaurantExpenditures'))
+);
+const RestaurantCreateExpenditure = Loader(
+  lazy(() => import('src/content/applications/RestaurantExpenditures/create'))
+);
 // SECTION Checkout
 const Checkout = Loader(
   lazy(() => import('src/content/applications/Checkout'))
@@ -234,6 +241,19 @@ const routes: PartialRouteObject[] = [
           {
             path: 'new',
             element: <CreateExpenditure />,
+          },
+        ],
+      },
+      {
+        path: 'restaurantexpenditures',
+        children: [
+          {
+            path: '/',
+            element: <RestaurantExpenditures />,
+          },
+          {
+            path: 'new',
+            element: <RestaurantCreateExpenditure />,
           },
         ],
       },
