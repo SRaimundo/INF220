@@ -119,6 +119,32 @@ GROUP BY DH.Hospedagem
 ORDER BY SUM(DH.Valor) DESC
 LIMIT 5;
 
+-- Lista valor total de despesas no hotel em um dia para cada hospedagem
+SELECT SUM(DH.Valor) as 'Soma diária', H.Id_hospedagem as Hospedagem
+FROM DESPESA_HOTEL DH, HOSPEDAGEM H
+WHERE H.Id_hospedagem = DH.Hospedagem AND DH.Data >= '2022-12-07 00:00:00' AND DH.Data <= '2022-12-07 23:59:59'
+GROUP BY H.Id_hospedagem;
+
+-- Lista valor total de consumo no restaurante em um dia para cada hospedagem
+SELECT SUM(CRE.Valor)*1.1 + SUM(CRNE.Valor) as 'Soma diária', H.Id_hospedagem as Hospedagem
+FROM CONSUMO_RESTAURANTE CRE, CONSUMO_RESTAURANTE CRNE, HOSPEDAGEM H
+WHERE (H.Id_hospedagem = CRE.Hospedagem AND CRE.Data >= '2022-12-07 00:00:00' AND CRE.Data <= '2022-12-07 23:59:59') OR (H.Id_hospedagem = CRNE.Hospedagem AND CRNE.Data >= '2022-12-07 00:00:00' AND CRNE.Data <= '2022-12-07 23:59:59')
+GROUP BY H.Id_hospedagem;
+
+-- Lista valor de diária para cada hospedagem
+SELECT T.Valor, H.Id_hospedagem as Hospedagem
+FROM HOSPEDAGEM H, QUARTO Q, TIPO_QUARTO T
+WHERE H.Quarto = Q.Numero AND Q.Tipo = T.Id_tipo;
+
+CREATE TEMPORARY TABLE DIARIAS (
+	Hospedagem INT NOT NULL;
+	Dia DATE NOT NULL;
+	Valor FLOAT NOT NULL;
+	FOREIGN KEY (Hospedagem) REFERENCES HOSPEDAGEM(Id_hospedagem) ON DELETE CASCADE,
+);
+
+SELECT SUM(DH.Valor
+
 -- Alguma consulta baseada na sua funcionalidade adicional;
 -- Listar as vagas disponíveis em um hotel
 SELECT V.Id_vaga as Vaga, H.Nome as Hotel
