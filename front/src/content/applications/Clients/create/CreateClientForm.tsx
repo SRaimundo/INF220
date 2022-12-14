@@ -66,6 +66,7 @@ function CreateClientsForm() {
     register('Bairro');
     register('Cidade');
     register('UF');
+    register('Pais');
   }, [register]);
 
   return (
@@ -258,7 +259,7 @@ function CreateClientsForm() {
                     onChange={(event) => setValue('UF', event.target.value)}
                   />
                 </Grid>
-                {/* <Grid item md={3} xs={12}>
+                <Grid item md={3} xs={12}>
                   <TextField
                     type="string"
                     name="country"
@@ -269,7 +270,7 @@ function CreateClientsForm() {
                     required
                     onChange={(event) => setValue('Pais', event.target.value)}
                   />
-                </Grid> */}
+                </Grid>
               </Grid>
             </CardContent>
           </Card>

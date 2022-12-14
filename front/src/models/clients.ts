@@ -11,4 +11,5 @@ export interface Clients {
   Bairro: string;
   Cidade: string;
   UF: string;
+  Pais: string;
 }

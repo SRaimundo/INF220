@@ -29,7 +29,7 @@ import { MoneyMaskCustom } from 'src/components/Masks/currencyMask';
 import { Accommodations } from 'src/models/accommodations';
 import { Expenditures } from 'src/models/expenditures';
 import { findAll as findAccommodations } from 'src/services/accommodations';
-import { create } from 'src/services/expenditures';
+import { create } from 'src/services/restaurantExpenditures';
 import * as yup from 'yup';
 
 const schema = yup.object().shape({

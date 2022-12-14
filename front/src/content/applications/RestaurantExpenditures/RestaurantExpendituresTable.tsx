@@ -22,7 +22,7 @@ import PropTypes from 'prop-types';
 import { ChangeEvent, useCallback, useEffect, useState } from 'react';
 import Label from 'src/components/Label';
 import { Expenditures } from 'src/models/expenditures';
-import { findAll, remove } from 'src/services/expenditures';
+import { findAll, remove } from 'src/services/restaurantExpenditures';
 
 // const getStatusLabel = (expenditureStatus: ClientStatus): JSX.Element => {
 //   const map = {
