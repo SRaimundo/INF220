@@ -9,7 +9,7 @@ function CreateHospede() {
   return (
     <>
       <Helmet>
-        <title>Cadastrar Cliente</title>
+        <title>Cadastrar Hospede</title>
       </Helmet>
       <PageTitleWrapper>
         <PageHeader />
