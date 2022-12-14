@@ -222,7 +222,7 @@ VALUES(7, 4, 'Yuri Noites', 'noitesminecraft@email.com', '98765432100', '1912-12
 INSERT INTO HOSPEDE
 VALUES(8, 5, 'Felipe de Assis', 'queenelisa@email.com', '06438200251', '1985-12-29', 'M', 'Gamer', 'Inglaterra', 'Passaporte', 'Estrangeiro', 'Governo', '0001', '001', '423643732', NULL, NULL, NULL, 'Rua Very Important', '45', 'Center', 'Britânica', 'UK', 'Inglaterra', NULL, 'Viçosa', 'MG', 'Brasil', 'Lassance', 'MG', 'Brasil', 1, 1, NULL);
 INSERT INTO HOSPEDE
-VALUES(9, 5, 'Machado Ferreira', 'beloescritor@email.com', '00000000001', '1839-06-21', 'M', 'Escritor', 'Brasil', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Rua Perto de BH', '100', 'Minas', 'Pão de Queijo', 'Croácia', '84908000', 'Cemitério', 'DD', 'Brasil', 'Céu', 'DD', 'Reino de Deus', 1, 1, 'Não tinha telefone na sua época');
+VALUES(9, 5, 'Machado Ferreira', 'beloescritor@email.com', '00000000001', '1839-06-21', 'M', 'Escritor', 'Brasil', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Rua Perto de BH', '100', 'Minas', 'Pão de Queijo', 'MG', 'Croácia', '84908000', 'Cemitério', 'DD', 'Brasil', 'Céu', 'DD', 'Reino de Deus', 1, 1, 'Não tinha telefone na sua época');
 INSERT INTO HOSPEDE
 VALUES(10, 2, 'Maria José', 'maria@email.com', '00000000000', '1982-07-02', 'F', 'Costureira', 'Brasil', 'Documento', 'Passaporte', 'Governo', '0055', '033', '999999999', 'ddii', 'ddd', 'telefone', 'Rua da Sua Casa', '27', 'Seu Bairro', 'Sua Cidade', 'Seu Estado', 'Seu Pais', '303030000', 'Viçosa', 'MG', 'Brasil', 'Ubá', 'MG', 'Brasil', 1, 1, NULL);
 

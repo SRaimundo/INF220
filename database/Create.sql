@@ -91,8 +91,8 @@ CREATE TABLE HOSPEDE (
   DDI_celular CHAR(4), -- CHAR has a fix length (if DDI = 55, put 0055) -> necessary for pattern
   DDD_celular CHAR(3), -- CHAR has a fix length (if DDD = 33, put 033) -> necessary for pattern
   Numero_celular VARCHAR(10),
-  DDD_telefone CHAR(3), -- CHAR has a fix length (if DDD = 33, put 033) -> necessary for pattern
   DDI_telefone CHAR(4), -- CHAR has a fix length (if DDI = 55, put 0055) -> necessary for pattern
+  DDD_telefone CHAR(3), -- CHAR has a fix length (if DDD = 33, put 033) -> necessary for pattern
   Numero_telefone VARCHAR(10),
   Endereco VARCHAR(150),
   Numero VARCHAR(6),
