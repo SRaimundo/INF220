@@ -35,6 +35,11 @@ const Clients = Loader(lazy(() => import('src/content/applications/Clients')));
 const CreateClient = Loader(
   lazy(() => import('src/content/applications/Clients/create'))
 );
+// SECTION Hospede
+const Hospede = Loader(lazy(() => import('src/content/applications/Hospede')));
+const CreateHospede = Loader(
+  lazy(() => import('src/content/applications/Hospede/create'))
+);
 // SECTION Reservas
 const Reservations = Loader(
   lazy(() => import('src/content/applications/Reservations'))
@@ -202,6 +207,19 @@ const routes: PartialRouteObject[] = [
           {
             path: 'new',
             element: <CreateClient />,
+          },
+        ],
+      },
+      {
+        path: 'hospedes',
+        children: [
+          {
+            path: '/',
+            element: <Hospede />,
+          },
+          {
+            path: 'new',
+            element: <CreateHospede />,
           },
         ],
       },

@@ -56,6 +56,11 @@ const menuItems: MenuItems[] = [
         link: '/clients',
       },
       {
+        name: 'Hospede',
+        icon: PersonTwoToneIcon,
+        link: '/hospedes',
+      },
+      {
         name: 'Reservas',
         icon: BedTwoToneIcon,
         link: '/reservations',

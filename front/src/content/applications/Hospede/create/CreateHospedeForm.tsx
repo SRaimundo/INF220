@@ -17,7 +17,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { PhoneMaskCustom } from 'src/components/Masks/phoneMask';
 import { Clients } from 'src/models/clients';
-import { create } from 'src/services/clients';
+import { create } from 'src/services/hospede';
 import * as yup from 'yup';
 
 const schema = yup.object().shape({
