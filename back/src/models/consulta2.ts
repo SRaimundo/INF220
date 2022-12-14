@@ -5,7 +5,12 @@ class Consultas2{
 
     static consultaD = async (camasCasal: string) =>{
         const conn = await connect();
-        const q = `SELECT H.Cidade , count(*) AS count FROM HOTEL H, QUARTO Q, TIPO_QUARTO T WHERE H.idHotel = Q.Hotel AND Q.Tipo = T.idTipo AND T.Numero_camas_casal = ${camasCasal} GROUP BY H.Cidade`;
+        const q =
+        `SELECT H.Nome as Cidade, COUNT(Q.Numero) as count
+        FROM QUARTO Q, HOTEL H, TIPO_QUARTO T
+        WHERE Q.Hotel = H.Id_hotel AND Q.Tipo = T.Id_tipo AND T.Numero_camas_casal = ${camasCasal}
+        GROUP BY Q.Hotel`;
+        
         const linhas = await conn.query(q);
         return linhas[0];
         
