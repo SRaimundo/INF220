@@ -16,7 +16,7 @@ function PageHeader() {
           variant="contained"
           startIcon={<KeyboardReturnTwoToneIcon fontSize="small" />}
           component={NavLink}
-          to="/clients"
+          to="/hospedes"
         >
           Retornar
         </Button>
