@@ -21,17 +21,17 @@ import { create } from 'src/services/clients';
 import * as yup from 'yup';
 
 const schema = yup.object().shape({
-  nome: yup.string().required('Nome é um campo obrigatório'),
+  Nome: yup.string().required('Nome é um campo obrigatório'),
   Pais_origem: yup.string().required('Pais_origem é um campo obrigatório'),
-  telefone: yup.string().required('Telefone é um campo obrigatório'),
-  email: yup.string().required('Email é um campo obrigatório'),
-  senha: yup.string().required('Senha é um campo obrigatório'),
-  rua: yup.string().required('Rua é um campo obrigatório'),
-  numero: yup.string().required('Numero é um campo obrigatório'),
-  bairro: yup.string().required('Bairro é um campo obrigatório'),
-  cidade: yup.string().required('Cidade é um campo obrigatório'),
-  estado: yup.string().required('Estado é um campo obrigatório'),
-  pais: yup.string().required('País é um campo obrigatório'),
+  Telefone: yup.string().required('Telefone é um campo obrigatório'),
+  Email: yup.string().required('Email é um campo obrigatório'),
+  Senha: yup.string().required('Senha é um campo obrigatório'),
+  Rua: yup.string().required('Rua é um campo obrigatório'),
+  Numero: yup.string().required('Numero é um campo obrigatório'),
+  Bairro: yup.string().required('Bairro é um campo obrigatório'),
+  Cidade: yup.string().required('Cidade é um campo obrigatório'),
+  UF: yup.string().required('Estado é um campo obrigatório'),
+  // pais: yup.string().required('País é um campo obrigatório'),
 });
 
 function CreateClientsForm() {
@@ -96,7 +96,7 @@ function CreateClientsForm() {
                 <Grid item md={12} xs={12}>
                   <TextField
                     type="string"
-                    name="name"
+                    name="Nome"
                     fullWidth
                     error={!!errors?.Nome}
                     helperText={errors?.Nome?.message || ''}
@@ -108,7 +108,7 @@ function CreateClientsForm() {
                 <Grid item md={6} xs={12}>
                   <TextField
                     type="string"
-                    name="nationality"
+                    name="Pais_origem"
                     fullWidth
                     error={!!errors?.Pais_origem}
                     helperText={errors?.Pais_origem?.message || ''}
@@ -121,6 +121,8 @@ function CreateClientsForm() {
                 </Grid>
                 <Grid item md={6} xs={12}>
                   <TextField
+                    // type="string"
+                    // name="Telefone"
                     fullWidth
                     error={!!errors?.Telefone}
                     helperText={errors?.Telefone?.message || ''}
@@ -158,7 +160,7 @@ function CreateClientsForm() {
                 <Grid item md={6} xs={12}>
                   <TextField
                     type="string"
-                    name="email"
+                    name="Email"
                     fullWidth
                     error={!!errors?.Email}
                     helperText={errors?.Email?.message || ''}
@@ -169,8 +171,8 @@ function CreateClientsForm() {
                 </Grid>
                 <Grid item md={6} xs={12}>
                   <TextField
-                    type="password"
-                    name="senha"
+                    type="string"
+                    name="Senha"
                     fullWidth
                     error={!!errors?.Senha}
                     helperText={errors?.Senha?.message || ''}
@@ -202,7 +204,7 @@ function CreateClientsForm() {
                 <Grid item md={6} xs={12}>
                   <TextField
                     type="string"
-                    name="street"
+                    name="Rua"
                     fullWidth
                     error={!!errors?.Rua}
                     helperText={errors?.Rua?.message || ''}
@@ -214,7 +216,7 @@ function CreateClientsForm() {
                 <Grid item md={3} xs={12}>
                   <TextField
                     type="number"
-                    name="number"
+                    name="Numero"
                     fullWidth
                     error={!!errors?.Numero}
                     helperText={errors?.Numero?.message || ''}
@@ -226,7 +228,7 @@ function CreateClientsForm() {
                 <Grid item md={3} xs={12}>
                   <TextField
                     type="string"
-                    name="neighborhood"
+                    name="Bairro"
                     fullWidth
                     error={!!errors?.Bairro}
                     helperText={errors?.Bairro?.message || ''}
@@ -238,7 +240,7 @@ function CreateClientsForm() {
                 <Grid item md={6} xs={12}>
                   <TextField
                     type="string"
-                    name="city"
+                    name="Cidade"
                     fullWidth
                     error={!!errors?.Cidade}
                     helperText={errors?.Cidade?.message || ''}
@@ -250,7 +252,7 @@ function CreateClientsForm() {
                 <Grid item md={3} xs={12}>
                   <TextField
                     type="string"
-                    name="state"
+                    name="UF"
                     fullWidth
                     error={!!errors?.UF}
                     helperText={errors?.UF?.message || ''}
