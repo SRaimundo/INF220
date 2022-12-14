@@ -133,7 +133,6 @@ CREATE TABLE ARRUMACAO (
     FOREIGN KEY (Quarto, Hotel) REFERENCES QUARTO(Numero, Hotel) ON DELETE CASCADE
 );
 
--- Maybe it isn't necessary to use Codigo
 CREATE TABLE DESPESA_HOTEL (
 		Id_despesa INT NOT NULL AUTO_INCREMENT,
     Hospedagem INT NOT NULL,
@@ -144,7 +143,6 @@ CREATE TABLE DESPESA_HOTEL (
     FOREIGN KEY (Hospedagem) REFERENCES HOSPEDAGEM(Id_hospedagem) ON DELETE CASCADE
 );
 
--- Maybe it isn't necessary to use Codigo
 CREATE TABLE CONSUMO_RESTAURANTE (
 		Id_consumo INT NOT NULL,
     Hospedagem INT NOT NULL,
