@@ -1,21 +1,24 @@
 import {Request, Response} from "express";
-import MealExpenses from "../models/mealExpenses";
+import RestaurantExpenses from "../models/restaurantExpenses";
 
 
 const getAll = async (req: Request , res: Response) =>{
-    const hotel = await MealExpenses.getAll();
+    const hotel = await RestaurantExpenses.getAll();
     return res.status(200).json(hotel);
 };
 
-const remove = async (req: Request, res: Response) =>{
-    const hotel = await MealExpenses.remove(req.params.Id_cliente, req.params.idConta, req.params.codigo);
-    return res.status(200).send();
+const remove = async (req: Request, res: Response) => {
+    try {
+        return res.status(200).send(await RestaurantExpenses.remove(req.params.id));
+    } catch (error) {
+        return res.status(500).send({message: error});
+    }
 }
 
 const findOne = async (req: Request, res: Response) => {
     console.log(req.params);
     try {
-        res.status(200).json(await MealExpenses.findOne(req.params.Id_cliente, req.params.idConta, req.params.codigo));
+        res.status(200).json(await RestaurantExpenses.findOne(req.params.id));
     } catch (err) {
         res.status(400);
     }
@@ -23,7 +26,7 @@ const findOne = async (req: Request, res: Response) => {
 
 const create = async (req: Request, res: Response) => {
     try {
-        res.status(200).json(await MealExpenses.create(req.body));
+        res.status(200).json(await RestaurantExpenses.create(req.body));
     } catch (err) {
         res.status(400);
     }
@@ -31,7 +34,7 @@ const create = async (req: Request, res: Response) => {
 
 const update = async (req: Request , res: Response) => {
     try {
-        return res.status(200).json(await MealExpenses.update(req.params.Id_cliente, req.params.idConta, req.params.codigo, req.body));
+        return res.status(200).json(await RestaurantExpenses.update(req.params.id, req.body));
     } catch (error) {
         return res.status(500).send({message: error});
     } 

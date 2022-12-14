@@ -6,4 +6,28 @@ const getAll = async (req: Request, res: Response) => {
     return res.status(200).json(hotel);
 }
 
-export default {getAll};
+const findOne = async (req: Request , res: Response) => {
+    try {
+        return res.status(200).json(await Housekeeping.findOne(req.params.quarto, req.params.hotel, req.params.data));
+    } catch (error) {
+        return res.status(500).send({message: error});
+    } 
+};
+
+const deleteOne = async (req: Request , res: Response) => {
+    try {
+        return res.status(200).json(await Housekeeping.delete(req.params.quarto, req.params.hotel, req.params.data));
+    } catch (error) {
+        return res.status(500).send({message: error});
+    } 
+};
+
+const create = async (req: Request , res: Response) => {
+    try {
+        return res.status(200).json(await Housekeeping.create(req.body));
+    } catch (error) {
+        return res.status(500).send({message: error});
+    } 
+};
+
+export default {getAll, findOne, deleteOne, create};
