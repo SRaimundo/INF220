@@ -33,21 +33,13 @@ SELECT QUARTO.Numero as Quarto, HOTEL.Nome as Hotel
 FROM QUARTO, HOTEL
 WHERE Tipo = 2 AND Hotel = Id_hotel;
 
--- ATENCAO
--- ATENCAO 
--- ATENCAO 
--- ATENCAO 
--- ATENCAO 
--- ATENCAO 
--- ATENCAO 
--- ATENCAO  
--- Search for a room that isn't lodged of an especific data (In: '2022-12-07', Out: '2022-12-13')
-SELECT Numero as Quarto
-FROM QUARTO
-WHERE Tipo = 2 AND Numero NOT IN (
-	SELECT Quarto
-	FROM HOSPEDAGEM
-	WHERE Check_in < '2022-12-13 00:00:00' AND Check_out > '2022-12-07'
+-- Search for a room that isn't lodged of an especific data
+SELECT Q.Numero as Quarto, H.Nome as Hotel
+FROM QUARTO Q, HOTEL H
+WHERE Tipo = 2 AND Q.Numero NOT IN (
+	SELECT HP.Quarto
+	FROM HOSPEDAGEM HP
+	WHERE Check_in < '2022-12-13 00:00:00' AND (Check_out IS NULL OR Check_out > '2022-12-07 00:00:00')
 );
 
 -- List the clients lodged in a Hotel from its city
@@ -91,10 +83,6 @@ SELECT F.Nome
 FROM FUNCIONARIO F, ARRUMACAO A, QUARTO Q, HOTEL H
 WHERE A.Funcionario = F.Id_funcionario AND A.Quarto = 401 AND A.Quarto = Q.Numero AND H.Id_hotel = Q.Hotel AND H.Cidade = 'Rio de Janeiro' AND A.Data >= '2022-02-26' AND A.Data <= '2022-03-01';
 
--- DROP DATABASE BOM_SONO;
--- \! mysql -u root -p < Create.sql && mysql -u root -p BOM_SONO < Examples.sql
--- USE BOM_SONO;
-
 SELECT F.Nome, A.Data, Q.Numero as Quarto, Q.Hotel, H.Cidade
 FROM FUNCIONARIO F, ARRUMACAO A, QUARTO Q, HOTEL H
 WHERE A.Funcionario = F.Id_funcionario AND A.Quarto = 401 AND A.Quarto = Q.Numero AND H.Id_hotel = Q.Hotel AND H.Cidade = 'Rio de Janeiro' AND A.Data >= '2022-02-26' AND A.Data <= '2022-03-01';
@@ -109,19 +97,10 @@ SELECT DISTINCT H.Nome as Hotel, HP.Quarto, C.Nome
 FROM HOTEL H, HOSPEDAGEM HP, CONSUMO_RESTAURANTE CR, CLIENTE C, RESERVA R
 WHERE HP.Hotel = H.Id_hotel AND HP.Reserva = R.Id_reserva AND C.Id_cliente = R.Cliente AND CR.Hospedagem = HP.Id_hospedagem AND CR.Descricao = 'Red Bull';
 
-INSERT INTO CONSUMO_RESTAURANTE (Hospedagem, Data, Descricao, Valor, Entregue) VALUES (3, '2022-12-12 22:45:20', 'Red Bull', 12.5, true);
-INSERT INTO DESPESA_HOTEL (Hospedagem, Data, Descricao, Valor) VALUES (3, '2022-12-12 22:46:25', 'Red Bull', 10.5);
-
 -- Nome dos clientes que fizeram reserva na Filial Rio de Janeiro, mas não se hospedaram;
-SELECT C.Nome
-FROM CLIENTE C, RESERVA R, HOTEL H, QUARTO Q
-WHERE R.Data_in <= '2022-12-07' AND R.Check_in = false 
-AND C.idCliente = R.Cliente AND R.Quarto = Q.Numero 
-AND Q.Hotel = H.idHotel AND H.Cidade = 'Rio de Janeiro';
-
-SELECT DISTINCT C.Nome
-FROM RESERVA R, CLIENTE C
-WHERE R.Cliente = C.Id_cliente AND R.Id_reserva NOT IN (
+SELECT DISTINCT C.Nome, Q.Numero as 'Quarto disponível'
+FROM RESERVA R, CLIENTE C, QUARTO Q, HOTEL H
+WHERE R.Cliente = C.Id_cliente AND Q.Hotel = H.Id_Hotel AND Q.Tipo = R.Tipo AND H.Cidade = 'Rio de Janeiro' AND R.Id_reserva NOT IN (
 	SELECT Reserva
 	FROM HOSPEDAGEM
 );
@@ -133,9 +112,15 @@ WHERE Q.Hotel = H.Id_hotel AND Q.Tipo = T.Id_tipo AND T.Numero_camas_casal = 1
 GROUP BY Q.Hotel;
 
 -- Listar Filial e nome dos clientes com 5 maiores faturas;
-SELECT SUM(DH.Valor) as Fatura, C.Nome
+SELECT SUM(DH.Valor) as 'Fatura ($)', C.Nome
 FROM DESPESA_HOTEL DH, HOSPEDAGEM HP, RESERVA R, CLIENTE C
 WHERE DH.Hospedagem = HP.Id_hospedagem AND HP.Reserva = R.Id_reserva AND R.Cliente = C.Id_cliente
-GROUP BY DH.Hospedagem;
+GROUP BY DH.Hospedagem
+ORDER BY SUM(DH.Valor) DESC
+LIMIT 5;
 
 -- Alguma consulta baseada na sua funcionalidade adicional;
+-- Listar as vagas disponíveis em um hotel
+SELECT V.Id_vaga as Vaga, H.Nome as Hotel
+FROM VAGA V, HOTEL H
+WHERE V.Hotel = 2 AND V.Hotel = H.Id_hotel AND V.Hospedagem IS NULL;
