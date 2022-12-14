@@ -13,13 +13,13 @@ class Client{
 
     static findById = async (id: any) => {
         const conn = await connect();
-        const [rows, fields] = await conn.query(`SELECT * FROM CLIENTE WHERE Id_cliente = ${id}`);
+        const [rows, fields] = await conn.query(`SELECT * FROM CLIENTE WHERE Id_cliente = ?`, id);
         return rows;
     };
 
     static delete = async (id: any) => {
         const conn = await connect();
-        const [rows, fields] = await conn.query(`DELETE FROM CLIENTE WHERE Id_cliente = ${id}`);
+        const [rows, fields] = await conn.query(`DELETE FROM CLIENTE WHERE Id_cliente = ?`, id);
         return rows;
     }
 
