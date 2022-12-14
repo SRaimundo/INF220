@@ -64,10 +64,12 @@ CREATE TABLE RESERVA (
 CREATE TABLE HOSPEDAGEM (
 		Id_hospedagem INT NOT NULL AUTO_INCREMENT,
 		Reserva INT NOT NULL,
+		Tipo INT NOT NULL
 		Check_in DATETIME NOT NULL,
 		Check_out DATETIME,
 		PRIMARY KEY (Id_hospedagem),
     FOREIGN KEY (Reserva) REFERENCES RESERVA(Id_reserva) ON DELETE CASCADE
+    FOREIGN KEY (Tipo) REFERENCES TIPO_QUARTO(Id_tipo) ON DELETE CASCADE
 );
 
 -- I wanna use autoincrement but I can't ;-;
