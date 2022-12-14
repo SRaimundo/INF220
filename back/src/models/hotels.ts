@@ -12,13 +12,13 @@ class Hotel{
 
     static remove = async (id:number) => {
         const conn = await connect();
-        const q = 'DELETE FROM HOTEL WHERE idHotel = ?';
+        const q = 'DELETE FROM HOTEL WHERE Id_hotel = ?';
         const remover = await conn.query(q,id);
     };
 
     static findOne = async (id: any) => {
         const conn = await connect();
-        const [rows, fields] = await conn.query(`SELECT * FROM HOTEL WHERE idHotel = ${id}`);
+        const [rows, fields] = await conn.query(`SELECT * FROM HOTEL WHERE Id_hotel = ${id}`);
         return rows;
     };
 
@@ -39,7 +39,7 @@ class Hotel{
             Bairro = "${hotel.Bairro}",
             Cidade = "${hotel.Cidade}",
             UF = "${hotel.UF}"
-            WHERE idHotel = ${id}`
+            WHERE Id_hotel = ${id}`
         );
         return rows;
     };

@@ -155,7 +155,7 @@ const ClientsTable = () => {
             <TableBody>
               {paginatedClients.map((client) => {
                 return (
-                  <TableRow hover key={client.idCliente}>
+                  <TableRow hover key={client.Id_cliente}>
                     <TableCell>
                       <Typography
                         variant="body1"
@@ -163,7 +163,7 @@ const ClientsTable = () => {
                         color="text.primary"
                         gutterBottom
                         noWrap
-                        children={client.idCliente}
+                        children={client.Id_cliente}
                       />
                     </TableCell>
                     <TableCell>
@@ -226,7 +226,7 @@ const ClientsTable = () => {
                           color="inherit"
                           size="small"
                           onClick={() => {
-                            handleSelectedClientsId(client.idCliente);
+                            handleSelectedClientsId(client.Id_cliente);
                             handleOpen();
                           }}
                         >

@@ -11,7 +11,7 @@ class Vacanciy{
 
     static findOne = async (id: any) => {
         const conn = await connect();
-        const [rows, fields] = await conn.query(`SELECT * FROM VAGA WHERE idVaga = ${id}`);
+        const [rows, fields] = await conn.query(`SELECT * FROM VAGA WHERE Id_vaga = ${id}`);
         return rows;
     }
 
@@ -24,7 +24,7 @@ class Vacanciy{
 
     static delete = async (id: any) => {
         const conn = await connect();
-        const [rows, fields] = await conn.query(`DELETE FROM VAGA WHERE idVaga = ${id}`);
+        const [rows, fields] = await conn.query(`DELETE FROM VAGA WHERE Id_vaga = ${id}`);
         return rows;
     }
 
@@ -34,7 +34,7 @@ class Vacanciy{
             SET Status = ${vacancy.Status},
             Cliente = ${vacancy.Cliente},
             Hotel = ${vacancy.Hotel}
-            WHERE idVaga = ${id}`
+            WHERE Id_vaga = ${id}`
         );
         return rows;
     }

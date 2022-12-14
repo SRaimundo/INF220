@@ -41,8 +41,8 @@ function CheckoutForm() {
 
   useEffect(() => {
     findOne(id).then((res) => {
-      findReserve(res.idReserva).then((res) => {
-        findClient(res.idCliente).then((res) => setCliente(res));
+      findReserve(res.Id_reserva).then((res) => {
+        findClient(res.Id_cliente).then((res) => setCliente(res));
       });
       findByAccommodation(id).then((consumos) => {
         getDiarias(id).then((diarias) => {

@@ -1,5 +1,5 @@
 export interface Vacancy{
-    idVaga: number;
+    Id_vaga: number;
     Status: boolean;
     Cliente: number;
     Hotel: number;

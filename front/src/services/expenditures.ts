@@ -11,8 +11,8 @@ export const findAll = async () => {
   }
 };
 
-export const findByAccommodation = async (idHospedagem) => {
-  const response = await api.get(`/consumos/${idHospedagem}`);
+export const findByAccommodation = async (Id_hospedagem) => {
+  const response = await api.get(`/consumos/${Id_hospedagem}`);
   return response.data.consumos as Expenditures[];
 };
 

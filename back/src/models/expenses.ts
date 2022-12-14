@@ -8,9 +8,9 @@ class Expenses{
         return rows;
     }
 
-    static findOne = async (idCliente: any, idConta: any, codigo: any) => {
+    static findOne = async (Id_cliente: any, idConta: any, codigo: any) => {
         const conn = await connect();
-        const [rows, fields] = await conn.query(`SELECT * FROM DESPESA WHERE Cliente = ${idCliente} and Conta = ${idConta} and Codigo = ${codigo}`);
+        const [rows, fields] = await conn.query(`SELECT * FROM DESPESA WHERE Cliente = ${Id_cliente} and Conta = ${idConta} and Codigo = ${codigo}`);
         return rows;
     }
 
@@ -22,20 +22,20 @@ class Expenses{
         return rows;
     }
 
-    static delete = async (idCliente: any, idConta: any, codigo: any) => {
+    static delete = async (Id_cliente: any, idConta: any, codigo: any) => {
         const conn = await connect();
-        const [rows, fields] = await conn.query(`DELETE FROM DESPESA WHERE Cliente = ${idCliente} and Conta = ${idConta} and Codigo = ${codigo}`);
+        const [rows, fields] = await conn.query(`DELETE FROM DESPESA WHERE Cliente = ${Id_cliente} and Conta = ${idConta} and Codigo = ${codigo}`);
         return rows;
     }
 
-    static update = async (idCliente: any, idConta: any, codigo: any, expense: ExpensesInterface) => {
+    static update = async (Id_cliente: any, idConta: any, codigo: any, expense: ExpensesInterface) => {
         console.log(expense);
         const conn = await connect();
         const [rows, fields] = await conn.query(`UPDATE DESPESA 
             SET Data = date("${expense.Data}"),
             Descricao = "${expense.Descricao}",
             Valor = ${expense.Valor}
-            WHERE Cliente = ${idCliente} and Conta = ${idConta} and Codigo = ${codigo}`
+            WHERE Cliente = ${Id_cliente} and Conta = ${idConta} and Codigo = ${codigo}`
         );
         return rows;
     }

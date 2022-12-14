@@ -34,10 +34,10 @@ import * as yup from 'yup';
 
 const schema = yup.object().shape({
   Codigo: yup.string().required('É obrigatório informar uma filial'),
-  idTipo: yup
+  Id_tipo: yup
     .string()
     .required('É obrigatório informar um tipo de apartamento'),
-  idCliente: yup.string().required('É obrigatório informar um cliente'),
+  Id_cliente: yup.string().required('É obrigatório informar um cliente'),
   numPessoas: yup
     .string()
     .required('É obrigatório informar o número de pessoas hospedadas'),
@@ -72,8 +72,8 @@ function CreateReservationForm() {
     initDate.setDate(initDate.getDate() + 1);
 
     register('Codigo');
-    register('idTipo');
-    register('idCliente');
+    register('Id_tipo');
+    register('Id_cliente');
     register('numPessoas');
     register('dataPrevistaEntrada', { value: initDate });
     register('dataPrevistaSaida', { value: initDate });
@@ -145,8 +145,8 @@ function CreateReservationForm() {
                     >
                       {hotelList.map((hotel) => (
                         <MenuItem
-                          key={hotel.idHotel}
-                          value={hotel.idHotel}
+                          key={hotel.Id_hotel}
+                          value={hotel.Id_hotel}
                           children={hotel.Cidade}
                         />
                       ))}
@@ -155,44 +155,44 @@ function CreateReservationForm() {
                   </FormControl>
                 </Grid>
                 <Grid item md={6} xs={12}>
-                  <FormControl fullWidth error={!!errors?.idCliente}>
+                  <FormControl fullWidth error={!!errors?.Id_cliente}>
                     <InputLabel children="Selecione o cliente" />
                     <Select
                       labelId="demo-simple-select-label"
                       id="demo-simple-select"
-                      value={watch().idCliente ?? ''}
+                      value={watch().Id_cliente ?? ''}
                       label="Selecione o cliente"
                       onChange={(cliente: SelectChangeEvent<string>) =>
-                        setValue('idCliente', parseInt(cliente.target.value))
+                        setValue('Id_cliente', parseInt(cliente.target.value))
                       }
                     >
                       {clientList.map((cliente) => (
                         <MenuItem
-                          key={cliente.idCliente}
-                          value={cliente.idCliente}
-                          children={cliente.idCliente}
+                          key={cliente.Id_cliente}
+                          value={cliente.Id_cliente}
+                          children={cliente.Id_cliente}
                         />
                       ))}
                     </Select>
                     <FormHelperText
-                      children={errors?.idCliente?.message || ''}
+                      children={errors?.Id_cliente?.message || ''}
                     />
                   </FormControl>
                 </Grid>
                 <Grid item md={6} xs={12}>
-                  <FormControl fullWidth error={!!errors?.idTipo}>
+                  <FormControl fullWidth error={!!errors?.Id_tipo}>
                     <InputLabel children="Selecione o tipo de apartamento" />
                     <Select
-                      value={watch().idTipo ?? ''}
+                      value={watch().Id_tipo ?? ''}
                       label="Selecione o tipo de apartamento"
                       onChange={(tipo: SelectChangeEvent<string>) =>
-                        setValue('idTipo', parseInt(tipo.target.value))
+                        setValue('Id_tipo', parseInt(tipo.target.value))
                       }
                     >
                       {typeList.map((tipo) => (
                         <MenuItem
-                          key={tipo.idTipo}
-                          value={tipo.idTipo}
+                          key={tipo.Id_tipo}
+                          value={tipo.Id_tipo}
                           children={`
                           ${tipo.Numero_camas_casal} Camas de Casal &
                           ${tipo.Numero_camas_solteiro} Camas de Solteiro |
@@ -202,7 +202,7 @@ function CreateReservationForm() {
                         />
                       ))}
                     </Select>
-                    <FormHelperText children={errors?.idTipo?.message || ''} />
+                    <FormHelperText children={errors?.Id_tipo?.message || ''} />
                   </FormControl>
                 </Grid>
                 <Grid item md={6} xs={12}>

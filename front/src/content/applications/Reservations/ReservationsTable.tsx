@@ -141,13 +141,13 @@ const ReservationsTable = () => {
 
   const handleDelete = async (id) => {
     const reservation: Reservations = await remove(id);
-    if (reservation.idReserva === id) fetchReservations();
+    if (reservation.Id_reserva === id) fetchReservations();
     else alert('Erro ao deletar a reserva!');
   };
 
   const formatHotel = (id): string => {
     if (hotels.length > 0) {
-      const hotel = hotels.find((hotel) => hotel.idHotel === id);
+      const hotel = hotels.find((hotel) => hotel.Id_hotel === id);
       return hotel.Cidade;
     } else {
       return 'Buscando...';
@@ -156,7 +156,7 @@ const ReservationsTable = () => {
 
   const formatClient = (id): string => {
     if (clients.length > 0) {
-      const client = clients.find((client) => client.idCliente === id);
+      const client = clients.find((client) => client.Id_cliente === id);
       return client.Nome;
     } else {
       return 'Buscando...';
@@ -167,7 +167,7 @@ const ReservationsTable = () => {
 
   const formatApartmentType = (id): string => {
     if (apartmentTypes.length > 0) {
-      const type = apartmentTypes.find((type) => type.idTipo === id);
+      const type = apartmentTypes.find((type) => type.Id_tipo === id);
       return `
       ${type.Numero_camas_casal} Camas de Casal &
       ${type.Numero_camas_solteiro} Camas de Solteiro |
@@ -197,7 +197,7 @@ const ReservationsTable = () => {
             <TableBody>
               {paginatedReservations.map((reservation) => {
                 return (
-                  <TableRow hover key={reservation.idReserva}>
+                  <TableRow hover key={reservation.Id_reserva}>
                     <TableCell
                       children={
                         <Typography
@@ -210,7 +210,7 @@ const ReservationsTable = () => {
                             reservation.cancelada ? (
                               <Label color="error" children="Cancelada" />
                             ) : (
-                              reservation.idReserva
+                              reservation.Id_reserva
                             )
                           }
                         />
@@ -236,7 +236,7 @@ const ReservationsTable = () => {
                           color="text.primary"
                           gutterBottom
                           noWrap
-                          children={`${formatClient(reservation.idCliente)}`}
+                          children={`${formatClient(reservation.Id_cliente)}`}
                         />
                       }
                     />
@@ -248,7 +248,7 @@ const ReservationsTable = () => {
                           color="text.primary"
                           gutterBottom
                           noWrap
-                          children={formatApartmentType(reservation.idTipo)}
+                          children={formatApartmentType(reservation.Id_tipo)}
                         />
                       }
                     />
@@ -290,7 +290,7 @@ const ReservationsTable = () => {
                               color="inherit"
                               size="small"
                               component={NavLink}
-                              to={`/accommodations/new?idReservation=${reservation.idReserva}`}
+                              to={`/accommodations/new?Id_reservation=${reservation.Id_reserva}`}
                               children={
                                 <MeetingRoomTwoToneIcon fontSize="small" />
                               }
@@ -313,7 +313,7 @@ const ReservationsTable = () => {
                               color="inherit"
                               size="small"
                               onClick={() => {
-                                handleCancel(reservation.idReserva);
+                                handleCancel(reservation.Id_reserva);
                               }}
                               children={<CancelTwoToneIcon fontSize="small" />}
                             />
@@ -334,7 +334,7 @@ const ReservationsTable = () => {
                             color="inherit"
                             size="small"
                             onClick={() => {
-                              handleSelectedClientId(reservation.idReserva);
+                              handleSelectedClientId(reservation.Id_reserva);
                               handleOpen();
                             }}
                             children={<DeleteTwoToneIcon fontSize="small" />}

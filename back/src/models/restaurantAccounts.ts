@@ -8,9 +8,9 @@ class RestaurantAccount{
         return rows;
     }
 
-    static findOne = async (idCliente: any, codigo: any) => {
+    static findOne = async (Id_cliente: any, codigo: any) => {
         const conn = await connect();
-        const [rows, fields] = await conn.query(`SELECT * FROM CONTA_RESTAURANTE WHERE Cliente = ${idCliente} and Codigo = ${codigo}`);
+        const [rows, fields] = await conn.query(`SELECT * FROM CONTA_RESTAURANTE WHERE Cliente = ${Id_cliente} and Codigo = ${codigo}`);
         return rows;
     }
 
@@ -20,9 +20,9 @@ class RestaurantAccount{
         return rows;
     }
 
-    static delete = async (idCliente: any, codigo: any) => {
+    static delete = async (Id_cliente: any, codigo: any) => {
         const conn = await connect();
-        const [rows, fields] = await conn.query(`DELETE FROM CONTA_RESTAURANTE WHERE Cliente = ${idCliente} and Codigo = ${codigo}`);
+        const [rows, fields] = await conn.query(`DELETE FROM CONTA_RESTAURANTE WHERE Cliente = ${Id_cliente} and Codigo = ${codigo}`);
         return rows;
     }
 }

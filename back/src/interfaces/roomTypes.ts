@@ -1,5 +1,5 @@
 export interface RoomType{
-    idTipo: number;
+    Id_tipo: number;
     Valor:number;
     Tem_TV:boolean;
     Adaptado:boolean;

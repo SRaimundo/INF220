@@ -1,5 +1,5 @@
 export interface Employee{
-    idFuncionario: number;
+    Id_funcionario: number;
     Nome: string;
     Cargo: string;
 }

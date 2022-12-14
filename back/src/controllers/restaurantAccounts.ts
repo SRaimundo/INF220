@@ -11,7 +11,7 @@ const getAll = async (req: Request, res: Response) => {
 
 const findOne = async (req: Request, res: Response) => {
     try {
-        res.status(200).json(await RestaurantAccount.findOne(req.params.idCliente, req.params.codigo));
+        res.status(200).json(await RestaurantAccount.findOne(req.params.Id_cliente, req.params.codigo));
     } catch (err) {
         res.status(400);
     }
@@ -27,7 +27,7 @@ const create = async (req: Request, res: Response) => {
 
 const deleteOne = async (req: Request , res: Response) => {
     try {
-        return res.status(200).json(await RestaurantAccount.delete(req.params.idCliente, req.params.codigo));
+        return res.status(200).json(await RestaurantAccount.delete(req.params.Id_cliente, req.params.codigo));
     } catch (error) {
         return res.status(500).send({message: error});
     } 

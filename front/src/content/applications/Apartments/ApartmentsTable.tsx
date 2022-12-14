@@ -156,7 +156,7 @@ const ApartmentsTable = () => {
 
   const formatHotel = (id): string => {
     if (hotels.length > 0) {
-      const hotel = hotels.find((hotel) => hotel.idHotel === id);
+      const hotel = hotels.find((hotel) => hotel.Id_hotel === id);
       return hotel.Cidade;
     } else {
       return 'Buscando...';
@@ -167,7 +167,7 @@ const ApartmentsTable = () => {
 
   const formatApartmentType = (id): string => {
     if (apartmentTypes.length > 0) {
-      const type = apartmentTypes.find((type) => type.idTipo === id);
+      const type = apartmentTypes.find((type) => type.Id_tipo === id);
       return `
       ${type.Numero_camas_casal} Camas de Casal &
       ${type.Numero_camas_solteiro} Camas de Solteiro |
@@ -241,7 +241,7 @@ const ApartmentsTable = () => {
                           color="text.primary"
                           gutterBottom
                           noWrap
-                          children={formatApartmentType(apartment.idTipo)}
+                          children={formatApartmentType(apartment.Id_tipo)}
                         />
                       }
                     />

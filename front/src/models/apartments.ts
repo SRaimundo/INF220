@@ -1,6 +1,6 @@
 export interface Apartments {
   idApartamento: number;
   Codigo: number;
-  idTipo: number;
+  Id_tipo: number;
   numero: number;
 }

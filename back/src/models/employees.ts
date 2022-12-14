@@ -10,7 +10,7 @@ class Employee{
 
     static findById = async (id: any) => {
         const conn = await connect();
-        const [rows, fields] = await conn.query(`SELECT * FROM FUNCIONARIO WHERE idFuncionario = ${id}`);
+        const [rows, fields] = await conn.query(`SELECT * FROM FUNCIONARIO WHERE Id_funcionario = ${id}`);
         return rows;
     }
 
@@ -22,7 +22,7 @@ class Employee{
 
     static delete = async (id: any) => {
         const conn = await connect();
-        const [rows, fields] = await conn.query(`DELETE FROM FUNCIONARIO WHERE idFuncionario = ${id}`);
+        const [rows, fields] = await conn.query(`DELETE FROM FUNCIONARIO WHERE Id_funcionario = ${id}`);
         return rows;
     }
 
@@ -31,7 +31,7 @@ class Employee{
         const [rows, fields] = await conn.query(`UPDATE FUNCIONARIO 
             SET Nome = "${employee.Nome}",
             Cargo = "${employee.Cargo}"
-            WHERE idFuncionario = ${id}`
+            WHERE Id_funcionario = ${id}`
         );
         return rows;
     }

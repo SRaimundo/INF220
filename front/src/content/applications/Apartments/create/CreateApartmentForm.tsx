@@ -31,7 +31,7 @@ import * as yup from 'yup';
 
 const schema = yup.object().shape({
   Codigo: yup.number().required('É obrigatório informar uma filial'),
-  idTipo: yup
+  Id_tipo: yup
     .number()
     .required('É obrigatório informar um tipo de apartamento'),
   numero: yup
@@ -63,7 +63,7 @@ function CreateHotelForm() {
   useEffect(() => {
     register('numero');
     register('Codigo');
-    register('idTipo');
+    register('Id_tipo');
   }, [register]);
 
   const [hotelList, setHotelList] = useState<Hotels[]>([]);
@@ -73,7 +73,7 @@ function CreateHotelForm() {
   const selectHotel = useCallback(
     (hotel) => {
       if (!!hotel) {
-        const id = !!hotel.idHotel ? hotel.idHotel : hotel;
+        const id = !!hotel.Id_hotel ? hotel.Id_hotel : hotel;
         setValue('Codigo', id);
       }
     },
@@ -86,8 +86,8 @@ function CreateHotelForm() {
         setHotelList(res);
         const hotel = res.find((hotel) => {
           return (
-            hotel.idHotel ===
-            (parseInt(searchParams.get('Codigo')) ?? res[0].idHotel)
+            hotel.Id_hotel ===
+            (parseInt(searchParams.get('Codigo')) ?? res[0].Id_hotel)
           );
         });
         selectHotel(hotel);
@@ -154,8 +154,8 @@ function CreateHotelForm() {
                     >
                       {hotelList.map((hotel) => (
                         <MenuItem
-                          key={hotel.idHotel}
-                          value={hotel.idHotel}
+                          key={hotel.Id_hotel}
+                          value={hotel.Id_hotel}
                           children={hotel.Cidade}
                         />
                       ))}
@@ -164,19 +164,19 @@ function CreateHotelForm() {
                   </FormControl>
                 </Grid>
                 <Grid item md={6} xs={12}>
-                  <FormControl fullWidth error={!!errors?.idTipo}>
+                  <FormControl fullWidth error={!!errors?.Id_tipo}>
                     <InputLabel children="Selecione o tipo de apartamento" />
                     <Select
-                      value={watch().idTipo ?? ''}
+                      value={watch().Id_tipo ?? ''}
                       label="Selecione o tipo de apartamento"
                       onChange={(tipo: SelectChangeEvent<string>) =>
-                        setValue('idTipo', parseInt(tipo.target.value))
+                        setValue('Id_tipo', parseInt(tipo.target.value))
                       }
                     >
                       {typeList.map((tipo) => (
                         <MenuItem
-                          key={tipo.idTipo}
-                          value={tipo.idTipo}
+                          key={tipo.Id_tipo}
+                          value={tipo.Id_tipo}
                           children={`
                           ${tipo.Numero_camas_casal} Camas de Casal &
                           ${tipo.Numero_camas_solteiro} Camas de Solteiro |
@@ -186,7 +186,7 @@ function CreateHotelForm() {
                         />
                       ))}
                     </Select>
-                    <FormHelperText children={errors?.idTipo?.message || ''} />
+                    <FormHelperText children={errors?.Id_tipo?.message || ''} />
                   </FormControl>
                 </Grid>
               </Grid>

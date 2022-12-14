@@ -8,9 +8,9 @@ class Reservation{
         return rows;
     }
 
-    static findOne = async (idCliente: any, idQuarto: any, dataIn: any) => {
+    static findOne = async (Id_cliente: any, idQuarto: any, dataIn: any) => {
         const conn = await connect();
-        const [rows, fields] = await conn.query(`SELECT * FROM RESERVA WHERE Cliente = ${idCliente} and Quarto = ${idQuarto} and Data_in = date("${dataIn}")`);
+        const [rows, fields] = await conn.query(`SELECT * FROM RESERVA WHERE Cliente = ${Id_cliente} and Quarto = ${idQuarto} and Data_in = date("${dataIn}")`);
         return rows;
     }
 
@@ -21,19 +21,19 @@ class Reservation{
         return rows;
     }
 
-    static delete = async (idCliente: any, idQuarto: any, dataIn: any) => {
+    static delete = async (Id_cliente: any, idQuarto: any, dataIn: any) => {
         const conn = await connect();
-        const [rows, fields] = await conn.query(`DELETE FROM RESERVA WHERE Cliente = ${idCliente} and Quarto = ${idQuarto} and Data_in = date("${dataIn}")`);
+        const [rows, fields] = await conn.query(`DELETE FROM RESERVA WHERE Cliente = ${Id_cliente} and Quarto = ${idQuarto} and Data_in = date("${dataIn}")`);
         return rows;
     }
 
-    static update = async (idCliente: any, idQuarto: any, dataIn: any, reservation: ReservationInterface) => {
+    static update = async (Id_cliente: any, idQuarto: any, dataIn: any, reservation: ReservationInterface) => {
         const conn = await connect();
         const [rows, fields] = await conn.query(`UPDATE RESERVA 
             SET Data_out = date("${reservation.Data_out}"),
             Check_in = "${reservation.Check_in}",
             Check_out = ${reservation.Check_out}
-            WHERE Cliente = ${idCliente} and Quarto = ${idQuarto} and Data_in = date("${dataIn}")`
+            WHERE Cliente = ${Id_cliente} and Quarto = ${idQuarto} and Data_in = date("${dataIn}")`
         );
         return rows;
     }

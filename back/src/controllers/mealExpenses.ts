@@ -8,14 +8,14 @@ const getAll = async (req: Request , res: Response) =>{
 };
 
 const remove = async (req: Request, res: Response) =>{
-    const hotel = await MealExpenses.remove(req.params.idCliente, req.params.idConta, req.params.codigo);
+    const hotel = await MealExpenses.remove(req.params.Id_cliente, req.params.idConta, req.params.codigo);
     return res.status(200).send();
 }
 
 const findOne = async (req: Request, res: Response) => {
     console.log(req.params);
     try {
-        res.status(200).json(await MealExpenses.findOne(req.params.idCliente, req.params.idConta, req.params.codigo));
+        res.status(200).json(await MealExpenses.findOne(req.params.Id_cliente, req.params.idConta, req.params.codigo));
     } catch (err) {
         res.status(400);
     }
@@ -31,7 +31,7 @@ const create = async (req: Request, res: Response) => {
 
 const update = async (req: Request , res: Response) => {
     try {
-        return res.status(200).json(await MealExpenses.update(req.params.idCliente, req.params.idConta, req.params.codigo, req.body));
+        return res.status(200).json(await MealExpenses.update(req.params.Id_cliente, req.params.idConta, req.params.codigo, req.body));
     } catch (error) {
         return res.status(500).send({message: error});
     } 

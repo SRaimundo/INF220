@@ -148,7 +148,7 @@ const HotelsTable = () => {
             <TableBody>
               {paginatedHotels.map((hotel) => {
                 return (
-                  <TableRow hover key={hotel.idHotel}>
+                  <TableRow hover key={hotel.Id_hotel}>
                     <TableCell
                       children={
                         <Typography
@@ -157,7 +157,7 @@ const HotelsTable = () => {
                           color="text.primary"
                           gutterBottom
                           noWrap
-                          children={hotel.idHotel}
+                          children={hotel.Id_hotel}
                         />
                       }
                     />
@@ -180,7 +180,7 @@ const HotelsTable = () => {
                         children={
                           <IconButton
                             component={NavLink}
-                            to={`/apartments/new?Codigo=${hotel.idHotel}`}
+                            to={`/apartments/new?Codigo=${hotel.Id_hotel}`}
                             sx={{
                               '&:hover': {
                                 background: theme.colors.primary.lighter,
@@ -209,7 +209,7 @@ const HotelsTable = () => {
                             color="inherit"
                             size="small"
                             onClick={() => {
-                              handleSelectedClientId(hotel.idHotel);
+                              handleSelectedClientId(hotel.Id_hotel);
                               handleOpen();
                             }}
                             children={<DeleteTwoToneIcon fontSize="small" />}
