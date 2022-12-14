@@ -54,7 +54,8 @@ INSERT INTO QUARTO (Numero, Hotel, Tipo)
 VALUES(304, 1, 3);
 
 INSERT INTO QUARTO (Numero, Hotel, Tipo)
-VALUES(401, 2, 8);
+VALUES(401, 1, 8);
+
 INSERT INTO QUARTO (Numero, Hotel, Tipo)
 VALUES(402, 2, 8);
 INSERT INTO QUARTO (Numero, Hotel, Tipo)
@@ -229,8 +230,8 @@ VALUES(501, 2, '2022-12-08', 5);
 INSERT INTO ARRUMACAO (Quarto, Hotel, Data, Funcionario)
 VALUES(205, 1, '2022-12-07', 5);
 INSERT INTO ARRUMACAO (Quarto, Hotel, Data, Funcionario)
-VALUES(401, 2, '2022-02-27', 1);
+VALUES(401, 1, '2022-02-27', 1);
 INSERT INTO ARRUMACAO (Quarto, Hotel, Data, Funcionario)
-VALUES(401, 2, '2022-03-01', 2);
+VALUES(401, 1, '2022-03-08', 2);
 INSERT INTO ARRUMACAO (Quarto, Hotel, Data, Funcionario)
-VALUES(401, 2, '2022-02-28', 2);
+VALUES(401, 1, '2022-02-28', 2);
