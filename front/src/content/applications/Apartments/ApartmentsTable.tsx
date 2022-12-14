@@ -132,8 +132,9 @@ const ApartmentsTable = () => {
 
   const handleDelete = async (id) => {
     const hotel: Apartments = await remove(id);
-    if (hotel.Codigo === id) fetchApartments();
-    else alert('Erro ao deletar o hotel!');
+    // if (hotel.Numero === id) 
+    fetchApartments();
+    // else alert('Erro ao deletar o hotel!');
   };
 
   const [hotels, setHotels] = useState<Hotels[]>([]);
@@ -141,11 +142,13 @@ const ApartmentsTable = () => {
 
   const fetchApartmentTypes = useCallback(async () => {
     const apartmentTypes = await findType();
+    // console.log(apartmentTypes);
     setApartmentTypes(apartmentTypes);
   }, []);
 
   const fetchHotels = useCallback(async () => {
     const hotels = await findHotel();
+    // console.log(hotels);
     setHotels(hotels);
   }, []);
 
@@ -188,7 +191,7 @@ const ApartmentsTable = () => {
               <TableRow>
                 <TableCell children="ID" />
                 <TableCell children="Filial" />
-                <TableCell children="Número do Apartamento" />
+                {/* <TableCell children="Número do Apartamento" /> */}
                 <TableCell children="Tipo de Apartamento" />
                 <TableCell align="right" children="Ações" />
               </TableRow>
@@ -196,7 +199,7 @@ const ApartmentsTable = () => {
             <TableBody>
               {paginatedApartments.map((apartment) => {
                 return (
-                  <TableRow hover key={apartment.Codigo}>
+                  <TableRow hover key={apartment.Numero}>
                     <TableCell
                       children={
                         <Typography
@@ -205,7 +208,7 @@ const ApartmentsTable = () => {
                           color="text.primary"
                           gutterBottom
                           noWrap
-                          children={apartment.idApartamento}
+                          children={apartment.Numero}
                         />
                       }
                     />
@@ -217,11 +220,11 @@ const ApartmentsTable = () => {
                           color="text.primary"
                           gutterBottom
                           noWrap
-                          children={formatHotel(apartment.Codigo)}
+                          children={formatHotel(apartment.Hotel)}
                         />
                       }
                     />
-                    <TableCell
+                    {/* <TableCell
                       children={
                         <Typography
                           variant="body1"
@@ -232,7 +235,7 @@ const ApartmentsTable = () => {
                           children={apartment.numero}
                         />
                       }
-                    />
+                    /> */}
                     <TableCell
                       children={
                         <Typography
@@ -241,7 +244,7 @@ const ApartmentsTable = () => {
                           color="text.primary"
                           gutterBottom
                           noWrap
-                          children={formatApartmentType(apartment.Id_tipo)}
+                          children={formatApartmentType(apartment.Tipo)}
                         />
                       }
                     />
@@ -261,7 +264,7 @@ const ApartmentsTable = () => {
                             size="small"
                             onClick={() => {
                               handleSelectedApartmentTypeId(
-                                apartment.idApartamento
+                                apartment.Numero
                               );
                               handleOpen();
                             }}
