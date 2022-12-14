@@ -7,7 +7,7 @@ function PageHeader() {
     <Grid container justifyContent="space-between" alignItems="center">
       <Grid item>
         <Typography variant="h3" component="h3" gutterBottom>
-          Cliente
+          Hospede
         </Typography>
       </Grid>
       <Grid item>
@@ -16,7 +16,7 @@ function PageHeader() {
           variant="contained"
           startIcon={<KeyboardReturnTwoToneIcon fontSize="small" />}
           component={NavLink}
-          to="/clients"
+          to="/hospedes"
         >
           Retornar
         </Button>
