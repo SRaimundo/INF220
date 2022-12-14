@@ -9,17 +9,17 @@ class Housekeeping{
         return linhas[0];
     };
 
-    static findOne = async (quarto: any, hotel: any, data: any, funcionario: any) => {
+    static findOne = async (quarto: any, hotel: any, data: any) => {
         const conn = await connect();
-        const q = "SELECT * FROM ARRUMACAO WHERE Quarto = ? AND Hotel = ? AND Data = date(?) AND Funcionario = ?";
-        const linhas = await conn.query(q, [quarto, hotel, data, funcionario]);
+        const q = "SELECT * FROM ARRUMACAO WHERE Quarto = ? AND Hotel = ? AND Data = date(?)";
+        const linhas = await conn.query(q, [quarto, hotel, data]);
         return linhas[0];
     };
 
-    static delete = async (quarto: any, hotel: any, data: any, funcionario: any) => {
+    static delete = async (quarto: any, hotel: any, data: any) => {
         const conn = await connect();
-        const q = "DELETE FROM ARRUMACAO WHERE Quarto = ? AND Hotel = ? AND Data = date(?) AND Funcionario = ?";
-        const linhas = await conn.query(q, [quarto, hotel, data, funcionario]);
+        const q = "DELETE FROM ARRUMACAO WHERE Quarto = ? AND Hotel = ? AND Data = date(?)";
+        const linhas = await conn.query(q, [quarto, hotel, data]);
         return linhas[0];
     };
 

@@ -8,7 +8,7 @@ const getAll = async (req: Request, res: Response) => {
 
 const findOne = async (req: Request , res: Response) => {
     try {
-        return res.status(200).json(await Housekeeping.findOne(req.params.quarto, req.params.hotel, req.params.data, req.params.funcionario));
+        return res.status(200).json(await Housekeeping.findOne(req.params.quarto, req.params.hotel, req.params.data));
     } catch (error) {
         return res.status(500).send({message: error});
     } 
@@ -16,7 +16,7 @@ const findOne = async (req: Request , res: Response) => {
 
 const deleteOne = async (req: Request , res: Response) => {
     try {
-        return res.status(200).json(await Housekeeping.delete(req.params.quarto, req.params.hotel, req.params.data, req.params.funcionario));
+        return res.status(200).json(await Housekeeping.delete(req.params.quarto, req.params.hotel, req.params.data));
     } catch (error) {
         return res.status(500).send({message: error});
     } 
