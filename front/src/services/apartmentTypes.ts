@@ -17,6 +17,7 @@ export const findOne = async (id) => {
 };
 
 export const create = async (data) => {
+  console.log(data);
   const response = await api.post('/tipo-apartamento', data);
   return response.data as ApartmentTypes;
 };

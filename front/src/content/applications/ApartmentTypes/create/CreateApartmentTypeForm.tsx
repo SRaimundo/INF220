@@ -24,9 +24,9 @@ import { create } from 'src/services/apartmentTypes';
 import * as yup from 'yup';
 
 const schema = yup.object().shape({
-  adaptadoPcd: yup
+  AdaptadoPcd: yup
     .boolean()
-    .required('É obrigatório informar se o tipo é adaptado para PCD'),
+    .required('É obrigatório informar se o tipo é Adaptado para PCD'),
   possuiTv: yup
     .boolean()
     .required('É obrigatório informar se o tipo possui televisão'),
@@ -39,15 +39,16 @@ const schema = yup.object().shape({
   numCamasCasal: yup
     .number()
     .required('É obrigatório informar quantas camas de casal possui'),
-  valorApartamento: yup
+  ValorApartamento: yup
     .number()
-    .required('É obrigatório informar o valor do apartamento'),
+    .required('É obrigatório informar o Valor do apartamento'),
 });
 
 function CreateApartmentTypesForm() {
   const navigate = useNavigate();
 
   const onSubmit: SubmitHandler<ApartmentTypes> = (data) => {
+    console.log(data);
     create(data).then((res) => {
       setOpenConfirm(false);
       return navigate('/apartments/type');
@@ -67,7 +68,7 @@ function CreateApartmentTypesForm() {
 
   useEffect(() => {
     register('Adaptado', { value: false });
-    register('Tem_tv', { value: false });
+    register('Tem_TV', { value: false });
     register('Numero_camas_solteiro');
     register('Numero_camas_casal');
     register('Valor');
@@ -100,12 +101,12 @@ function CreateApartmentTypesForm() {
                 <Grid item xs={12}>
                   <Label
                     children="Possui televisão?"
-                    color={watch().Tem_tv ? 'success' : 'error'}
+                    color={watch().Tem_TV ? 'success' : 'error'}
                   />
                   <Switch
-                    value={watch().Tem_tv}
+                    value={watch().Tem_TV}
                     onChange={(event) =>
-                      setValue('Tem_tv', !watch().Tem_tv)
+                      setValue('Tem_TV', !watch().Tem_TV)
                     }
                   />
                 </Grid>
@@ -124,7 +125,7 @@ function CreateApartmentTypesForm() {
                 </Grid> */}
                 <Grid item xs={12}>
                   <Label
-                    children="É adaptado para pessoas com deficiência?"
+                    children="É Adaptado para pessoas com deficiência?"
                     color={watch().Adaptado ? 'success' : 'error'}
                   />
                   <Switch
@@ -142,7 +143,7 @@ function CreateApartmentTypesForm() {
           <Card>
             <CardHeader
               title="Cadastrar Tipo de Apartamento"
-              subheader="Informe o número de quartos e o valor deste tipo de apartamento."
+              subheader="Informe o número de quartos e o Valor deste tipo de apartamento."
             />
             <Divider />
             <CardContent>
@@ -156,7 +157,7 @@ function CreateApartmentTypesForm() {
                 <Grid item md={4} xs={12}>
                   <TextField
                     type="number"
-                    name="number"
+                    name="Numero_camas_solteiro"
                     fullWidth
                     error={!!errors?.Numero_camas_solteiro}
                     helperText={errors?.Numero_camas_solteiro?.message || ''}
@@ -170,7 +171,7 @@ function CreateApartmentTypesForm() {
                 <Grid item md={4} xs={12}>
                   <TextField
                     type="number"
-                    name="number"
+                    name="Numero_camas_casal"
                     fullWidth
                     error={!!errors?.Numero_camas_casal}
                     helperText={errors?.Numero_camas_casal?.message || ''}
@@ -181,7 +182,21 @@ function CreateApartmentTypesForm() {
                     }
                   />
                 </Grid>
-                <Grid item sm={6} md={4} xs={12}>
+                <Grid item md={4} xs={12}>
+                  <TextField
+                    type="number"
+                    name="Valor"
+                    fullWidth
+                    error={!!errors?.Valor}
+                    helperText={errors?.Valor?.message || ''}
+                    label="Preço"
+                    required
+                    onChange={(event) =>
+                      setValue('Valor', parseInt(event.target.value))
+                    }
+                  />
+                </Grid>
+                {/* <Grid item sm={6} md={4} xs={12}>
                   <TextField
                     id="outlined-required"
                     error={!!errors?.Valor}
@@ -206,7 +221,7 @@ function CreateApartmentTypesForm() {
                       ),
                     }}
                   />
-                </Grid>
+                </Grid> */}
               </Grid>
             </CardContent>
           </Card>
@@ -232,7 +247,7 @@ function CreateApartmentTypesForm() {
                 onClose={() => setOpenErrors(false)}
                 severity="error"
                 sx={{ width: '100%' }}
-                children="Ocorreu um erro ao cadastrar o hotel!"
+                children="Ocorreu um erro ao cadastrar o Tipo do apartamento!"
               />
             }
           />

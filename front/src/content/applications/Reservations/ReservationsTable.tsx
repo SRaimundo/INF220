@@ -172,7 +172,7 @@ const ReservationsTable = () => {
       ${type.Numero_camas_casal} Camas de Casal &
       ${type.Numero_camas_solteiro} Camas de Solteiro |
       Tv: ${formatBoolean(
-        type.Tem_tv
+        type.Tem_TV
       )} PCD: ${formatBoolean(type.Adaptado)}`;
     } else {
       return 'Buscando...';
