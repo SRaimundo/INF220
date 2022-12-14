@@ -25,6 +25,7 @@ function CreateHotelForm() {
   const navigate = useNavigate();
 
   const onSubmit: SubmitHandler<Hotels> = (data) => {
+    // console.log(data);
     create(data).then((res) => {
       setOpenConfirm(false);
       return navigate('/hotels/');
@@ -42,7 +43,13 @@ function CreateHotelForm() {
   } = useForm<Hotels>({ resolver: yupResolver(schema) });
 
   useEffect(() => {
+    register('Nome');
+    register('Rua');
+    register('Numero');
+    register('Complemento');
+    register('Bairro');
     register('Cidade');
+    register('UF');
   }, [register]);
 
   return (
@@ -57,8 +64,8 @@ function CreateHotelForm() {
         <Grid item xs={12}>
           <Card>
             <CardHeader
-              title="Cadastrar Hotel"
-              subheader="Informe os dados da filial do hotel."
+              title="Cadastra nome do Hotel"
+              subheader="Informe o nome do Hotel"
             />
             <Divider />
             <CardContent>
@@ -71,17 +78,121 @@ function CreateHotelForm() {
               >
                 <Grid item md={6} xs={12}>
                   <TextField
-                    type="city"
+                    type="string"
+                    name="Nome"
+                    fullWidth
+                    error={!!errors?.Nome}
+                    helperText={errors?.Nome?.message || ''}
+                    label="Nome do hotel"
+                    required
+                    onChange={(event) => setValue('Nome', event.target.value)}
+                  />
+                </Grid>
+
+              </Grid>
+            </CardContent>
+          </Card>
+        </Grid>
+
+        <Grid item xs={12}>
+          <Card>
+            <CardHeader
+              title="Endereço do Hotel"
+              subheader="Informe o endereço do Hotel"
+            />
+            <Divider />
+            <CardContent>
+              <Grid
+                container
+                component="form"
+                noValidate
+                autoComplete="on"
+                spacing={2}
+              >
+                <Grid item md={6} xs={12}>
+                  <TextField
+                    type="string"
+                    name="street"
+                    fullWidth
+                    error={!!errors?.Rua}
+                    helperText={errors?.Rua?.message || ''}
+                    label="Rua"
+                    required
+                    onChange={(event) => setValue('Rua', event.target.value)}
+                  />
+                </Grid>
+                <Grid item md={3} xs={12}>
+                  <TextField
+                    type="number"
+                    name="number"
+                    fullWidth
+                    error={!!errors?.Numero}
+                    helperText={errors?.Numero?.message || ''}
+                    label="0"
+                    required
+                    onChange={(event) => setValue('Numero', Number(event.target.value))}
+                  />
+                </Grid>
+                <Grid item md={3} xs={12}>
+                  <TextField
+                    type="string"
+                    name="neighborhood"
+                    fullWidth
+                    error={!!errors?.Bairro}
+                    helperText={errors?.Bairro?.message || ''}
+                    label="Bairro"
+                    required
+                    onChange={(event) => setValue('Bairro', event.target.value)}
+                  />
+                </Grid>
+                <Grid item md={5} xs={12}>
+                  <TextField
+                    type="string"
                     name="city"
                     fullWidth
                     error={!!errors?.Cidade}
                     helperText={errors?.Cidade?.message || ''}
-                    label="Cidade da Filial"
+                    label="Cidade"
                     required
                     onChange={(event) => setValue('Cidade', event.target.value)}
                   />
                 </Grid>
-
+                <Grid item md={3} xs={12}>
+                  <TextField
+                    type="string"
+                    name="state"
+                    fullWidth
+                    error={!!errors?.UF}
+                    helperText={errors?.UF?.message || ''}
+                    label="Estado (UF)"
+                    required
+                    onChange={(event) => setValue('UF', event.target.value)}
+                  />
+                </Grid>
+                <Grid item md={4} xs={12}>
+                  <TextField
+                    type="string"
+                    name="state"
+                    fullWidth
+                    error={!!errors?.Complemento}
+                    helperText={errors?.Complemento?.message || ''}
+                    label="Complemento"
+                    // required
+                    onChange={(event) => setValue('Complemento', event.target.value)}
+                  />
+                </Grid>
+                {/* <Grid item md={3} xs={12}>
+                  <TextField
+                    type="string"
+                    name="country"
+                    fullWidth
+                    error={!!errors?.Pais}
+                    helperText={errors?.Pais?.message || ''}
+                    label="País"
+                    required
+                    onChange={(event) => setValue('Pais', event.target.value)}
+                  />
+                </Grid> */}
               </Grid>
             </CardContent>
           </Card>

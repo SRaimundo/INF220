@@ -1,3 +1,4 @@
+import { Numeral } from 'numeral';
 import { Hotels } from 'src/models/hotels';
 import api from './api';
 
@@ -18,7 +19,9 @@ export const findOne = async (id) => {
 };
 
 export const create = async (data) => {
-  const response = await api.post('/hotel', data);
+  console.log(data);
+  const response = await api.post('/hotels/',data);
+  console.log("fasd");
   return response.data as Hotels;
 };
 

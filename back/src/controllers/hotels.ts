@@ -22,6 +22,7 @@ const findOne = async (req: Request, res: Response) => {
 }
 
 const create = async (req: Request, res: Response) => {
+    // console.log(req.body);
     try {
         res.status(200).json(await Hotel.create(req.body));
     } catch (err) {
