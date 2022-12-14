@@ -53,7 +53,7 @@ CREATE TABLE RESERVA (
 		Id_reserva INT NOT NULL AUTO_INCREMENT,
     Cliente INT NOT NULL,
     Tipo INT NOT NULL,
-    Num_hospede INT NOT NULL,
+    Num_hospedes INT NOT NULL,
     Data_prevista_entrada DATE NOT NULL,
     Data_prevista_saida DATE NOT NULL,
     PRIMARY KEY (Id_reserva),
