@@ -8,6 +8,12 @@ class Employee{
         return rows;
     }
 
+    static getAllByCargo = async (Cargo: string) => {
+        const conn = await connect();
+        const [rows, fields] = await conn.query("SELECT * FROM FUNCIONARIO WHERE Cargo = ?", Cargo);
+        return rows;
+    }
+
     static findById = async (id: any) => {
         const conn = await connect();
         const [rows, fields] = await conn.query(`SELECT * FROM FUNCIONARIO WHERE Id_funcionario = ${id}`);

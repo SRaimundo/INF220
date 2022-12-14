@@ -41,4 +41,12 @@ const update = async (req: Request , res: Response) => {
     } 
 };
 
-export default {getAll, findById, create, deleteById, update};
+const getAllByCargo = async (req: Request , res: Response) => {
+    try {
+        return res.status(200).json(await Employee.getAllByCargo(req.params.cargo));
+    } catch (error) {
+        return res.status(500).send({message: error});
+    } 
+};
+
+export default {getAll, findById, create, deleteById, update, getAllByCargo};
