@@ -49,6 +49,7 @@ CREATE TABLE CLIENTE (
     PRIMARY KEY (Id_cliente)
 );
 
+-- From specification, reserve DO NOT depends on Hotel
 CREATE TABLE RESERVA (
 		Id_reserva INT NOT NULL AUTO_INCREMENT,
     Cliente INT NOT NULL,
