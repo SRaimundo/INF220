@@ -19,8 +19,8 @@ CREATE TABLE TIPO_QUARTO (
     Valor FLOAT NOT NULL,
     Tem_TV BOOLEAN NOT NULL,
     Adaptado BOOLEAN NOT NULL,
-    Numero_camas_solteiro INT NOT NULL,
     Numero_camas_casal INT NOT NULL,
+    Numero_camas_solteiro INT NOT NULL,
     PRIMARY KEY (Id_tipo)
 );
 
