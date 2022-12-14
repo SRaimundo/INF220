@@ -13,7 +13,8 @@ class Hotel{
     static remove = async (id:number) => {
         const conn = await connect();
         const q = 'DELETE FROM HOTEL WHERE Id_hotel = ?';
-        const remover = await conn.query(q,id);
+        const [rows, fields] = await conn.query(q,id);
+        return rows;
     };
 
     static findOne = async (id: any) => {
