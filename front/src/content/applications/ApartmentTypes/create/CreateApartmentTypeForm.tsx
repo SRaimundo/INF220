@@ -24,22 +24,19 @@ import { create } from 'src/services/apartmentTypes';
 import * as yup from 'yup';
 
 const schema = yup.object().shape({
-  AdaptadoPcd: yup
+  Adaptado: yup
     .boolean()
     .required('É obrigatório informar se o tipo é Adaptado para PCD'),
-  possuiTv: yup
+  Tem_TV: yup
     .boolean()
     .required('É obrigatório informar se o tipo possui televisão'),
-  possuiFrigobar: yup
-    .boolean()
-    .required('É obrigatório informar se o tipo possui frigobar'),
-  numCamasSolteiro: yup
+  Numero_camas_solteiro: yup
     .number()
     .required('É obrigatório informar quantas camas de solteiro possui'),
-  numCamasCasal: yup
+    Numero_camas_casal: yup
     .number()
     .required('É obrigatório informar quantas camas de casal possui'),
-  ValorApartamento: yup
+    Valor: yup
     .number()
     .required('É obrigatório informar o Valor do apartamento'),
 });

@@ -167,10 +167,10 @@ const AccommodationsTable = () => {
   const formatApartment = (id): string => {
     if (apartments.length > 0) {
       const apartment = apartments.find(
-        (apartment) => apartment.idApartamento === id
+        (apartment) => apartment.Numero === id
       );
-      return `Filial ${formatHotel(apartment.Codigo)} | Quarto: ${
-        apartment.numero
+      return `Filial ${formatHotel(apartment.Numero)} | Quarto: ${
+        apartment.Numero
       }`;
     } else {
       return 'Buscando...';
@@ -249,7 +249,7 @@ const AccommodationsTable = () => {
                           gutterBottom
                           noWrap
                           children={`${formatApartment(
-                            accommodation.idApartamento
+                            accommodation.Numero
                           )}`}
                         />
                       }

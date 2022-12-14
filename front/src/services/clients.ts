@@ -22,6 +22,7 @@ export const findSearch = async (search) => {
 };
 
 export const create = async (data) => {
+  console.log(data);
   const response = await api.post('/cliente', data);
   return response.data as Clients;
 };

@@ -35,7 +35,7 @@ import { findAll as findReservations } from 'src/services/reservations';
 import * as yup from 'yup';
 
 const schema = yup.object().shape({
-  idApartamento: yup
+  Numero: yup
     .string()
     .required('É obrigatório selecionar um apartamento'),
   Id_reserva: yup.string().required('É obrigatório selecionar uma reserva'),
@@ -66,7 +66,7 @@ function CreateReservationForm() {
 
   useEffect(() => {
     const initDate = new Date();
-    register('idApartamento');
+    register('Numero');
     register('Id_reserva');
     register('diaria');
     register('dataEntrada', { value: initDate });
@@ -107,7 +107,7 @@ function CreateReservationForm() {
 
           const filterApartments = apartmentList.filter(
             (ap) =>
-              ap.Codigo === reserva.Codigo && ap.Id_tipo === reserva.Id_tipo
+              ap.Numero === reserva.Codigo && ap.Tipo === reserva.Id_tipo
           );
 
           setFilteredApartments(filterApartments);
@@ -173,10 +173,10 @@ function CreateReservationForm() {
   const formatApartment = (id): string => {
     if (apartmentList.length > 0) {
       const apartment = apartmentList.find(
-        (apartment) => apartment.idApartamento === id
+        (apartment) => apartment.Numero === id
       );
-      return `Filial ${formatHotel(apartment.Codigo)} | Quarto: ${
-        apartment.numero
+      return `Filial ${formatHotel(apartment.Numero)} | Quarto: ${
+        apartment.Numero
       }`;
     } else {
       return 'Buscando...';
@@ -231,30 +231,30 @@ function CreateReservationForm() {
                   </FormControl>
                 </Grid>
                 <Grid item md={6} xs={12}>
-                  <FormControl fullWidth error={!!errors?.idApartamento}>
+                  <FormControl fullWidth error={!!errors?.Numero}>
                     <InputLabel children="Selecione o apartamento" />
                     <Select
                       labelId="demo-simple-select-label"
                       id="demo-simple-select"
-                      value={watch().idApartamento ?? ''}
+                      value={watch().Numero ?? ''}
                       label="Selecione o apartamento"
                       onChange={(apartamento: SelectChangeEvent<string>) =>
                         setValue(
-                          'idApartamento',
+                          'Numero',
                           parseInt(apartamento.target.value)
                         )
                       }
                     >
                       {filteredApartments.map((apartment) => (
                         <MenuItem
-                          key={apartment.idApartamento}
-                          value={apartment.idApartamento}
-                          children={formatApartment(apartment.idApartamento)}
+                          key={apartment.Numero}
+                          value={apartment.Numero}
+                          children={formatApartment(apartment.Numero)}
                         />
                       ))}
                     </Select>
                     <FormHelperText
-                      children={errors?.idApartamento?.message || ''}
+                      children={errors?.Numero?.message || ''}
                     />
                   </FormControl>
                 </Grid>

@@ -34,7 +34,7 @@ const schema = yup.object().shape({
   Id_funcionario: yup
     .number()
     .required('É obrigatório selecionar um funcionário para a faxina'),
-  idApartamento: yup
+  Numero: yup
     .number()
     .required('É obrigatório selecionar um apartamento'),
   dataArruma: yup
@@ -85,7 +85,7 @@ function CreateHotelForm() {
   useEffect(() => {
     const initDate = new Date();
     register('Id_funcionario');
-    register('idApartamento');
+    register('Numero');
     register('dataArruma', { value: initDate });
   }, [register]);
 
@@ -140,27 +140,27 @@ function CreateHotelForm() {
                   </FormControl>
                 </Grid>
                 <Grid item md={4} xs={12}>
-                  <FormControl fullWidth error={!!errors?.idApartamento}>
+                  <FormControl fullWidth error={!!errors?.Numero}>
                     <InputLabel children="Selecione o apartamento" />
                     <Select
-                      value={watch().idApartamento ?? ''}
+                      value={watch().Numero ?? ''}
                       label="Selecione o apartamento"
                       onChange={(tipo: SelectChangeEvent<string>) =>
-                        setValue('idApartamento', parseInt(tipo.target.value))
+                        setValue('Numero', parseInt(tipo.target.value))
                       }
                     >
                       {apartamentos.map((tipo) => (
                         <MenuItem
-                          key={tipo.idApartamento}
-                          value={tipo.idApartamento}
-                          children={`${formatHotel(tipo.Codigo)} | ${
-                            tipo.numero
+                          key={tipo.Numero}
+                          value={tipo.Numero}
+                          children={`${formatHotel(tipo.Numero)} | ${
+                            tipo.Numero
                           }`}
                         />
                       ))}
                     </Select>
                     <FormHelperText
-                      children={errors?.idApartamento?.message || ''}
+                      children={errors?.Numero?.message || ''}
                     />
                   </FormControl>
                 </Grid>

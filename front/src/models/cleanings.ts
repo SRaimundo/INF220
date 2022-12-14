@@ -2,7 +2,7 @@ export interface Cleanings {
   idArruma: number;
   dataArruma: Date;
   Id_funcionario: number;
-  idApartamento: number;
+  Numero: number;
 }
 
 export interface CleaningsTable {

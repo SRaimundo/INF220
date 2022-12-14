@@ -30,11 +30,11 @@ import { findAll as findHotel } from 'src/services/hotels';
 import * as yup from 'yup';
 
 const schema = yup.object().shape({
-  Codigo: yup.number().required('É obrigatório informar uma filial'),
-  Id_tipo: yup
+  Hotel: yup.number().required('É obrigatório informar uma filial'),
+  Tipo: yup
     .number()
     .required('É obrigatório informar um tipo de apartamento'),
-  numero: yup
+  Numero: yup
     .number()
     .required('É obrigatório informar o número do apartamento'),
 });
@@ -61,9 +61,9 @@ function CreateHotelForm() {
   } = useForm<Apartments>({ resolver: yupResolver(schema) });
 
   useEffect(() => {
-    register('numero');
-    register('Codigo');
-    register('Id_tipo');
+    register('Numero');
+    register('Hotel');
+    register('Tipo');
   }, [register]);
 
   const [hotelList, setHotelList] = useState<Hotels[]>([]);
@@ -73,8 +73,8 @@ function CreateHotelForm() {
   const selectHotel = useCallback(
     (hotel) => {
       if (!!hotel) {
-        const id = !!hotel.Id_hotel ? hotel.Id_hotel : hotel;
-        setValue('Codigo', id);
+        const id = !!hotel.idHotel ? hotel.idHotel : hotel;
+        setValue('Hotel', id);
       }
     },
     [setValue]
@@ -87,7 +87,7 @@ function CreateHotelForm() {
         const hotel = res.find((hotel) => {
           return (
             hotel.Id_hotel ===
-            (parseInt(searchParams.get('Codigo')) ?? res[0].Id_hotel)
+            (parseInt(searchParams.get('Hotel')) ?? res[0].Id_hotel)
           );
         });
         selectHotel(hotel);
@@ -133,23 +133,23 @@ function CreateHotelForm() {
                     type="number"
                     name="number"
                     fullWidth
-                    error={!!errors?.numero}
-                    helperText={errors?.numero?.message || ''}
+                    error={!!errors?.Numero}
+                    helperText={errors?.Numero?.message || ''}
                     label="Número do apartamento"
                     required
                     onChange={(event) =>
-                      setValue('numero', parseInt(event.target.value))
+                      setValue('Numero', parseInt(event.target.value))
                     }
                   />
                 </Grid>
                 <Grid item md={6} xs={12}>
-                  <FormControl fullWidth error={!!errors?.Codigo}>
+                  <FormControl fullWidth error={!!errors?.Hotel}>
                     <InputLabel children="Selecione a filial do hotel" />
                     <Select
-                      value={watch().Codigo ?? ''}
+                      value={watch().Hotel ?? ''}
                       label="Selecione a filial do hotel"
                       onChange={(tipo: SelectChangeEvent<string>) =>
-                        setValue('Codigo', parseInt(tipo.target.value))
+                        setValue('Hotel', parseInt(tipo.target.value))
                       }
                     >
                       {hotelList.map((hotel) => (
@@ -160,17 +160,17 @@ function CreateHotelForm() {
                         />
                       ))}
                     </Select>
-                    <FormHelperText children={errors?.Codigo?.message || ''} />
+                    <FormHelperText children={errors?.Hotel?.message || ''} />
                   </FormControl>
                 </Grid>
                 <Grid item md={6} xs={12}>
-                  <FormControl fullWidth error={!!errors?.Id_tipo}>
+                  <FormControl fullWidth error={!!errors?.Tipo}>
                     <InputLabel children="Selecione o tipo de apartamento" />
                     <Select
-                      value={watch().Id_tipo ?? ''}
+                      value={watch().Tipo ?? ''}
                       label="Selecione o tipo de apartamento"
                       onChange={(tipo: SelectChangeEvent<string>) =>
-                        setValue('Id_tipo', parseInt(tipo.target.value))
+                        setValue('Tipo', parseInt(tipo.target.value))
                       }
                     >
                       {typeList.map((tipo) => (
@@ -186,7 +186,7 @@ function CreateHotelForm() {
                         />
                       ))}
                     </Select>
-                    <FormHelperText children={errors?.Id_tipo?.message || ''} />
+                    <FormHelperText children={errors?.Tipo?.message || ''} />
                   </FormControl>
                 </Grid>
               </Grid>
