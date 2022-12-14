@@ -76,15 +76,15 @@ export const consultaE = async (cidade,data) => {
 };
 
 export interface ConsultaF {
+  Fatura: number;
   Cidade: string;
-  nome: string;
-  valor_total: number;
+  Nome: string;
 }
 
 export const consultaF = async () => {
   try {
-    const response = await api.get('/consulta-f');
-    return response.data.maioresContas as ConsultaF[];
+    const response = await api.get('/consulta2');
+    return response.data as ConsultaF[];
   } catch (error) {
     console.error(error);
     return [];

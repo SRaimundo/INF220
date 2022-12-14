@@ -57,7 +57,7 @@ function ConsultaF() {
             </ListItem>
             <ListItem sx={{ py: 2 }}>
               <ListItemText
-                primary={<Text color="black">{conta.nome}</Text>}
+                primary={<Text color="black">{conta.Nome}</Text>}
                 primaryTypographyProps={{
                   variant: 'body1',
                   fontWeight: 'bold',
@@ -67,7 +67,7 @@ function ConsultaF() {
                 }}
                 secondary={
                   <Text color="success">
-                    R$ {parseFloat(conta.valor_total)}
+                    R$ {parseFloat(conta.Fatura)}
                   </Text>
                 }
                 secondaryTypographyProps={{ variant: 'body2', noWrap: true }}
