@@ -197,7 +197,7 @@ function CreateReservationForm() {
                           ${tipo.Numero_camas_casal} Camas de Casal &
                           ${tipo.Numero_camas_solteiro} Camas de Solteiro |
                           Tv: ${formatBoolean(
-                            tipo.Tem_tv
+                            tipo.Tem_TV
                           )} PCD: ${formatBoolean(tipo.Adaptado)}`}
                         />
                       ))}

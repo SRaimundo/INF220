@@ -28,7 +28,7 @@ class Consultas2{
 
         const conn = await connect();
         const q = 
-        `SELECT SUM(DH.Valor) as Fatura, H.Cidade, C.Nome
+        `SELECT SUM(DH.Valor) as Fatura, H.Nome as Cidade, C.Nome
         FROM DESPESA_HOTEL DH, HOSPEDAGEM HP, RESERVA R, CLIENTE C, HOTEL H
         WHERE DH.Hospedagem = HP.Id_hospedagem AND HP.Reserva = R.Id_reserva AND R.Cliente = C.Id_cliente AND HP.Hotel = H.Id_hotel
         GROUP BY DH.Hospedagem`;

@@ -195,7 +195,7 @@ const ApartmentTypesTable = () => {
                       />
                       <br />
                       <Label
-                        color={apartmentType.Tem_tv ? 'success' : 'error'}
+                        color={apartmentType.Tem_TV ? 'success' : 'error'}
                         children="Possui televisão"
                       />
                       {/* <br />
