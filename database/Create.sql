@@ -2,7 +2,7 @@ CREATE DATABASE BOM_SONO;
 USE BOM_SONO;
 
 CREATE TABLE HOTEL (
-    idHotel INT NOT NULL AUTO_INCREMENT,
+    Id_hotel INT NOT NULL AUTO_INCREMENT,
     Nome VARCHAR(100) NOT NULL,
     Rua VARCHAR(100) NOT NULL,
     Numero VARCHAR(100) NOT NULL,
@@ -10,46 +10,85 @@ CREATE TABLE HOTEL (
     Bairro VARCHAR(100) NOT NULL,
     Cidade VARCHAR(100) NOT NULL,
     UF VARCHAR(2) NOT NULL,
-    PRIMARY KEY (idHotel)
+    PRIMARY KEY (Id_hotel)
 );
 
+-- Remove Tem_TV and Adaptado from TIPO_QUARTO
 CREATE TABLE TIPO_QUARTO (
-    idTipo INT NOT NULL AUTO_INCREMENT,
+    Id_tipo INT NOT NULL AUTO_INCREMENT,
     Valor FLOAT NOT NULL,
     Tem_TV BOOLEAN NOT NULL,
     Adaptado BOOLEAN NOT NULL,
     Numero_camas_solteiro INT NOT NULL,
     Numero_camas_casal INT NOT NULL,
-    PRIMARY KEY (idTipo)
+    PRIMARY KEY (Id_tipo)
 );
 
 CREATE TABLE QUARTO (
     Numero INT NOT NULL,
-    Tipo INT NOT NULL,
     Hotel INT NOT NULL,
-    PRIMARY KEY (Numero),
-    FOREIGN KEY (Tipo) REFERENCES TIPO_QUARTO(idTipo) ON DELETE CASCADE,
-    FOREIGN KEY (Hotel) REFERENCES HOTEL(idHotel) ON DELETE CASCADE
+    Tipo INT NOT NULL,
+    PRIMARY KEY (Numero, Hotel),
+    FOREIGN KEY (Hotel) REFERENCES HOTEL(Id_hotel) ON DELETE CASCADE,
+    FOREIGN KEY (Tipo) REFERENCES TIPO_QUARTO(Id_tipo) ON DELETE CASCADE
 );
 
 CREATE TABLE CLIENTE (
-  Id_cliente INT NOT NULL AUTO_INCREMENT,
+    Id_cliente INT NOT NULL AUTO_INCREMENT,
+    Nome VARCHAR(100) NOT NULL,
+    Telefone CHAR(11) NOT NULL,
+    Pais_origem VARCHAR(30) NOT NULL,
+    Email VARCHAR(100) NOT NULL,
+    Senha VARCHAR(50) NOT NULL,
+    Rua VARCHAR(100) NOT NULL,
+    Numero INT NOT NULL,
+    Complemento VARCHAR(100),
+    Bairro VARCHAR(50) NOT NULL,
+    Cidade VARCHAR(50) NOT NULL,
+    UF CHAR(2) NOT NULL,
+    PRIMARY KEY (Id_cliente)
+);
+
+CREATE TABLE RESERVA (
+		Id_reserva INT NOT NULL AUTO_INCREMENT,
+    Cliente INT NOT NULL,
+    Tipo INT NOT NULL,
+    Data_prevista_entrada DATE NOT NULL,
+    Data_prevista_saida DATE NOT NULL,
+    PRIMARY KEY (Id_reserva),
+    FOREIGN KEY (Cliente) REFERENCES CLIENTE(Id_cliente) ON DELETE CASCADE,
+    FOREIGN KEY (Tipo) REFERENCES TIPO_QUARTO(Id_tipo) ON DELETE CASCADE
+);
+
+CREATE TABLE HOSPEDAGEM (
+		Id_hospedagem INT NOT NULL AUTO_INCREMENT,
+		Reserva INT NOT NULL,
+		Check_in DATETIME,
+		Check_out DATETIME,
+		PRIMARY KEY (Id_hospedagem),
+    FOREIGN KEY (Reserva) REFERENCES RESERVA(Id_reserva) ON DELETE CASCADE
+);
+
+-- I wanna use autoincrement but I can't ;-;
+CREATE TABLE HOSPEDE (
+  Id_hospede INT NOT NULL,
+  Hospedagem INT NOT NULL,
   Nome VARCHAR(100) NOT NULL,
   Email VARCHAR(100),
   CPF CHAR(11),
-  Documento VARCHAR(30),
-  Tipo_documento VARCHAR(30),
-  Orgao_exp VARCHAR(30),
-  DDD_celular CHAR(3), -- CHAR has a fix length (if DDD = 33, put 033) -> necessary for pattern
-  DDI_celular CHAR(4), -- CHAR has a fix length (if DDI = 55, put 0055) -> necessary for pattern
-  Celular VARCHAR(10),
-  DDD_telefone CHAR(3), -- CHAR has a fix length (if DDD = 33, put 033) -> necessary for pattern
-  DDI_telefone CHAR(4), -- CHAR has a fix length (if DDI = 55, put 0055) -> necessary for pattern
-  Telefone VARCHAR(10),
   Nascimento DATE NOT NULL,
-  Sexo CHAR(1) NOT NULL,
+  Sexo CHAR(1) NOT NULL,	-- M or F
   Profissao VARCHAR(30),
   Nacionalidade VARCHAR(50),
+  Descricao_documento VARCHAR(30),
+  Tipo_documento VARCHAR(30),
+  Orgao_exp VARCHAR(30),
+  DDI_celular CHAR(4), -- CHAR has a fix length (if DDI = 55, put 0055) -> necessary for pattern
+  DDD_celular CHAR(3), -- CHAR has a fix length (if DDD = 33, put 033) -> necessary for pattern
+  Numero_celular VARCHAR(10),
+  DDD_telefone CHAR(3), -- CHAR has a fix length (if DDD = 33, put 033) -> necessary for pattern
+  DDI_telefone CHAR(4), -- CHAR has a fix length (if DDI = 55, put 0055) -> necessary for pattern
+  Numero_telefone VARCHAR(10),
   Endereco VARCHAR(150),
   Cidade VARCHAR(150),
   Estado VARCHAR(150),
@@ -64,88 +103,55 @@ CREATE TABLE CLIENTE (
   Motivo INT,
   Meio_transporte INT,
   Observacoes VARCHAR(300),
-  Numero_hospedes INT,
-  UH INT,
-  Data_prev_chegada DATETIME,
-  Data_prev_saida DATETIME,
-  FNRH VARCHAR(100) NOT NULL,
-  PRIMARY KEY (Id_cliente)
-);
-
-CREATE TABLE FUNCIONARIO (
-    idFuncionario INT NOT NULL AUTO_INCREMENT,
-    Nome VARCHAR(100) NOT NULL,
-    Cargo VARCHAR(100) NOT NULL,
-    PRIMARY KEY (idFuncionario)
+  PRIMARY KEY (Id_hospede, Hospedagem),
+  FOREIGN KEY (Hospedagem) REFERENCES HOSPEDAGEM(Id_hospedagem) ON DELETE CASCADE
 );
 
 CREATE TABLE VAGA (
-    idVaga INT NOT NULL AUTO_INCREMENT,
-    Status BOOLEAN NOT NULL,
-    Cliente INT,
+    Id_vaga INT NOT NULL AUTO_INCREMENT,
     Hotel INT NOT NULL,
-    PRIMARY KEY (idVaga),
-    FOREIGN KEY (Cliente) REFERENCES CLIENTE(idCliente) ON DELETE SET NULL,
-    FOREIGN KEY (Hotel) REFERENCES HOTEL(idHotel) ON DELETE CASCADE
+    Hospedagem INT,
+    PRIMARY KEY (Id_vaga),
+    FOREIGN KEY (Hotel) REFERENCES HOTEL(Id_hotel) ON DELETE CASCADE,
+    FOREIGN KEY (Hospedagem) REFERENCES HOSPEDAGEM(Id_hospedagem) ON DELETE SET NULL
 );
 
-CREATE TABLE CONTA_HOTEL (
-    Cliente INT NOT NULL,
-    Codigo INT NOT NULL,
-    PRIMARY KEY (Cliente, Codigo),
-    FOREIGN KEY (Cliente) REFERENCES CLIENTE(idCliente) ON DELETE CASCADE
-);
-
-CREATE TABLE CONTA_RESTAURANTE (
-    Cliente INT NOT NULL,
-    Codigo INT NOT NULL,
-    PRIMARY KEY (Cliente, Codigo),
-    FOREIGN KEY (Cliente) REFERENCES CLIENTE(idCliente) ON DELETE CASCADE
-);
-
--- Maybe it's not necessary use Check_in and Check_out
-CREATE TABLE RESERVA (
-    Cliente INT NOT NULL,
-    Quarto INT NOT NULL,
-    Data_in DATE NOT NULL,
-    Data_out DATE NOT NULL,
-    Check_in BOOLEAN NOT NULL,
-    Check_out BOOLEAN NOT NULL,
-    PRIMARY KEY (Cliente, Quarto, Data_in),
-    FOREIGN KEY (Cliente) REFERENCES CLIENTE(idCliente) ON DELETE CASCADE,
-    FOREIGN KEY (Quarto) REFERENCES QUARTO(Numero) ON DELETE CASCADE
+CREATE TABLE FUNCIONARIO (
+    Id_funcionario INT NOT NULL AUTO_INCREMENT,
+    Nome VARCHAR(100) NOT NULL,
+    Cargo VARCHAR(100) NOT NULL,
+    PRIMARY KEY (Id_funcionario)
 );
 
 CREATE TABLE ARRUMACAO (
-    Funcionario INT NOT NULL,
     Quarto INT NOT NULL,
+    Hotel INT NOT NULL,
     Data DATE NOT NULL,
-    PRIMARY KEY(Funcionario, Quarto, Data),
-    FOREIGN KEY (Funcionario) REFERENCES FUNCIONARIO(idFuncionario) ON DELETE CASCADE,
-    FOREIGN KEY (Quarto) REFERENCES QUARTO(Numero) ON DELETE CASCADE
+    Funcionario INT NOT NULL,
+    PRIMARY KEY(Quarto, Hotel, Data),
+    FOREIGN KEY (Funcionario) REFERENCES FUNCIONARIO(Id_funcionario) ON DELETE CASCADE,
+    FOREIGN KEY (Quarto, Hotel) REFERENCES QUARTO(Numero, Hotel) ON DELETE CASCADE
 );
 
 -- Maybe it isn't necessary to use Codigo
-CREATE TABLE DESPESA (
-    Cliente INT NOT NULL,
-    Conta INT NOT NULL,
-    Codigo INT NOT NULL,
+CREATE TABLE DESPESA_HOTEL (
+		Id_despesa INT NOT NULL AUTO_INCREMENT,
+    Hospedagem INT NOT NULL,
     Data DATE NOT NULL,
     Descricao VARCHAR(100) NOT NULL,
     Valor FLOAT NOT NULL,
-    PRIMARY KEY(Cliente, Codigo, Conta),
-    FOREIGN KEY (Cliente, Conta) REFERENCES CONTA_HOTEL(Cliente, Codigo) ON DELETE CASCADE
+    PRIMARY KEY(Id_despesa),
+    FOREIGN KEY (Hospedagem) REFERENCES HOSPEDAGEM(Id_hospedagem) ON DELETE CASCADE
 );
 
 -- Maybe it isn't necessary to use Codigo
-CREATE TABLE DESPESA_REFEICAO (
-    Cliente INT NOT NULL,
-    Conta INT NOT NULL,
-    Codigo INT NOT NULL,
+CREATE TABLE CONSUMO_RESTAURANTE (
+		Id_consumo INT NOT NULL,
+    Hospedagem INT NOT NULL,
     Data DATE NOT NULL,
     Descricao VARCHAR(100) NOT NULL,
     Valor FLOAT NOT NULL,
     Entrege BOOLEAN NOT NULL,
-    PRIMARY KEY(Cliente, Conta, Codigo),
-    FOREIGN KEY (Cliente,Conta) REFERENCES CONTA_RESTAURANTE(Cliente,Codigo) ON DELETE CASCADE
+    PRIMARY KEY(Id_consumo),
+    FOREIGN KEY (Hospedagem) REFERENCES HOSPEDAGEM(Id_hospedagem) ON DELETE CASCADE
 );
