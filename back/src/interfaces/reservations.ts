@@ -1,8 +1,9 @@
 export interface Reservation{
+    Id_reserva: number;
     Cliente: number;
     Quarto: number;
-    Data_in: Date;
-    Data_out: Date;
-    Check_in: boolean;
-    Check_out : boolean;
+    Tipo: number;
+    Num_hospedes: number;
+    Data_prevista_entrada: Date;
+    Data_prevista_saida: Date;
 }

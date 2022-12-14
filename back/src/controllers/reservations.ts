@@ -11,9 +11,8 @@ const getAll = async (req: Request, res: Response) => {
 }
 
 const findOne = async (req: Request, res: Response) => {
-    console.log(req.params);
     try {
-        res.status(200).json(await Reservation.findOne(req.params.Id_cliente, req.params.idQuarto, req.params.dataIn));
+        res.status(200).json(await Reservation.findOne(req.params.id));
     } catch (err) {
         res.status(400);
     }
@@ -29,7 +28,7 @@ const create = async (req: Request, res: Response) => {
 
 const deleteOne = async (req: Request , res: Response) => {
     try {
-        return res.status(200).json(await Reservation.delete(req.params.Id_cliente, req.params.idQuarto, req.params.dataIn));
+        return res.status(200).json(await Reservation.delete(req.params.id));
     } catch (error) {
         return res.status(500).send({message: error});
     } 
@@ -37,7 +36,7 @@ const deleteOne = async (req: Request , res: Response) => {
 
 const update = async (req: Request , res: Response) => {
     try {
-        return res.status(200).json(await Reservation.update(req.params.Id_cliente, req.params.idQuarto, req.params.dataIn, req.body));
+        return res.status(200).json(await Reservation.update(req.params.id, req.body));
     } catch (error) {
         return res.status(500).send({message: error});
     } 
