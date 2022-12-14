@@ -201,6 +201,31 @@ VALUES(5, 101, 1, '2022-02-26 09:27:04', NULL);
 INSERT INTO HOSPEDAGEM (Reserva, Quarto, Hotel, Check_in, Check_out)
 VALUES(7, 801, 3, '2022-03-07 13:31:31', NULL);
 
+INSERT INTO HOSPEDE
+VALUES(1, 1, 'João Vitor Ramos', 'joaozin@email.com', '12312312300', '1954-08-12', 'M', 'Pedreiro', 'Jacarta', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO HOSPEDE
+VALUES(2, 1, 'Otávio Costa', 'otavioc@email.com', '09258489001', '2003-06-03', 'M', 'Estudante', 'Brasil', NULL, NULL, NULL, '0055', '033', '999929292', NULL, NULL, NULL, 'Rua Não Sei', '0', 'Oxi', 'Mongoliápolis', 'Qualquer', 'Piorou', '12312123', NULL, NULL, NULL, NULL, NULL, NULL,  02, 01, 'Ele gosta de viajar');
+INSERT INTO HOSPEDE
+VALUES(3, 1, 'Marta Cleide', 'martinha@email.com', '11122233344', '1992-02-02', 'F', 'Jogadora', 'Indonésia', NULL, NULL, NULL, '0055', '021', '988112233', '0055', '021', '32233030', 'Rua Pasta de Dente', '15', 'Centrão', 'Direita', 'Esquerda', 'Bolívia', NULL, 'Muriçoca', 'ES', 'Brasil', 'Pernilongo', 'RS', 'Brasil',  03, 03, NULL);
+
+INSERT INTO HOSPEDE
+VALUES(4, 2, 'Samuel Raimundo', 'rodrigaoufv@email.com', '12443188890', '2002-08-25', 'M', 'Garoto de programa', 'Brasil', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Tokyo', 'TK', 'Japão', 'Ubá', 'MG', 'Brasil', 3, 3, 'Ele não gosta de viajar');
+
+INSERT INTO HOSPEDE
+VALUES(5, 3, 'Marcos Augusto', 'acaraje@email.com', '73878230311', '2001-05-29', 'M', 'Motorista', 'Brasil', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Rua Minha Casa', '72', 'Meu Bairro', 'Minha Cidade', 'Meu Estado', 'Meu Pais', '000030303', 'asoçiV', 'GM', 'lisarB', 'ábU', 'GM', 'lisarB', 1, 1, 'Letras trocasdas');
+
+INSERT INTO HOSPEDE
+VALUES(6, 4, 'Yuri Dias', 'diasminecraft@email.com', '98765432100', '1912-12-12', 'M', 'Repórter', 'Brasil', NULL, NULL, NULL, '0055', '031', '990907070', '0055', '031', '70709090', 'Rua Dragon Ball', 's/ n', 'Pokémon', 'Naruto', 'Pucca', 'Brasil', '24242424', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO HOSPEDE
+VALUES(7, 4, 'Yuri Noites', 'noitesminecraft@email.com', '98765432100', '1912-12-12', 'M', 'Repórter', 'Brasil', NULL, NULL, NULL, '0055', '031', '990907070', '0055', '031', '70709090', 'Rua Dragon Ball', 's/ n', 'Pokémon', 'Naruto', 'Pucca', 'Brasil', '24242424', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+
+INSERT INTO HOSPEDE
+VALUES(8, 5, 'Felipe de Assis', 'queenelisa@email.com', '06438200251', '1985-12-29', 'M', 'Gamer', 'Inglaterra', 'Passaporte', 'Estrangeiro', 'Governo', '0001', '001', '423643732', NULL, NULL, NULL, 'Rua Very Important', '45', 'Center', 'Britânica', 'UK', 'Inglaterra', NULL, 'Viçosa', 'MG', 'Brasil', 'Lassance', 'MG', 'Brasil', 1, 1, NULL);
+INSERT INTO HOSPEDE
+VALUES(9, 5, 'Machado Ferreira', 'beloescritor@email.com', '00000000001', '1839-06-21', 'M', 'Escritor', 'Brasil', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Rua Perto de BH', '100', 'Minas', 'Pão de Queijo', 'Croácia', '84908000', 'Cemitério', 'DD', 'Brasil', 'Céu', 'DD', 'Reino de Deus', 1, 1, 'Não tinha telefone na sua época');
+INSERT INTO HOSPEDE
+VALUES(10, 2, 'Maria José', 'maria@email.com', '00000000000', '1982-07-02', 'F', 'Costureira', 'Brasil', 'Documento', 'Passaporte', 'Governo', '0055', '033', '999999999', 'ddii', 'ddd', 'telefone', 'Rua da Sua Casa', '27', 'Seu Bairro', 'Sua Cidade', 'Seu Estado', 'Seu Pais', '303030000', 'Viçosa', 'MG', 'Brasil', 'Ubá', 'MG', 'Brasil', 1, 1, NULL);
+
 INSERT INTO DESPESA_HOTEL (Hospedagem, Data, Descricao, Valor)
 VALUES(1, '2022-12-06 14:17:14', 'Doce de leite Viçosa', 28.89);
 INSERT INTO DESPESA_HOTEL (Hospedagem, Data, Descricao, Valor)
