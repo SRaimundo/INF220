@@ -2,7 +2,7 @@ import express from "express";
 
 import clienteRouter from "./clients";
 import employeesRouter from "./employees";
-import expensesRouter from "./expenses";
+import hotelGuestsRouter from "./hotelGuests";
 import hotelExpensesRouter from "./hotelExpenses";
 import hotelsRouter from "./hotels";
 import housekeepingRouter from "./housekeeping";
@@ -22,7 +22,7 @@ const router = express.Router();
 
 router.use("/cliente", clienteRouter);
 router.use("/employees", employeesRouter);
-router.use("/expenses", expensesRouter);
+router.use("/hotelGuests", hotelGuestsRouter);
 router.use("/hotelExpenses", hotelExpensesRouter);
 router.use("/hotels", hotelsRouter);
 router.use("/arruma", housekeepingRouter);

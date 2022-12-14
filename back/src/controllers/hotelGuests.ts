@@ -1,9 +1,9 @@
 import {Request, Response} from "express";
-import Expenses from "../models/expenses";
+import HotelGuest from "../models/hotelGuests";
 
 const getAll = async (req: Request, res: Response) => {
     try {
-        res.status(200).json(await Expenses.getAll());
+        res.status(200).json(await HotelGuest.getAll());
     } catch (err) {
         res.status(400);
     }
@@ -12,7 +12,7 @@ const getAll = async (req: Request, res: Response) => {
 const findOne = async (req: Request, res: Response) => {
     console.log(req.params);
     try {
-        res.status(200).json(await Expenses.findOne(req.params.Id_cliente, req.params.idConta, req.params.codigo));
+        res.status(200).json(await HotelGuest.findOne(req.params.id, req.params.hospedagem));
     } catch (err) {
         res.status(400);
     }
@@ -20,7 +20,7 @@ const findOne = async (req: Request, res: Response) => {
 
 const create = async (req: Request, res: Response) => {
     try {
-        res.status(200).json(await Expenses.create(req.body));
+        res.status(200).json(await HotelGuest.create(req.body));
     } catch (err) {
         res.status(400);
     }
@@ -28,7 +28,7 @@ const create = async (req: Request, res: Response) => {
 
 const deleteOne = async (req: Request , res: Response) => {
     try {
-        return res.status(200).json(await Expenses.delete(req.params.Id_cliente, req.params.idConta, req.params.codigo));
+        return res.status(200).json(await HotelGuest.delete(req.params.id, req.params.hospedagem));
     } catch (error) {
         return res.status(500).send({message: error});
     } 
@@ -36,7 +36,7 @@ const deleteOne = async (req: Request , res: Response) => {
 
 const update = async (req: Request , res: Response) => {
     try {
-        return res.status(200).json(await Expenses.update(req.params.Id_cliente, req.params.idConta, req.params.codigo, req.body));
+        return res.status(200).json(await HotelGuest.update(req.params.id, req.params.hospedagem, req.body));
     } catch (error) {
         return res.status(500).send({message: error});
     } 
