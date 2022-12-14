@@ -13,13 +13,13 @@ class Client{
 
     static findById = async (id: any) => {
         const conn = await connect();
-        const [rows, fields] = await conn.query(`SELECT * FROM CLIENTE WHERE idCliente = ${id}`);
+        const [rows, fields] = await conn.query(`SELECT * FROM CLIENTE WHERE Id_cliente = ?`, id);
         return rows;
     };
 
     static delete = async (id: any) => {
         const conn = await connect();
-        const [rows, fields] = await conn.query(`DELETE FROM CLIENTE WHERE idCliente = ${id}`);
+        const [rows, fields] = await conn.query(`DELETE FROM CLIENTE WHERE Id_cliente = ?`, id);
         return rows;
     }
 
@@ -37,7 +37,7 @@ class Client{
             Bairro = "${cliente.Bairro}",
             Cidade = "${cliente.Cidade}",
             UF = "${cliente.UF}"
-            WHERE idCliente = ${id}`
+            WHERE Id_cliente = ${id}`
         );
         return rows;
     };
