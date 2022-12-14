@@ -12,7 +12,7 @@ class RoomType{
 
     static findOne = async (id: any) => {
         const conn = await connect();
-        const [rows, fields] = await conn.query(`SELECT * FROM TIPO_QUARTO WHERE idTipo = ${id}`);
+        const [rows, fields] = await conn.query(`SELECT * FROM TIPO_QUARTO WHERE Id_tipo = ${id}`);
         return rows;
     }
 
@@ -25,7 +25,7 @@ class RoomType{
 
     static delete = async (id: any) => {
         const conn = await connect();
-        const [rows, fields] = await conn.query(`DELETE FROM TIPO_QUARTO WHERE idTipo = ${id}`);
+        const [rows, fields] = await conn.query(`DELETE FROM TIPO_QUARTO WHERE Id_tipo = ${id}`);
         return rows;
     }
 
@@ -37,7 +37,7 @@ class RoomType{
             Adaptado = ${RoomType.Adaptado},
             Numero_camas_solteiro = ${RoomType.Numero_camas_solteiro},
             Numero_camas_casal = ${RoomType.Numero_camas_casal}
-            WHERE idTipo = ${id}`
+            WHERE Id_tipo = ${id}`
         );
         return rows;
     }

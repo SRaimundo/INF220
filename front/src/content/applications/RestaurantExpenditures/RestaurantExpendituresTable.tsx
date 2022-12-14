@@ -197,7 +197,7 @@ const RestaurantExpendituresTable = () => {
                           color="text.primary"
                           gutterBottom
                           noWrap
-                          children={`${expenditure.idHospedagem}`}
+                          children={`${expenditure.Id_hospedagem}`}
                         />
                       }
                     />

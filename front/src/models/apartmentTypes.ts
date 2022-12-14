@@ -1,5 +1,5 @@
 export interface ApartmentTypes {
-  idTipo: number;
+  Id_tipo: number;
   Valor:number;
   Tem_tv:boolean;
   Adaptado:boolean;

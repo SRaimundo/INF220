@@ -1,8 +1,8 @@
 export interface Reservations {
-  idReserva: number;
+  Id_reserva: number;
   Codigo: number;
-  idTipo: number;
-  idCliente: number;
+  Id_tipo: number;
+  Id_cliente: number;
   numPessoas: number;
   cancelada: boolean;
   dataPrevistaEntrada: Date;

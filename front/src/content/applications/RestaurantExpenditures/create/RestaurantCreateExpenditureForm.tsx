@@ -33,7 +33,7 @@ import { create } from 'src/services/restaurantExpenditures';
 import * as yup from 'yup';
 
 const schema = yup.object().shape({
-  idHospedagem: yup
+  Id_hospedagem: yup
     .string()
     .required('É obrigatório selecionar uma hospedagem'),
   produto: yup.string().required('É obrigatório selecionar uma descrição'),
@@ -64,7 +64,7 @@ function CreateReservationForm() {
 
   useEffect(() => {
     const initDate = new Date();
-    register('idHospedagem');
+    register('Id_hospedagem');
     register('produto');
     register('preco');
     register('entregueNoQuarto');
@@ -83,10 +83,10 @@ function CreateReservationForm() {
   const selectAccommodation = useCallback(
     (accommodation) => {
       if (!!accommodation) {
-        const id = !!accommodation.idHospedagem
-          ? accommodation.idHospedagem
+        const id = !!accommodation.Id_hospedagem
+          ? accommodation.Id_hospedagem
           : accommodation;
-        setValue('idHospedagem', id);
+        setValue('Id_hospedagem', id);
       }
     },
     [setValue]
@@ -98,9 +98,9 @@ function CreateReservationForm() {
         setReservationList(res);
         const accommodation = res.find((accommodation) => {
           return (
-            accommodation.idHospedagem ===
+            accommodation.Id_hospedagem ===
             (parseInt(searchParams.get('idAccommodation')) ??
-              res[0].idHospedagem)
+              res[0].Id_hospedagem)
           );
         });
         selectAccommodation(accommodation);
@@ -135,10 +135,10 @@ function CreateReservationForm() {
                 spacing={2}
               >
                 <Grid item md={6} xs={12}>
-                  <FormControl fullWidth error={!!errors?.idHospedagem}>
+                  <FormControl fullWidth error={!!errors?.Id_hospedagem}>
                     <InputLabel children="Selecione a hospedagem" />
                     <Select
-                      value={watch().idHospedagem ?? ''}
+                      value={watch().Id_hospedagem ?? ''}
                       label="Selecione a hospedagem"
                       onChange={(hospedagem: SelectChangeEvent<string>) =>
                         selectAccommodation(parseInt(hospedagem.target.value))
@@ -146,14 +146,14 @@ function CreateReservationForm() {
                     >
                       {accommodationList.map((accommodation) => (
                         <MenuItem
-                          key={accommodation.idHospedagem}
-                          value={accommodation.idHospedagem}
-                          children={`ID da Hospedagem: ${accommodation.idHospedagem}`}
+                          key={accommodation.Id_hospedagem}
+                          value={accommodation.Id_hospedagem}
+                          children={`ID da Hospedagem: ${accommodation.Id_hospedagem}`}
                         />
                       ))}
                     </Select>
                     <FormHelperText
-                      children={errors?.idHospedagem?.message || ''}
+                      children={errors?.Id_hospedagem?.message || ''}
                     />
                   </FormControl>
                 </Grid>

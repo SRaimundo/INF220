@@ -31,7 +31,7 @@ import { Hotels } from 'src/models/hotels';
 import DateTimePicker from '@mui/lab/DateTimePicker/DateTimePicker';
 
 const schema = yup.object().shape({
-  idFuncionario: yup
+  Id_funcionario: yup
     .number()
     .required('É obrigatório selecionar um funcionário para a faxina'),
   idApartamento: yup
@@ -67,7 +67,7 @@ function CreateHotelForm() {
 
   const formatHotel = (id): string => {
     if (hotels.length > 0) {
-      const hotel = hotels.find((hotel) => hotel.idHotel === id);
+      const hotel = hotels.find((hotel) => hotel.Id_hotel === id);
       return hotel.Cidade;
     } else {
       return 'Buscando...';
@@ -84,7 +84,7 @@ function CreateHotelForm() {
 
   useEffect(() => {
     const initDate = new Date();
-    register('idFuncionario');
+    register('Id_funcionario');
     register('idApartamento');
     register('dataArruma', { value: initDate });
   }, [register]);
@@ -114,28 +114,28 @@ function CreateHotelForm() {
                 spacing={2}
               >
                 <Grid item md={4} xs={12}>
-                  <FormControl fullWidth error={!!errors?.idFuncionario}>
+                  <FormControl fullWidth error={!!errors?.Id_funcionario}>
                     <InputLabel children="Selecione o(a) responsável pela limpeza" />
                     <Select
-                      value={watch().idFuncionario ?? ''}
+                      value={watch().Id_funcionario ?? ''}
                       label="Selecione o(a) responsável pela limpeza"
                       onChange={(funcionario: SelectChangeEvent<string>) =>
                         setValue(
-                          'idFuncionario',
+                          'Id_funcionario',
                           parseInt(funcionario.target.value)
                         )
                       }
                     >
                       {funcionarios.map((funcionario) => (
                         <MenuItem
-                          key={funcionario.idFuncionario}
-                          value={funcionario.idFuncionario}
+                          key={funcionario.Id_funcionario}
+                          value={funcionario.Id_funcionario}
                           children={funcionario.nome}
                         />
                       ))}
                     </Select>
                     <FormHelperText
-                      children={errors?.idFuncionario?.message || ''}
+                      children={errors?.Id_funcionario?.message || ''}
                     />
                   </FormControl>
                 </Grid>

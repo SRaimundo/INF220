@@ -1,7 +1,7 @@
 export interface Accommodations {
-  idHospedagem: number;
+  Id_hospedagem: number;
   idApartamento: number;
-  idReserva: number;
+  Id_reserva: number;
   dataEntrada: Date;
   dataSaida: Date;
   diaria: number;

@@ -1,5 +1,5 @@
 export interface Hotels {
-  idHotel: number;
+  Id_hotel: number;
   Nome : string;
   Rua : string;
   Numero: number;

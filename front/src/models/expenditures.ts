@@ -4,5 +4,5 @@ export interface Expenditures {
   preco: number;
   dataConsumo: Date;
   entregueNoQuarto: boolean;
-  idHospedagem: number;
+  Id_hospedagem: number;
 }

@@ -153,7 +153,7 @@ const ApartmentTypesTable = () => {
             <TableBody>
               {paginatedApartmentTypes.map((apartmentType) => {
                 return (
-                  <TableRow hover key={apartmentType.idTipo}>
+                  <TableRow hover key={apartmentType.Id_tipo}>
                     <TableCell
                       children={
                         <Typography
@@ -162,7 +162,7 @@ const ApartmentTypesTable = () => {
                           color="text.primary"
                           gutterBottom
                           noWrap
-                          children={apartmentType.idTipo}
+                          children={apartmentType.Id_tipo}
                         />
                       }
                     />
@@ -233,7 +233,7 @@ const ApartmentTypesTable = () => {
                             color="inherit"
                             size="small"
                             onClick={() => {
-                              handleSelectedClientId(apartmentType.idTipo);
+                              handleSelectedClientId(apartmentType.Id_tipo);
                               handleOpen();
                             }}
                             children={<DeleteTwoToneIcon fontSize="small" />}

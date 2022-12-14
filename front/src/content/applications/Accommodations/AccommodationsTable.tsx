@@ -141,7 +141,7 @@ const AccommodationsTable = () => {
 
   const handleDelete = async (id) => {
     const accommodation: Accommodations = await remove(id);
-    if (accommodation.idHospedagem === id) fetchAccommodations();
+    if (accommodation.Id_hospedagem === id) fetchAccommodations();
     else alert('Erro ao deletar a hospedagem!');
   };
 
@@ -157,7 +157,7 @@ const AccommodationsTable = () => {
 
   const formatHotel = (id): string => {
     if (hotels.length > 0) {
-      const hotel = hotels.find((hotel) => hotel.idHotel === id);
+      const hotel = hotels.find((hotel) => hotel.Id_hotel === id);
       return hotel.Cidade;
     } else {
       return 'Buscando...';
@@ -179,7 +179,7 @@ const AccommodationsTable = () => {
 
   const formatClient = (id): string => {
     if (clients.length > 0) {
-      const client = clients.find((client) => client.idCliente === id);
+      const client = clients.find((client) => client.Id_cliente === id);
       return client.Nome;
     } else {
       return 'Buscando...';
@@ -189,9 +189,9 @@ const AccommodationsTable = () => {
   const formatReservationClient = (id): string => {
     if (reservations.length > 0) {
       const reservation = reservations.find(
-        (reservation) => reservation.idReserva === id
+        (reservation) => reservation.Id_reserva === id
       );
-      return `Cliente: ${formatClient(reservation.idCliente)}`;
+      return `Cliente: ${formatClient(reservation.Id_cliente)}`;
     } else {
       return 'Buscando...';
     }
@@ -200,9 +200,9 @@ const AccommodationsTable = () => {
   const formatReservation = (id): string => {
     if (reservations.length > 0) {
       const reservation = reservations.find(
-        (reservation) => reservation.idReserva === id
+        (reservation) => reservation.Id_reserva === id
       );
-      return `ID Reserva: ${reservation.idReserva} | Número de hóspedes: ${reservation.numPessoas}`;
+      return `ID Reserva: ${reservation.Id_reserva} | Número de hóspedes: ${reservation.numPessoas}`;
     } else {
       return 'Buscando...';
     }
@@ -227,7 +227,7 @@ const AccommodationsTable = () => {
             <TableBody>
               {paginatedAccommodations.map((accommodation) => {
                 return (
-                  <TableRow hover key={accommodation.idHospedagem}>
+                  <TableRow hover key={accommodation.Id_hospedagem}>
                     <TableCell
                       children={
                         <Typography
@@ -236,7 +236,7 @@ const AccommodationsTable = () => {
                           color="text.primary"
                           gutterBottom
                           noWrap
-                          children={accommodation.idHospedagem}
+                          children={accommodation.Id_hospedagem}
                         />
                       }
                     />
@@ -263,7 +263,7 @@ const AccommodationsTable = () => {
                           gutterBottom
                           noWrap
                           children={`${formatReservation(
-                            accommodation.idReserva
+                            accommodation.Id_reserva
                           )}`}
                         />
                       }
@@ -277,7 +277,7 @@ const AccommodationsTable = () => {
                           gutterBottom
                           noWrap
                           children={`${formatReservationClient(
-                            accommodation.idReserva
+                            accommodation.Id_reserva
                           )}`}
                         />
                       }
@@ -325,7 +325,7 @@ const AccommodationsTable = () => {
                             children={
                               <IconButton
                                 component={NavLink}
-                                to={`/expenditures/new?idAccommodation=${accommodation.idHospedagem}`}
+                                to={`/expenditures/new?idAccommodation=${accommodation.Id_hospedagem}`}
                                 sx={{
                                   '&:hover': {
                                     background: theme.colors.primary.lighter,
@@ -346,7 +346,7 @@ const AccommodationsTable = () => {
                             children={
                               <IconButton
                                 component={NavLink}
-                                to={`/checkout/${accommodation.idHospedagem}`}
+                                to={`/checkout/${accommodation.Id_hospedagem}`}
                                 sx={{
                                   '&:hover': {
                                     background: theme.colors.success.lighter,
@@ -376,7 +376,7 @@ const AccommodationsTable = () => {
                             size="small"
                             onClick={() => {
                               handleSelectedClientId(
-                                accommodation.idHospedagem
+                                accommodation.Id_hospedagem
                               );
                               handleOpen();
                             }}

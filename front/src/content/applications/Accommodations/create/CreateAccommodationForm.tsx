@@ -38,7 +38,7 @@ const schema = yup.object().shape({
   idApartamento: yup
     .string()
     .required('É obrigatório selecionar um apartamento'),
-  idReserva: yup.string().required('É obrigatório selecionar uma reserva'),
+  Id_reserva: yup.string().required('É obrigatório selecionar uma reserva'),
   diaria: yup.number().required('É obrigatório informar um valor de diária'),
   dataEntrada: yup
     .date()
@@ -67,7 +67,7 @@ function CreateReservationForm() {
   useEffect(() => {
     const initDate = new Date();
     register('idApartamento');
-    register('idReserva');
+    register('Id_reserva');
     register('diaria');
     register('dataEntrada', { value: initDate });
     register('dataSaida', { value: initDate });
@@ -89,17 +89,17 @@ function CreateReservationForm() {
   const selectReservation = useCallback(
     (reservation) => {
       if (!!reservation) {
-        const id = !!reservation.idReserva
-          ? reservation.idReserva
+        const id = !!reservation.Id_reserva
+          ? reservation.Id_reserva
           : reservation;
-        setValue('idReserva', id);
+        setValue('Id_reserva', id);
         const reserva = reservationList.find(
-          (reservation) => reservation.idReserva === id
+          (reservation) => reservation.Id_reserva === id
         );
 
         if (!!reserva) {
-          const idTipo = reserva.idTipo;
-          const tipo = types.find((apartment) => apartment.idTipo === idTipo);
+          const Id_tipo = reserva.Id_tipo;
+          const tipo = types.find((apartment) => apartment.Id_tipo === Id_tipo);
 
           if (!!tipo) {
             setValue('diaria', tipo.Valor);
@@ -107,7 +107,7 @@ function CreateReservationForm() {
 
           const filterApartments = apartmentList.filter(
             (ap) =>
-              ap.Codigo === reserva.Codigo && ap.idTipo === reserva.idTipo
+              ap.Codigo === reserva.Codigo && ap.Id_tipo === reserva.Id_tipo
           );
 
           setFilteredApartments(filterApartments);
@@ -138,9 +138,9 @@ function CreateReservationForm() {
   useEffect(() => {
     const reservation = reservationList.find((reservation) => {
       return (
-        reservation.idReserva ===
-        (parseInt(searchParams.get('idReservation')) ??
-          reservationList[0].idReserva)
+        reservation.Id_reserva ===
+        (parseInt(searchParams.get('Id_reservation')) ??
+          reservationList[0].Id_reserva)
       );
     });
     selectReservation(reservation);
@@ -163,7 +163,7 @@ function CreateReservationForm() {
 
   const formatHotel = (id): string => {
     if (hotels.length > 0) {
-      const hotel = hotels.find((hotel) => hotel.idHotel === id);
+      const hotel = hotels.find((hotel) => hotel.Id_hotel === id);
       return hotel.Cidade;
     } else {
       return 'Buscando...';
@@ -208,10 +208,10 @@ function CreateReservationForm() {
                 spacing={2}
               >
                 <Grid item md={6} xs={12}>
-                  <FormControl fullWidth error={!!errors?.idReserva}>
+                  <FormControl fullWidth error={!!errors?.Id_reserva}>
                     <InputLabel children="Selecione a reserva" />
                     <Select
-                      value={watch().idReserva ?? ''}
+                      value={watch().Id_reserva ?? ''}
                       label="Selecione a reserva"
                       onChange={(reserva: SelectChangeEvent<string>) =>
                         selectReservation(parseInt(reserva.target.value))
@@ -219,14 +219,14 @@ function CreateReservationForm() {
                     >
                       {reservationList.map((reservation) => (
                         <MenuItem
-                          key={reservation.idReserva}
-                          value={reservation.idReserva}
-                          children={`ID da Reserva: ${reservation.idReserva}`}
+                          key={reservation.Id_reserva}
+                          value={reservation.Id_reserva}
+                          children={`ID da Reserva: ${reservation.Id_reserva}`}
                         />
                       ))}
                     </Select>
                     <FormHelperText
-                      children={errors?.idReserva?.message || ''}
+                      children={errors?.Id_reserva?.message || ''}
                     />
                   </FormControl>
                 </Grid>

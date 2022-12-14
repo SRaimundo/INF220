@@ -5,9 +5,9 @@ const router = express.Router();
 
 router.post("/",controller.create);
 router.get("/",controller.getAll);
-router.get("/:idCliente/:idQuarto/:dataIn", controller.findOne);
-router.put("/:idCliente/:idQuarto/:dataIn", controller.update);
-router.delete("/:idCliente/:idQuarto/:dataIn", controller.deleteOne);
+router.get("/:Id_cliente/:idQuarto/:dataIn", controller.findOne);
+router.put("/:Id_cliente/:idQuarto/:dataIn", controller.update);
+router.delete("/:Id_cliente/:idQuarto/:dataIn", controller.deleteOne);
 
 
 export default router;
