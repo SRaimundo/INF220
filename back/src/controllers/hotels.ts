@@ -8,8 +8,11 @@ const getAll = async (req: Request , res: Response) =>{
 
 const remove = async (req: Request, res: Response) =>{
     const { id } = req.params;
-    const hotel = await Hotel.remove(Number(id));
-    return res.status(200).send();
+    try {
+        return res.status(200).send(await Hotel.remove(Number(id)));
+    } catch (error) {
+        return res.status(400).send(error);
+    }
 };
 
 const findOne = async (req: Request, res: Response) => {
@@ -22,7 +25,6 @@ const findOne = async (req: Request, res: Response) => {
 }
 
 const create = async (req: Request, res: Response) => {
-    // console.log(req.body);
     try {
         res.status(200).json(await Hotel.create(req.body));
     } catch (err) {

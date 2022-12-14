@@ -8,32 +8,37 @@ class Reservation{
         return rows;
     }
 
-    static findOne = async (Id_cliente: any, idQuarto: any, dataIn: any) => {
+    static findOne = async (id: any) => {
         const conn = await connect();
-        const [rows, fields] = await conn.query(`SELECT * FROM RESERVA WHERE Cliente = ${Id_cliente} and Quarto = ${idQuarto} and Data_in = date("${dataIn}")`);
+        const [rows, fields] = await conn.query(`SELECT * FROM RESERVA WHERE Id_reserva = ?`, id);
         return rows;
     }
 
     static create = async (reservation: ReservationInterface) => {
         const conn = await connect();
-        const [rows, fields] = await conn.query(`INSERT INTO RESERVA (Cliente, Quarto, Data_in, Data_out, Check_in, Check_out) 
-            VALUES ("${reservation.Cliente}", "${reservation.Quarto}", date("${reservation.Data_in}"), date("${reservation.Data_out}"), "${reservation.Check_in}", "${reservation.Check_out}")`);
+        const [rows, fields] = await conn.query(`INSERT INTO RESERVA (Cliente, Tipo, Num_hospedes, Data_prevista_entrada, Data_prevista_saida)
+            VALUES (?, ?, ?, ?, ?)`,
+            [reservation.Cliente, reservation.Tipo, reservation.Num_hospedes, reservation.Data_prevista_entrada, reservation.Data_prevista_saida]
+        );
         return rows;
     }
 
-    static delete = async (Id_cliente: any, idQuarto: any, dataIn: any) => {
+    static delete = async (id: any) => {
         const conn = await connect();
-        const [rows, fields] = await conn.query(`DELETE FROM RESERVA WHERE Cliente = ${Id_cliente} and Quarto = ${idQuarto} and Data_in = date("${dataIn}")`);
+        const [rows, fields] = await conn.query(`DELETE FROM RESERVA WHERE Id_reserva = ?`, id);
         return rows;
     }
 
-    static update = async (Id_cliente: any, idQuarto: any, dataIn: any, reservation: ReservationInterface) => {
+    static update = async (id: any, reservation: ReservationInterface) => {
         const conn = await connect();
         const [rows, fields] = await conn.query(`UPDATE RESERVA 
-            SET Data_out = date("${reservation.Data_out}"),
-            Check_in = "${reservation.Check_in}",
-            Check_out = ${reservation.Check_out}
-            WHERE Cliente = ${Id_cliente} and Quarto = ${idQuarto} and Data_in = date("${dataIn}")`
+            SET Cliente = ?,
+            Tipo = ?,
+            Num_hospedes = ?,
+            Data_prevista_entrada = date(?),
+            Data_prevista_saida = date(?)
+            WHERE Id_reserva = ?`,
+            [reservation.Cliente, reservation.Tipo, reservation.Num_hospedes, reservation.Data_prevista_entrada, reservation.Data_prevista_saida, id]
         );
         return rows;
     }

@@ -17,8 +17,10 @@ class Vacanciy{
 
     static create = async (vacancy: VacancyInterface) => {
         const conn = await connect();
-        const [rows, fields] = await conn.query(`INSERT INTO VAGA (Status, Cliente, Hotel)
-            VALUES (${vacancy.Status}, ${vacancy.Cliente}, ${vacancy.Hotel})`);
+        const [rows, fields] = await conn.query(`INSERT INTO VAGA (Hotel, Hospedagem)
+            VALUES (?, ?)`,
+            [vacancy.Hotel, vacancy.Hospedagem]
+        );
         return rows;
     }
 
@@ -31,10 +33,10 @@ class Vacanciy{
     static update = async (id: any, vacancy: VacancyInterface) => {
         const conn = await connect();
         const [rows, fields] = await conn.query(`UPDATE VAGA 
-            SET Status = ${vacancy.Status},
-            Cliente = ${vacancy.Cliente},
-            Hotel = ${vacancy.Hotel}
-            WHERE Id_vaga = ${id}`
+            SET Hotel = ?,
+            Hospedagem = ?
+            WHERE Id_vaga = ?`,
+            [vacancy.Hotel, vacancy.Hospedagem, id]
         );
         return rows;
     }
