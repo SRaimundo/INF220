@@ -16,7 +16,7 @@ const ConsultaD =  async (req : Request, res : Response) => {
 const ConsultaE =  async (req : Request, res : Response) => {
 
     try {
-        const nomes = await Consultas2.consultaE(req.params.cidade,req.params.data);
+        const nomes = await Consultas2.consultaE(req.params.cidade);
         return res.status(200).json( nomes);
     } catch (error) {
         return res.status(500).send({message: error});

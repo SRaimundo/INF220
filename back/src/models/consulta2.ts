@@ -16,9 +16,15 @@ class Consultas2{
         
     };
 
-    static consultaE = async (cidade: string, data: string) =>{
+    static consultaE = async (cidade: string) =>{
         const conn = await connect();
-        const q = `SELECT C.Nome, C.Email FROM CLIENTE C, RESERVA R, HOTEL H, QUARTO Q WHERE R.Data_in <= '${data}' AND R.Check_in = false AND C.idCliente = R.Cliente AND R.Quarto = Q.Numero AND Q.Hotel = H.idHotel AND H.Cidade = "${cidade}"`;
+        const q = 
+        `SELECT DISTINCT C.Nome
+        FROM RESERVA R, CLIENTE C, QUARTO Q, HOTEL H
+        WHERE R.Cliente = C.Id_cliente AND Q.Hotel = H.Id_Hotel AND Q.Tipo = R.Tipo AND H.Cidade = "${cidade}" AND R.Id_reserva NOT IN (
+        SELECT Reserva
+        FROM HOSPEDAGEM);`;
+        
         const linhas = await conn.query(q);
         return linhas[0];
         

@@ -29,7 +29,6 @@ function CheckoutForm() {
   const navigate = useNavigate();
   const { id } = useParams();
   const [date] = useState<Date>(new Date());
-  console.log(id);
 
   const onSubmit = () => {
     checkout(id, 'dinheiro').then((res) => navigate('/accommodations'));
@@ -45,11 +44,11 @@ function CheckoutForm() {
       findReserve(res.Reserva).then((res) => {
         findClient(res.Cliente).then((res) => setCliente(res));
       });
-      findByAccommodation(id).then((consumos) => {
-        getDiarias(id).then((diarias) => {
-          setConsumo(consumos.concat(diarias));
-        });
-      });
+      // findByAccommodation(id).then((consumos) => {
+      //   getDiarias(id).then((diarias) => {
+      //     setConsumo(consumos.concat(diarias));
+      //   });
+      // });
     });
   }, [id]);
 

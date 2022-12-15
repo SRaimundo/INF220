@@ -286,26 +286,6 @@ const ReservationsTable = () => {
                            />
                          }
                        />
-                       <Tooltip
-                         title="Cancelar Reserva"
-                         arrow
-                         children={
-                           <IconButton
-                             sx={{
-                               '&:hover': {
-                                 background: theme.colors.error.lighter,
-                               },
-                               color: theme.palette.error.main,
-                             }}
-                             color="inherit"
-                             size="small"
-                             onClick={() => {
-                               handleCancel(reservation.Id_reserva);
-                             }}
-                             children={<CancelTwoToneIcon fontSize="small" />}
-                           />
-                         }
-                       />
                      <Tooltip
                        title="Excluir Reserva"
                        arrow

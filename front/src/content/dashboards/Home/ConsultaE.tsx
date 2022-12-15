@@ -24,11 +24,11 @@ const AvatarWrapperError = styled(Avatar)(
 
 function ConsultaE() {
   const [cidade] = useState('Rio de Janeiro');
-  const[data] = useState('2022-12-07');
+  // const[data] = useState('2022-12-07');
   const [clientList, setClientList] = useState([]);
 
   useEffect(() => {
-    consultaE(cidade,data).then((res) => {
+    consultaE(cidade).then((res) => {
       setClientList(res);
     });
   }, [cidade]);
@@ -44,7 +44,7 @@ function ConsultaE() {
             </AvatarWrapperError>
           </ListItemAvatar>
           <ListItemText
-            primary={<Text color="black" children={`${cidade} na data de ${data}`} />}
+            primary={<Text color="black" children={`${cidade}`} />}
             primaryTypographyProps={{
               variant: 'body1',
               fontWeight: 'bold',

@@ -65,9 +65,9 @@ export const consultaD = async (camasCasal) => {
   }
 };
 
-export const consultaE = async (cidade,data) => {
+export const consultaE = async (cidade) => {
   try {
-    const response = await api.get(`/consulta2/${cidade}/${data}`);
+    const response = await api.get(`/consulta2/consultaE/${cidade}`);
     return response.data as ConsultaA[];
   } catch (error) {
     console.error(error);
