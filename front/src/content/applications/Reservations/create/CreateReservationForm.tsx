@@ -33,18 +33,18 @@ import { create } from 'src/services/reservations';
 import * as yup from 'yup';
 
 const schema = yup.object().shape({
-  Codigo: yup.string().required('É obrigatório informar uma filial'),
-  Id_tipo: yup
+  Id_reserva: yup.string().required('É obrigatório informar uma filial'),
+  Tipo: yup
     .string()
     .required('É obrigatório informar um tipo de apartamento'),
-  Id_cliente: yup.string().required('É obrigatório informar um cliente'),
-  numPessoas: yup
+  Cliente: yup.string().required('É obrigatório informar um cliente'),
+  Num_hospedes: yup
     .string()
     .required('É obrigatório informar o número de pessoas hospedadas'),
-  dataPrevistaEntrada: yup
+  Data_prevista_entrada: yup
     .date()
     .required('É obrigatório informar a data prevista de entrada'),
-  dataPrevistaSaida: yup
+  Data_prevista_saida: yup
     .date()
     .required('É obrigatório informar a data prevista de saída'),
 });
@@ -71,12 +71,12 @@ function CreateReservationForm() {
     const initDate = new Date();
     initDate.setDate(initDate.getDate() + 1);
 
-    register('Codigo');
-    register('Id_tipo');
-    register('Id_cliente');
-    register('numPessoas');
-    register('dataPrevistaEntrada', { value: initDate });
-    register('dataPrevistaSaida', { value: initDate });
+    register('Id_reserva');
+    register('Tipo');
+    register('Cliente');
+    register('Num_hospedes');
+    register('Data_prevista_entrada');
+    register('Data_prevista_saida');
   }, [register]);
 
   const [openErrors, setOpenErrors] = useState(false);
@@ -134,13 +134,13 @@ function CreateReservationForm() {
                 spacing={2}
               >
                 <Grid item md={6} xs={12}>
-                  <FormControl fullWidth error={!!errors?.Codigo}>
+                  <FormControl fullWidth error={!!errors?.Id_reserva}>
                     <InputLabel children="Selecione a filial do nosso hotel" />
                     <Select
-                      value={watch().Codigo ?? ''}
+                      value={watch().Id_reserva ?? ''}
                       label="Selecione a filial do nosso hotel"
                       onChange={(hotel: SelectChangeEvent<string>) =>
-                        setValue('Codigo', parseInt(hotel.target.value))
+                        setValue('Id_reserva', parseInt(hotel.target.value))
                       }
                     >
                       {hotelList.map((hotel) => (
@@ -151,19 +151,19 @@ function CreateReservationForm() {
                         />
                       ))}
                     </Select>
-                    <FormHelperText children={errors?.Codigo?.message || ''} />
+                    <FormHelperText children={errors?.Id_reserva?.message || ''} />
                   </FormControl>
                 </Grid>
                 <Grid item md={6} xs={12}>
-                  <FormControl fullWidth error={!!errors?.Id_cliente}>
+                  <FormControl fullWidth error={!!errors?.Cliente}>
                     <InputLabel children="Selecione o cliente" />
                     <Select
                       labelId="demo-simple-select-label"
                       id="demo-simple-select"
-                      value={watch().Id_cliente ?? ''}
+                      value={watch().Cliente ?? ''}
                       label="Selecione o cliente"
                       onChange={(cliente: SelectChangeEvent<string>) =>
-                        setValue('Id_cliente', parseInt(cliente.target.value))
+                        setValue('Cliente', parseInt(cliente.target.value))
                       }
                     >
                       {clientList.map((cliente) => (
@@ -175,18 +175,18 @@ function CreateReservationForm() {
                       ))}
                     </Select>
                     <FormHelperText
-                      children={errors?.Id_cliente?.message || ''}
+                      children={errors?.Cliente?.message || ''}
                     />
                   </FormControl>
                 </Grid>
                 <Grid item md={6} xs={12}>
-                  <FormControl fullWidth error={!!errors?.Id_tipo}>
+                  <FormControl fullWidth error={!!errors?.Tipo}>
                     <InputLabel children="Selecione o tipo de apartamento" />
                     <Select
-                      value={watch().Id_tipo ?? ''}
+                      value={watch().Tipo ?? ''}
                       label="Selecione o tipo de apartamento"
                       onChange={(tipo: SelectChangeEvent<string>) =>
-                        setValue('Id_tipo', parseInt(tipo.target.value))
+                        setValue('Tipo', parseInt(tipo.target.value))
                       }
                     >
                       {typeList.map((tipo) => (
@@ -202,7 +202,7 @@ function CreateReservationForm() {
                         />
                       ))}
                     </Select>
-                    <FormHelperText children={errors?.Id_tipo?.message || ''} />
+                    <FormHelperText children={errors?.Tipo?.message || ''} />
                   </FormControl>
                 </Grid>
                 <Grid item md={6} xs={12}>
@@ -210,12 +210,12 @@ function CreateReservationForm() {
                     type="number"
                     name="number"
                     fullWidth
-                    error={!!errors?.numPessoas}
-                    helperText={errors?.numPessoas?.message || ''}
+                    error={!!errors?.Num_hospedes}
+                    helperText={errors?.Num_hospedes?.message || ''}
                     label="Numero de Pessoas"
                     required
                     onChange={(event) =>
-                      setValue('numPessoas', parseInt(event.target.value))
+                      setValue('Num_hospedes', parseInt(event.target.value))
                     }
                   />
                 </Grid>
@@ -238,46 +238,75 @@ function CreateReservationForm() {
                 autoComplete="on"
                 spacing={2}
               >
-                <Grid item sm={6} xs={12}>
+                <Grid item md={6} xs={12}>
+                  <TextField
+                    type="string"
+                    name="Data_prevista_entrada"
+                    fullWidth
+                    error={!!errors?.Data_prevista_entrada}
+                    helperText={errors?.Data_prevista_entrada?.message || ''}
+                    label="Previsão de Chegada"
+                    required
+                    onChange={(event) =>
+                      setValue('Data_prevista_entrada', event.target.value)
+                    }
+                  />
+                </Grid>
+                <Grid item md={6} xs={12}>
+                  <TextField
+                    type="string"
+                    name="Data_prevista_saida"
+                    fullWidth
+                    error={!!errors?.Data_prevista_saida}
+                    helperText={errors?.Data_prevista_saida?.message || ''}
+                    label="Previsão de Saida"
+                    required
+                    onChange={(event) =>
+                      setValue('Data_prevista_saida', event.target.value)
+                    }
+                  />
+                </Grid>
+                
+                {/* <Grid item sm={6} xs={12}>
                   <DateTimePicker
                     label="Previsão de Chegada"
-                    value={watch().dataPrevistaEntrada}
+                    value={watch().Data_prevista_entrada}
                     onChange={(date) => {
-                      setValue('dataPrevistaEntrada', date);
+                      setValue('Data_prevista_entrada', date);
                       if (
-                        watch().dataPrevistaEntrada > watch().dataPrevistaSaida
+                        watch().Data_prevista_entrada > watch().Data_prevista_saida
                       )
-                        setValue('dataPrevistaSaida', date);
+                        setValue('Data_prevista_saida', date);
                     }}
                     renderInput={(params) => (
                       <TextField
                         fullWidth
                         {...params}
-                        error={!!errors?.dataPrevistaEntrada}
+                        error={!!errors?.Data_prevista_entrada}
                       />
                     )}
                     ampm={false}
-                    inputFormat="dd/MM/yyyy HH:mm"
+                    inputFormat="dd/MM/yyyy"
                     minDateTime={new Date()}
                   />
                 </Grid>
                 <Grid item sm={6} xs={12}>
                   <DateTimePicker
                     label="Previsão de Saída"
-                    value={watch().dataPrevistaSaida}
-                    onChange={(date) => setValue('dataPrevistaSaida', date)}
+                    value={watch().Data_prevista_saida}
+                    onChange={(date) => setValue('Data_prevista_saida', date)}
                     renderInput={(params) => (
                       <TextField
                         fullWidth
                         {...params}
-                        error={!!errors?.dataPrevistaSaida}
+                        error={!!errors?.Data_prevista_saida}
                       />
                     )}
                     ampm={false}
-                    inputFormat="dd/MM/yyyy HH:mm"
-                    minDateTime={watch().dataPrevistaEntrada}
+                    inputFormat="dd/MM/yyyy"
+                    minDateTime={watch().Data_prevista_entrada}
                   />
-                </Grid>
+                </Grid> */}
               </Grid>
             </CardContent>
           </Card>

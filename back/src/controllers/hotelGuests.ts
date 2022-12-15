@@ -28,7 +28,7 @@ const create = async (req: Request, res: Response) => {
 
 const deleteOne = async (req: Request , res: Response) => {
     try {
-        return res.status(200).json(await HotelGuest.delete(req.params.id, req.params.hospedagem));
+        return res.status(200).json(await HotelGuest.delete(req.params.id));
     } catch (error) {
         return res.status(500).send({message: error});
     } 

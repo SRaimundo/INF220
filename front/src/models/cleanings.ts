@@ -14,6 +14,6 @@ export interface CleaningsTable {
 
 export interface Funcionario {
   Id_funcionario: number;
-  nome: string;
-  tipoFuncionario: string;
+  Nome: string;
+  Cargo: string;
 }

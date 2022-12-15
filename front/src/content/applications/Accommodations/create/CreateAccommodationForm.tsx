@@ -66,11 +66,11 @@ function CreateReservationForm() {
 
   useEffect(() => {
     const initDate = new Date();
-    register('Numero');
-    register('Id_reserva');
-    register('diaria');
-    register('dataEntrada', { value: initDate });
-    register('dataSaida', { value: initDate });
+    register('Id_hospedagem');
+    register('Reserva');
+    register('Quarto');
+    register('Check_in', { value: initDate });
+    register('Check_out', { value: initDate });
   }, [register]);
 
   const [openErrors, setOpenErrors] = useState(false);
@@ -92,22 +92,22 @@ function CreateReservationForm() {
         const id = !!reservation.Id_reserva
           ? reservation.Id_reserva
           : reservation;
-        setValue('Id_reserva', id);
+        setValue('Reserva', id);
         const reserva = reservationList.find(
           (reservation) => reservation.Id_reserva === id
         );
 
         if (!!reserva) {
-          const Id_tipo = reserva.Id_tipo;
+          const Id_tipo = reserva.Tipo;
           const tipo = types.find((apartment) => apartment.Id_tipo === Id_tipo);
 
-          if (!!tipo) {
-            setValue('diaria', tipo.Valor);
-          }
+          // if (!!tipo) {
+          //   setValue('diaria', tipo.Valor);
+          // }
 
           const filterApartments = apartmentList.filter(
             (ap) =>
-              ap.Numero === reserva.Codigo && ap.Tipo === reserva.Id_tipo
+              ap.Numero === reserva.Tipo && ap.Tipo === reserva.Tipo
           );
 
           setFilteredApartments(filterApartments);
@@ -208,10 +208,10 @@ function CreateReservationForm() {
                 spacing={2}
               >
                 <Grid item md={6} xs={12}>
-                  <FormControl fullWidth error={!!errors?.Id_reserva}>
+                  <FormControl fullWidth error={!!errors?.Reserva}>
                     <InputLabel children="Selecione a reserva" />
                     <Select
-                      value={watch().Id_reserva ?? ''}
+                      value={watch().Reserva ?? ''}
                       label="Selecione a reserva"
                       onChange={(reserva: SelectChangeEvent<string>) =>
                         selectReservation(parseInt(reserva.target.value))
@@ -226,21 +226,21 @@ function CreateReservationForm() {
                       ))}
                     </Select>
                     <FormHelperText
-                      children={errors?.Id_reserva?.message || ''}
+                      children={errors?.Reserva?.message || ''}
                     />
                   </FormControl>
                 </Grid>
                 <Grid item md={6} xs={12}>
-                  <FormControl fullWidth error={!!errors?.Numero}>
+                  <FormControl fullWidth error={!!errors?.Quarto}>
                     <InputLabel children="Selecione o apartamento" />
                     <Select
                       labelId="demo-simple-select-label"
                       id="demo-simple-select"
-                      value={watch().Numero ?? ''}
+                      value={watch().Quarto ?? ''}
                       label="Selecione o apartamento"
                       onChange={(apartamento: SelectChangeEvent<string>) =>
                         setValue(
-                          'Numero',
+                          'Quarto',
                           parseInt(apartamento.target.value)
                         )
                       }
@@ -254,11 +254,11 @@ function CreateReservationForm() {
                       ))}
                     </Select>
                     <FormHelperText
-                      children={errors?.Numero?.message || ''}
+                      children={errors?.Quarto?.message || ''}
                     />
                   </FormControl>
                 </Grid>
-                <Grid item md={6} xs={12}>
+                {/* <Grid item md={6} xs={12}>
                   <TextField
                     type="number"
                     name="diaria"
@@ -272,7 +272,7 @@ function CreateReservationForm() {
                       setValue('diaria', parseInt(event.target.value))
                     }
                   />
-                </Grid>
+                </Grid> */}
               </Grid>
             </CardContent>
           </Card>
@@ -295,18 +295,18 @@ function CreateReservationForm() {
                 <Grid item sm={6} xs={12}>
                   <DateTimePicker
                     label="Data de Chegada"
-                    value={watch().dataEntrada}
+                    value={watch().Check_in}
                     onChange={(date) => {
-                      setValue('dataEntrada', date);
-                      if (watch().dataEntrada > watch().dataSaida)
-                        setValue('dataSaida', date);
+                      setValue('Check_in', date);
+                      if (watch().Check_in > watch().Check_in)
+                        setValue('Check_in', date);
                     }}
                     renderInput={(params) => (
                       <TextField
                         fullWidth
                         {...params}
-                        error={!!errors?.dataEntrada}
-                        helperText={errors?.dataEntrada?.message || ''}
+                        error={!!errors?.Check_in}
+                        helperText={errors?.Check_in?.message || ''}
                       />
                     )}
                     ampm={false}
@@ -317,19 +317,19 @@ function CreateReservationForm() {
                 <Grid item sm={6} xs={12}>
                   <DateTimePicker
                     label="Data de Saída"
-                    value={watch().dataSaida}
-                    onChange={(date) => setValue('dataSaida', date)}
+                    value={watch().Check_out}
+                    onChange={(date) => setValue('Check_out', date)}
                     renderInput={(params) => (
                       <TextField
                         fullWidth
                         {...params}
-                        error={!!errors?.dataSaida}
-                        helperText={errors?.dataSaida?.message || ''}
+                        error={!!errors?.Check_out}
+                        helperText={errors?.Check_out?.message || ''}
                       />
                     )}
                     ampm={false}
                     inputFormat="dd/MM/yyyy HH:mm"
-                    minDateTime={watch().dataEntrada}
+                    minDateTime={watch().Check_in}
                   />
                 </Grid>
               </Grid>

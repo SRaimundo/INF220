@@ -13,6 +13,7 @@ class HotelGuest{
         const [rows, fields] = await conn.query(`SELECT * FROM HOSPEDE WHERE Id_hospede = ? and Hospedagem = ?`,[id, hospedagem]);
         return rows;
     }
+    
 
     static create = async (hotelGuest: HotelGuestInterface) => {
         const conn = await connect();
@@ -84,9 +85,9 @@ class HotelGuest{
         
     }
 
-    static delete = async (id: any, hospedagem: any) => {
+    static delete = async (id: any) => {
         const conn = await connect();
-        const [rows, fields] = await conn.query(`DELETE FROM HOSPEDE WHERE Id_hospede = ? and Hospedagem = ?`,[id, hospedagem]);
+        const [rows, fields] = await conn.query(`DELETE FROM HOSPEDE WHERE Id_hospede = ?`,[id]);
         return rows;
     }
 

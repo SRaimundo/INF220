@@ -4,6 +4,7 @@ import api from './api';
 export const findAll = async () => {
   try {
     const response = await api.get('/arruma');
+    console.log(response);
     return response.data as CleaningsTable[];
   } catch (error) {
     console.error(error);
@@ -36,6 +37,6 @@ export const remove = async (id) => {
 };
 
 export const getCamareira = async () => {
-  const response = await api.get('/funcionario?tipoFuncionario=camareira');
-  return response.data.funcionarios as Funcionario[];
+  const response = await api.get('/employees/camareira/cargo');
+  return response.data as Funcionario[];
 };

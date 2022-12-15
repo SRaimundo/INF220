@@ -141,8 +141,9 @@ const AccommodationsTable = () => {
 
   const handleDelete = async (id) => {
     const accommodation: Accommodations = await remove(id);
-    if (accommodation.Id_hospedagem === id) fetchAccommodations();
-    else alert('Erro ao deletar a hospedagem!');
+    // if (accommodation.Id_hospedagem === id) 
+    fetchAccommodations();
+    // else alert('Erro ao deletar a hospedagem!');
   };
 
   const [open, setOpen] = useState(false);
@@ -169,7 +170,7 @@ const AccommodationsTable = () => {
       const apartment = apartments.find(
         (apartment) => apartment.Numero === id
       );
-      return `Filial ${formatHotel(apartment.Numero)} | Quarto: ${
+      return `Filial ${formatHotel(apartment.Hotel)} | Quarto: ${
         apartment.Numero
       }`;
     } else {
@@ -191,7 +192,7 @@ const AccommodationsTable = () => {
       const reservation = reservations.find(
         (reservation) => reservation.Id_reserva === id
       );
-      return `Cliente: ${formatClient(reservation.Id_cliente)}`;
+      return `Cliente: ${formatClient(reservation.Cliente)}`;
     } else {
       return 'Buscando...';
     }
@@ -202,7 +203,7 @@ const AccommodationsTable = () => {
       const reservation = reservations.find(
         (reservation) => reservation.Id_reserva === id
       );
-      return `ID Reserva: ${reservation.Id_reserva} | Número de hóspedes: ${reservation.numPessoas}`;
+      return `ID Reserva: ${reservation.Id_reserva} | Número de hóspedes: ${reservation.Num_hospedes}`;
     } else {
       return 'Buscando...';
     }
@@ -220,7 +221,7 @@ const AccommodationsTable = () => {
                 <TableCell children="Reserva" />
                 <TableCell children="Cliente" />
                 <TableCell children="Data" />
-                <TableCell children="Diária" />
+                {/* <TableCell children="Diária" /> */}
                 <TableCell align="right" children="Ações" />
               </TableRow>
             </TableHead>
@@ -249,7 +250,7 @@ const AccommodationsTable = () => {
                           gutterBottom
                           noWrap
                           children={`${formatApartment(
-                            accommodation.Numero
+                            accommodation.Quarto
                           )}`}
                         />
                       }
@@ -263,7 +264,7 @@ const AccommodationsTable = () => {
                           gutterBottom
                           noWrap
                           children={`${formatReservation(
-                            accommodation.Id_reserva
+                            accommodation.Reserva
                           )}`}
                         />
                       }
@@ -277,7 +278,7 @@ const AccommodationsTable = () => {
                           gutterBottom
                           noWrap
                           children={`${formatReservationClient(
-                            accommodation.Id_reserva
+                            accommodation.Reserva
                           )}`}
                         />
                       }
@@ -291,7 +292,7 @@ const AccommodationsTable = () => {
                             color="text.primary"
                             gutterBottom
                             noWrap
-                            children={`Data de Entrada: ${accommodation.dataEntrada}`}
+                            children={`Data de Entrada: ${accommodation.Check_in}`}
                           />
                           <Typography
                             variant="body1"
@@ -299,12 +300,12 @@ const AccommodationsTable = () => {
                             color="text.primary"
                             gutterBottom
                             noWrap
-                            children={`Data de Saída: ${accommodation.dataSaida}`}
+                            children={`Data de Saída: ${accommodation.Check_in}`}
                           />
                         </>
                       }
                     />
-                    <TableCell
+                    {/* <TableCell
                       children={
                         <Typography
                           variant="body1"
@@ -315,9 +316,9 @@ const AccommodationsTable = () => {
                           children={`R$ ${accommodation.diaria}`}
                         />
                       }
-                    />
+                    /> */}
                     <TableCell align="right">
-                      {!accommodation.saida ? (
+                      {(
                         <>
                           <Tooltip
                             title="Registrar Consumo"
@@ -360,7 +361,7 @@ const AccommodationsTable = () => {
                             }
                           />
                         </>
-                      ) : null}
+                      )}
                       <Tooltip
                         title="Excluir Hospedagem"
                         arrow

@@ -141,8 +141,9 @@ const ReservationsTable = () => {
 
   const handleDelete = async (id) => {
     const reservation: Reservations = await remove(id);
-    if (reservation.Id_reserva === id) fetchReservations();
-    else alert('Erro ao deletar a reserva!');
+    // if (reservation.Id_reserva === id) 
+    fetchReservations();
+    // else alert('Erro ao deletar a reserva!');
   };
 
   const formatHotel = (id): string => {
@@ -187,7 +188,7 @@ const ReservationsTable = () => {
             <TableHead>
               <TableRow>
                 <TableCell children="ID" />
-                <TableCell children="Filial" />
+                {/* <TableCell children="Filial" /> */}
                 <TableCell children="Cliente" />
                 <TableCell children="Tipo de Apartamento" />
                 <TableCell children="Data" />
@@ -207,16 +208,17 @@ const ReservationsTable = () => {
                           gutterBottom
                           noWrap
                           children={
-                            reservation.cancelada ? (
-                              <Label color="error" children="Cancelada" />
-                            ) : (
+                            // reservation.cancelada ? (
+                            //   <Label color="error" children="Cancelada" />
+                            // ) : 
+                            (
                               reservation.Id_reserva
                             )
                           }
                         />
                       }
                     />
-                    <TableCell
+                    {/* <TableCell
                       children={
                         <Typography
                           variant="body1"
@@ -227,7 +229,7 @@ const ReservationsTable = () => {
                           children={`${formatHotel(reservation.Codigo)}`}
                         />
                       }
-                    />
+                    /> */}
                     <TableCell
                       children={
                         <Typography
@@ -236,7 +238,7 @@ const ReservationsTable = () => {
                           color="text.primary"
                           gutterBottom
                           noWrap
-                          children={`${formatClient(reservation.Id_cliente)}`}
+                          children={`${formatClient(reservation.Cliente)}`}
                         />
                       }
                     />
@@ -248,7 +250,7 @@ const ReservationsTable = () => {
                           color="text.primary"
                           gutterBottom
                           noWrap
-                          children={formatApartmentType(reservation.Id_tipo)}
+                          children={formatApartmentType(reservation.Tipo)}
                         />
                       }
                     />
@@ -261,7 +263,7 @@ const ReservationsTable = () => {
                             color="text.primary"
                             gutterBottom
                             noWrap
-                            children={`Previsão de Entrada: ${reservation.dataPrevistaEntrada}`}
+                            children={`Previsão de Entrada: ${reservation.Data_prevista_entrada}`}
                           />
                           <Typography
                             variant="body1"
@@ -269,13 +271,13 @@ const ReservationsTable = () => {
                             color="text.primary"
                             gutterBottom
                             noWrap
-                            children={`Previsão de Saída: ${reservation.dataPrevistaSaida}`}
+                            children={`Previsão de Saída: ${reservation.Data_prevista_saida}`}
                           />
                         </>
                       }
                     />
                     <TableCell align="right">
-                      {!reservation.cancelada ? (
+                      {/* {!reservation.cancelada ? (
                         <Tooltip
                           title="Realizar Check-in"
                           arrow
@@ -297,8 +299,8 @@ const ReservationsTable = () => {
                             />
                           }
                         />
-                      ) : null}
-                      {!reservation.cancelada ? (
+                      ) : null} */}
+                      {/* {!reservation.cancelada ? (
                         <Tooltip
                           title="Cancelar Reserva"
                           arrow
@@ -319,7 +321,7 @@ const ReservationsTable = () => {
                             />
                           }
                         />
-                      ) : null}
+                      ) : null} */}
                       <Tooltip
                         title="Excluir Reserva"
                         arrow

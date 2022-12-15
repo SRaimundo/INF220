@@ -4,6 +4,6 @@ export interface Reservation{
     Quarto: number;
     Tipo: number;
     Num_hospedes: number;
-    Data_prevista_entrada: Date;
-    Data_prevista_saida: Date;
+    Data_prevista_entrada: string;
+    Data_prevista_saida: string;
 }

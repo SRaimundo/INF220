@@ -17,30 +17,33 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { PhoneMaskCustom } from 'src/components/Masks/phoneMask';
 import { Hospede } from 'src/models/hospede';
-import { create } from 'src/services/hospede';
+import { create, findAll } from 'src/services/hospede';
 import * as yup from 'yup';
 
+
 const schema = yup.object().shape({
-  nome: yup.string().required('Nome é um campo obrigatório'),
-  Pais_origem: yup.string().required('Pais_origem é um campo obrigatório'),
-  telefone: yup.string().required('Telefone é um campo obrigatório'),
-  email: yup.string().required('Email é um campo obrigatório'),
-  senha: yup.string().required('Senha é um campo obrigatório'),
-  rua: yup.string().required('Rua é um campo obrigatório'),
-  numero: yup.string().required('Numero é um campo obrigatório'),
-  bairro: yup.string().required('Bairro é um campo obrigatório'),
-  cidade: yup.string().required('Cidade é um campo obrigatório'),
-  estado: yup.string().required('Estado é um campo obrigatório'),
-  pais: yup.string().required('País é um campo obrigatório'),
+  // nome: yup.string().required('Nome é um campo obrigatório'),
+  // Pais_origem: yup.string().required('Pais_origem é um campo obrigatório'),
+  // telefone: yup.string().required('Telefone é um campo obrigatório'),
+  // email: yup.string().required('Email é um campo obrigatório'),
+  // senha: yup.string().required('Senha é um campo obrigatório'),
+  // rua: yup.string().required('Rua é um campo obrigatório'),
+  // numero: yup.string().required('Numero é um campo obrigatório'),
+  // bairro: yup.string().required('Bairro é um campo obrigatório'),
+  // cidade: yup.string().required('Cidade é um campo obrigatório'),
+  // estado: yup.string().required('Estado é um campo obrigatório'),
+  // pais: yup.string().required('País é um campo obrigatório'),
 });
 
 function CreateHospedeForm() {
   const navigate = useNavigate();
 
-  const onSubmit: SubmitHandler<Hospede> = (data) => {
+  const onSubmit: SubmitHandler<Hospede> = async (data) => {
+    const response = await findAll();
+    data.Id_hospede = response.length;
     create(data).then((res) => {
       setOpenConfirm(false);
-      return navigate('/hospede');
+      return navigate('/hospedes');
     });
   };
 
@@ -102,6 +105,40 @@ function CreateHospedeForm() {
         alignItems="stretch"
         spacing={3}
       >
+        
+        <Grid item xs={12}>
+          <Card>
+            <CardHeader
+              title="Hospedagem"
+              subheader="Informe a hospedagem"
+            />
+            <Divider />
+            <CardContent>
+              <Grid
+                container
+                component="form"
+                noValidate
+                autoComplete="on"
+                spacing={2}
+              >
+                <Grid item md={2} xs={12}>
+                  <TextField
+                    type="number"
+                    name="Hospedagem"
+                    fullWidth
+                    error={!!errors?.Hospedagem}
+                    helperText={errors?.Hospedagem?.message || ''}
+                    label="Hospedagem"
+                    required
+                    onChange={(event) => setValue('Hospedagem', Number(event.target.value))}
+                  />
+                </Grid>
+              </Grid>
+            </CardContent>
+          </Card>
+        </Grid>
+
+
         <Grid item xs={12}>
           <Card>
             <CardHeader

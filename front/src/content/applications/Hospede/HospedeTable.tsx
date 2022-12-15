@@ -22,7 +22,7 @@ import PropTypes from 'prop-types';
 import * as React from 'react';
 import { ChangeEvent, useEffect, useState } from 'react';
 import { default as NumberFormat } from 'react-number-format';
-import { Clients } from 'src/models/clients';
+import { Hospede } from 'src/models/hospede';
 import { findAll, remove } from 'src/services/hospede';
 
 // const getStatusLabel = (clientStatus: ClientsStatus): JSX.Element => {
@@ -57,29 +57,29 @@ const style = {
 };
 
 const applyPagination = (
-  clients: Clients[],
+  hospedes: Hospede[],
   page: number,
   limit: number
-): Clients[] => {
-  return clients.slice(page * limit, page * limit + limit);
+): Hospede[] => {
+  return hospedes.slice(page * limit, page * limit + limit);
 };
 
-const ClientsTable = () => {
-  const fetchClients = async () => {
-    let clients = [];
-    clients = await findAll();
-    console.log(clients);
-    setClients(clients);
+const HospedesTable = () => {
+  const fetchHospedes = async () => {
+    let hospedes = [];
+    hospedes = await findAll();
+    // console.log(hospedes);
+    setHospedes(hospedes);
   };
-  const [clients, setClients] = useState<Clients[]>([]);
+  const [hospedes, setHospedes] = useState<Hospede[]>([]);
   useEffect(() => {
     const fetch = async () => {
-      let clients = [];
-      clients = await findAll();
-      setClients(clients);
+      let hospedes = [];
+      hospedes = await findAll();
+      setHospedes(hospedes);
     };
     fetch();
-  }, [setClients]);
+  }, [setHospedes]);
 
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -87,7 +87,7 @@ const ClientsTable = () => {
 
   const [selectId, setSelectId] = useState<string>();
 
-  const handleSelectedClientsId = (id): void => {
+  const handleSelectedHospedesId = (id): void => {
     setSelectId(id);
   };
   const [page, setPage] = useState<number>(0);
@@ -129,13 +129,14 @@ const ClientsTable = () => {
     setLimit(parseInt(event.target.value));
   };
 
-  const paginatedClients = applyPagination(clients, page, limit);
+  const paginatedHospedes = applyPagination(hospedes, page, limit);
   const theme = useTheme();
 
   const handleDelete = async (id) => {
-    const clientId = id;
-    const client: Clients = await remove(clientId);
-    fetchClients();
+    const hospedeId = id;
+    console.log(id);
+    const hospede: Hospede = await remove(hospedeId);
+    fetchHospedes();
   };
 
   return (
@@ -153,9 +154,9 @@ const ClientsTable = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {paginatedClients.map((client) => {
+              {paginatedHospedes.map((hospede) => {
                 return (
-                  <TableRow hover key={client.Id_cliente}>
+                  <TableRow hover key={hospede.Id_hospede}>
                     <TableCell>
                       <Typography
                         variant="body1"
@@ -163,7 +164,7 @@ const ClientsTable = () => {
                         color="text.primary"
                         gutterBottom
                         noWrap
-                        children={client.Id_cliente}
+                        children={hospede.Id_hospede}
                       />
                     </TableCell>
                     <TableCell>
@@ -173,7 +174,7 @@ const ClientsTable = () => {
                         color="text.primary"
                         gutterBottom
                         noWrap
-                        children={client.Nome}
+                        children={hospede.Nome}
                       />
                     </TableCell>
                     <TableCell>
@@ -185,10 +186,10 @@ const ClientsTable = () => {
                         noWrap
                         children={
                           <NumberFormat
-                            value={client.Telefone}
+                            value={hospede.Numero_telefone}
                             displayType={'text'}
                             format={
-                              client.Telefone?.length > 10
+                              hospede.Numero_telefone?.length > 10
                                 ? '(##) #####-####'
                                 : '(##) ####-####'
                             }
@@ -201,7 +202,7 @@ const ClientsTable = () => {
                         color="text.primary"
                         gutterBottom
                         noWrap
-                        children={client.Email}
+                        children={hospede.Email}
                       />
                     </TableCell>
                     <TableCell>
@@ -211,7 +212,7 @@ const ClientsTable = () => {
                         color="text.primary"
                         gutterBottom
                         noWrap
-                        children={`${client.Rua}, N° ${client.Numero}. ${client.Bairro}, ${client.Cidade} - ${client.UF}`}
+                        children={`${hospede.Endereco}, N° ${hospede.Numero}. ${hospede.Bairro}, ${hospede.Cidade} - ${hospede.Estado}`}
                       />
                     </TableCell>
                     <TableCell align="right">
@@ -226,7 +227,7 @@ const ClientsTable = () => {
                           color="inherit"
                           size="small"
                           onClick={() => {
-                            handleSelectedClientsId(client.Id_cliente);
+                            handleSelectedHospedesId(hospede.Id_hospede);
                             handleOpen();
                           }}
                         >
@@ -243,7 +244,7 @@ const ClientsTable = () => {
         <Box p={2}>
           <TablePagination
             component="div"
-            count={clients.length}
+            count={hospedes.length}
             onPageChange={handlePageChange}
             onRowsPerPageChange={handleLimitChange}
             page={page}
@@ -261,7 +262,7 @@ const ClientsTable = () => {
       >
         <Box sx={style}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
-            Confirme a exclusão do cliente!
+            Confirme a exclusão do hospede!
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
             <Grid container>
@@ -296,12 +297,12 @@ const ClientsTable = () => {
   );
 };
 
-ClientsTable.propTypes = {
-  clients: PropTypes.array.isRequired,
+HospedesTable.propTypes = {
+  hospedes: PropTypes.array.isRequired,
 };
 
-ClientsTable.defaultProps = {
-  clients: [],
+HospedesTable.defaultProps = {
+  hospedes: [],
 };
 
-export default ClientsTable;
+export default HospedesTable;

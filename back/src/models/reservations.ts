@@ -16,10 +16,12 @@ class Reservation{
 
     static create = async (reservation: ReservationInterface) => {
         const conn = await connect();
+        // console.log(reservation);
         const [rows, fields] = await conn.query(`INSERT INTO RESERVA (Cliente, Tipo, Num_hospedes, Data_prevista_entrada, Data_prevista_saida)
             VALUES (?, ?, ?, ?, ?)`,
             [reservation.Cliente, reservation.Tipo, reservation.Num_hospedes, reservation.Data_prevista_entrada, reservation.Data_prevista_saida]
         );
+        console.log("aqui");
         return rows;
     }
 

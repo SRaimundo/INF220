@@ -41,6 +41,7 @@ const schema = yup.object().shape({
     .date()
     .required('É obrigatório informar uma data para a faxina'),
 });
+console.log("fadsfadfa");
 
 function CreateHotelForm() {
   const navigate = useNavigate();
@@ -130,7 +131,7 @@ function CreateHotelForm() {
                         <MenuItem
                           key={funcionario.Id_funcionario}
                           value={funcionario.Id_funcionario}
-                          children={funcionario.nome}
+                          children={funcionario.Nome}
                         />
                       ))}
                     </Select>
