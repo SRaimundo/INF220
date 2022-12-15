@@ -37,6 +37,6 @@ export const remove = async (id) => {
 };
 
 export const getCamareira = async () => {
-  const response = await api.get('/employees/camareira/cargo');
+  const response = await api.get('/employees/cargos/camareira');
   return response.data as Funcionario[];
 };

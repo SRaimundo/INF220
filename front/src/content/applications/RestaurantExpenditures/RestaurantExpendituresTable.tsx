@@ -21,7 +21,7 @@ import {
 import PropTypes from 'prop-types';
 import { ChangeEvent, useCallback, useEffect, useState } from 'react';
 import Label from 'src/components/Label';
-import { Expenditures } from 'src/models/expenditures';
+import { ResturantExpeditures } from 'src/models/expenditures';
 import { findAll, remove } from 'src/services/restaurantExpenditures';
 
 // const getStatusLabel = (expenditureStatus: ClientStatus): JSX.Element => {
@@ -56,17 +56,17 @@ const style = {
 };
 
 const applyPagination = (
-  expenditures: Expenditures[],
+  expenditures: ResturantExpeditures[],
   page: number,
   limit: number
-): Expenditures[] => {
+): ResturantExpeditures[] => {
   return expenditures.slice(page * limit, page * limit + limit);
 };
 
 const RestaurantExpendituresTable = () => {
   const theme = useTheme();
 
-  const [expenditures, setExpenditures] = useState<Expenditures[]>([]);
+  const [expenditures, setExpenditures] = useState<ResturantExpeditures[]>([]);
 
   const fetchExpenditures = useCallback(async () => {
     const restaurantexpenditures = await findAll();
@@ -96,9 +96,10 @@ const RestaurantExpendituresTable = () => {
   );
 
   const handleDelete = async (id) => {
-    const expenditure: Expenditures = await remove(id);
-    if (expenditure.idConsumo === id) fetchExpenditures();
-    else alert('Erro ao deletar a consumo!');
+    const expenditure: ResturantExpeditures = await remove(id);
+    // if (expenditure.Id_consumo === id) 
+    fetchExpenditures();
+    // else alert('Erro ao deletar a consumo!');
   };
 
   const [open, setOpen] = useState(false);
@@ -130,7 +131,7 @@ const RestaurantExpendituresTable = () => {
             <TableBody>
               {paginatedExpenditures.map((expenditure) => {
                 return (
-                  <TableRow hover key={expenditure.idConsumo}>
+                  <TableRow hover key={expenditure.Id_consumo}>
                     <TableCell
                       children={
                         <Typography
@@ -139,7 +140,7 @@ const RestaurantExpendituresTable = () => {
                           color="text.primary"
                           gutterBottom
                           noWrap
-                          children={expenditure.idConsumo}
+                          children={expenditure.Id_consumo}
                         />
                       }
                     />
@@ -151,7 +152,7 @@ const RestaurantExpendituresTable = () => {
                           color="text.primary"
                           gutterBottom
                           noWrap
-                          children={`${expenditure.produto}`}
+                          children={`${expenditure.Descricao}`}
                         />
                       }
                     />
@@ -163,7 +164,7 @@ const RestaurantExpendituresTable = () => {
                           color="text.primary"
                           gutterBottom
                           noWrap
-                          children={`R$ ${expenditure.preco}`}
+                          children={`R$ ${expenditure.Valor}`}
                         />
                       }
                     />
@@ -175,7 +176,7 @@ const RestaurantExpendituresTable = () => {
                           color="text.primary"
                           gutterBottom
                           noWrap
-                          children={`${expenditure.dataConsumo}`}
+                          children={`${expenditure.Data}`}
                         />
                       }
                     />
@@ -183,7 +184,7 @@ const RestaurantExpendituresTable = () => {
                       children={
                         <Label
                           color={
-                            expenditure.entregueNoQuarto ? 'success' : 'error'
+                            expenditure.Entregue ? 'success' : 'error'
                           }
                           children="Entregue no quarto"
                         />
@@ -197,7 +198,7 @@ const RestaurantExpendituresTable = () => {
                           color="text.primary"
                           gutterBottom
                           noWrap
-                          children={`${expenditure.Id_hospedagem}`}
+                          children={`${expenditure.Hospedagem}`}
                         />
                       }
                     />
@@ -216,7 +217,7 @@ const RestaurantExpendituresTable = () => {
                             color="inherit"
                             size="small"
                             onClick={() => {
-                              handleSelectedClientId(expenditure.idConsumo);
+                              handleSelectedClientId(expenditure.Id_consumo);
                               handleOpen();
                             }}
                             children={<DeleteTwoToneIcon fontSize="small" />}

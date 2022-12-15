@@ -97,8 +97,9 @@ const ExpendituresTable = () => {
 
   const handleDelete = async (id) => {
     const expenditure: Expenditures = await remove(id);
-    if (expenditure.idConsumo === id) fetchExpenditures();
-    else alert('Erro ao deletar a consumo!');
+    // if (expenditure.Id_despesa === id) 
+    fetchExpenditures();
+    // else alert('Erro ao deletar a consumo!');
   };
 
   const [open, setOpen] = useState(false);
@@ -122,7 +123,7 @@ const ExpendituresTable = () => {
                 <TableCell children="Produto" />
                 <TableCell children="Valor" />
                 <TableCell children="Data de Consumo" />
-                <TableCell children="Entregue no Quarto" />
+                {/* <TableCell children="Entregue no Quarto" /> */}
                 <TableCell children="ID da Hospedagem" />
                 <TableCell align="right" children="Ações" />
               </TableRow>
@@ -130,7 +131,7 @@ const ExpendituresTable = () => {
             <TableBody>
               {paginatedExpenditures.map((expenditure) => {
                 return (
-                  <TableRow hover key={expenditure.idConsumo}>
+                  <TableRow hover key={expenditure.Id_despesa}>
                     <TableCell
                       children={
                         <Typography
@@ -139,7 +140,7 @@ const ExpendituresTable = () => {
                           color="text.primary"
                           gutterBottom
                           noWrap
-                          children={expenditure.idConsumo}
+                          children={expenditure.Id_despesa}
                         />
                       }
                     />
@@ -151,7 +152,7 @@ const ExpendituresTable = () => {
                           color="text.primary"
                           gutterBottom
                           noWrap
-                          children={`${expenditure.produto}`}
+                          children={`${expenditure.Descricao}`}
                         />
                       }
                     />
@@ -163,7 +164,7 @@ const ExpendituresTable = () => {
                           color="text.primary"
                           gutterBottom
                           noWrap
-                          children={`R$ ${expenditure.preco}`}
+                          children={`R$ ${expenditure.Valor}`}
                         />
                       }
                     />
@@ -175,11 +176,11 @@ const ExpendituresTable = () => {
                           color="text.primary"
                           gutterBottom
                           noWrap
-                          children={`${expenditure.dataConsumo}`}
+                          children={`${expenditure.Data}`}
                         />
                       }
                     />
-                    <TableCell
+                    {/* <TableCell
                       children={
                         <Label
                           color={
@@ -188,7 +189,7 @@ const ExpendituresTable = () => {
                           children="Entregue no quarto"
                         />
                       }
-                    />
+                    /> */}
                     <TableCell
                       children={
                         <Typography
@@ -197,7 +198,7 @@ const ExpendituresTable = () => {
                           color="text.primary"
                           gutterBottom
                           noWrap
-                          children={`${expenditure.Id_hospedagem}`}
+                          children={`${expenditure.Hospedagem}`}
                         />
                       }
                     />
@@ -216,7 +217,7 @@ const ExpendituresTable = () => {
                             color="inherit"
                             size="small"
                             onClick={() => {
-                              handleSelectedClientId(expenditure.idConsumo);
+                              handleSelectedClientId(expenditure.Id_despesa);
                               handleOpen();
                             }}
                             children={<DeleteTwoToneIcon fontSize="small" />}

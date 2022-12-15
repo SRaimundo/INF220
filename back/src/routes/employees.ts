@@ -6,7 +6,7 @@ const router = express.Router();
 router.post("/", controller.create);
 router.get("/", controller.getAll);
 router.get("/:id", controller.findById);
-router.get("/:cargo/cargos", controller.getAllByCargo);
+router.get("/cargos/:cargo", controller.getAllByCargo);
 router.put("/:id", controller.update);
 router.delete("/:id", controller.deleteById);
 

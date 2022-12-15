@@ -1,8 +1,8 @@
 export interface Cleanings {
-  idArruma: number;
-  dataArruma: Date;
-  Id_funcionario: number;
-  Numero: number;
+  Quarto: number;
+  Data: string;
+  Hotel: number;
+  Funcionario: number;
 }
 
 export interface CleaningsTable {

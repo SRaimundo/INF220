@@ -31,17 +31,16 @@ import { Hotels } from 'src/models/hotels';
 import DateTimePicker from '@mui/lab/DateTimePicker/DateTimePicker';
 
 const schema = yup.object().shape({
-  Id_funcionario: yup
-    .number()
-    .required('É obrigatório selecionar um funcionário para a faxina'),
-  Numero: yup
-    .number()
-    .required('É obrigatório selecionar um apartamento'),
-  dataArruma: yup
-    .date()
-    .required('É obrigatório informar uma data para a faxina'),
+  // Id_funcionario: yup
+  //   .number()
+  //   .required('É obrigatório selecionar um funcionário para a faxina'),
+  // Numero: yup
+  //   .number()
+  //   .required('É obrigatório selecionar um apartamento'),
+  // dataArruma: yup
+  //   .date()
+  //   .required('É obrigatório informar uma data para a faxina'),
 });
-console.log("fadsfadfa");
 
 function CreateHotelForm() {
   const navigate = useNavigate();
@@ -85,9 +84,10 @@ function CreateHotelForm() {
 
   useEffect(() => {
     const initDate = new Date();
-    register('Id_funcionario');
-    register('Numero');
-    register('dataArruma', { value: initDate });
+    register('Funcionario');
+    register('Hotel');
+    register('Quarto');
+    register('Data');
   }, [register]);
 
   return (
@@ -114,15 +114,39 @@ function CreateHotelForm() {
                 autoComplete="on"
                 spacing={2}
               >
+                <Grid item md={3} xs={12}>
+                  <TextField
+                    type="number"
+                    name="Hotel"
+                    fullWidth
+                    error={!!errors?.Hotel}
+                    helperText={errors?.Hotel?.message || ''}
+                    label="Coloque o ID do Hotel"
+                    required
+                    onChange={(event) => setValue('Hotel', Number(event.target.value))}
+                  />
+                </Grid>
+                <Grid item md={3} xs={12}>
+                  <TextField
+                    type="number"
+                    name="Quarto"
+                    fullWidth
+                    error={!!errors?.Quarto}
+                    helperText={errors?.Quarto?.message || ''}
+                    label="Coloque o Numero do Quarto"
+                    required
+                    onChange={(event) => setValue('Quarto', Number(event.target.value))}
+                  />
+                </Grid>
                 <Grid item md={4} xs={12}>
-                  <FormControl fullWidth error={!!errors?.Id_funcionario}>
+                  <FormControl fullWidth error={!!errors?.Funcionario}>
                     <InputLabel children="Selecione o(a) responsável pela limpeza" />
                     <Select
-                      value={watch().Id_funcionario ?? ''}
+                      value={watch().Funcionario ?? ''}
                       label="Selecione o(a) responsável pela limpeza"
                       onChange={(funcionario: SelectChangeEvent<string>) =>
                         setValue(
-                          'Id_funcionario',
+                          'Funcionario',
                           parseInt(funcionario.target.value)
                         )
                       }
@@ -136,55 +160,67 @@ function CreateHotelForm() {
                       ))}
                     </Select>
                     <FormHelperText
-                      children={errors?.Id_funcionario?.message || ''}
+                      children={errors?.Funcionario?.message || ''}
                     />
                   </FormControl>
                 </Grid>
-                <Grid item md={4} xs={12}>
-                  <FormControl fullWidth error={!!errors?.Numero}>
+                {/* <Grid item md={4} xs={12}>
+                  <FormControl fullWidth error={!!errors?.Quarto}>
                     <InputLabel children="Selecione o apartamento" />
                     <Select
-                      value={watch().Numero ?? ''}
+                      value={watch().Quarto ?? ''}
                       label="Selecione o apartamento"
                       onChange={(tipo: SelectChangeEvent<string>) =>
-                        setValue('Numero', parseInt(tipo.target.value))
+                        setValue('Quarto', parseInt(tipo.target.value))
                       }
                     >
                       {apartamentos.map((tipo) => (
                         <MenuItem
-                          key={tipo.Numero}
-                          value={tipo.Numero}
-                          children={`${formatHotel(tipo.Numero)} | ${
+                          key={tipo.Hotel}
+                          value={tipo.Hotel}
+                          children={`${formatHotel(tipo.Hotel)} | ${
                             tipo.Numero
                           }`}
                         />
                       ))}
                     </Select>
                     <FormHelperText
-                      children={errors?.Numero?.message || ''}
+                      children={errors?.Quarto?.message || ''}
                     />
                   </FormControl>
+                </Grid> */}
+                <Grid item md={3} xs={12}>
+                  <TextField
+                    type="string"
+                    name="Data"
+                    fullWidth
+                    error={!!errors?.Data}
+                    helperText={errors?.Data?.message || ''}
+                    label="Insira da data"
+                    required
+                    onChange={(event) => setValue('Data', event.target.value)}
+                  />
                 </Grid>
-                <Grid item sm={4} xs={12}>
+                {/* <Grid item sm={4} xs={12}>
                   <DateTimePicker
                     label="Data da Faxina"
-                    value={watch().dataArruma}
-                    onChange={(date) => {
-                      setValue('dataArruma', date);
+                    value={watch().Data}
+                    onChange={(Data) => {
+                      setValue('Data', Data);
                     }}
                     renderInput={(params) => (
                       <TextField
                         fullWidth
                         {...params}
-                        error={!!errors?.dataArruma}
-                        helperText={errors?.dataArruma?.message || ''}
+                        error={!!errors?.Data}
+                        helperText={errors?.Data?.message || ''}
                       />
                     )}
                     ampm={false}
-                    inputFormat="dd/MM/yyyy HH:mm"
-                    minDateTime={new Date()}
+                    inputFormat="dd/MM/yyyy"
+                    // minDateTime={new Date()}
                   />
-                </Grid>
+                </Grid> */}
               </Grid>
             </CardContent>
           </Card>
