@@ -41,7 +41,9 @@ export const getDiarias = async (id) => {
   return response.data as Expenditures[];
 };
 
-export const checkout = async (id, data) => {
-  const response = await api.post(`/accommodations/checkout/${id}`, data);
+export const checkout = async (id,data) => {
+  const response = await api.post(`/hotelGuests/checkout/${id}/${data}`);
   return response.data as Accommodations;
 };
+
+

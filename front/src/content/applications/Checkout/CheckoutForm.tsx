@@ -24,6 +24,7 @@ import { checkout, findOne, getDiarias } from 'src/services/accommodations';
 import { findOne as findClient } from 'src/services/clients';
 import { findByAccommodation } from 'src/services/expenditures';
 import { findOne as findReserve } from 'src/services/reservations';
+import {Cliente as findCliente} from 'src/services/checkout';
 
 function CheckoutForm() {
   const navigate = useNavigate();
@@ -40,16 +41,19 @@ function CheckoutForm() {
   const [consumo, setConsumo] = useState<any[]>([]);
 
   useEffect(() => {
-    findOne(id).then((res) => {
-      findReserve(res.Reserva).then((res) => {
-        findClient(res.Cliente).then((res) => setCliente(res));
-      });
-      // findByAccommodation(id).then((consumos) => {
-      //   getDiarias(id).then((diarias) => {
-      //     setConsumo(consumos.concat(diarias));
-      //   });
-      // });
-    });
+
+    findCliente(id).then((res) => setCliente(res));
+    console.log(cliente);
+    // findOne(id).then((res) => {
+    //   findReserve(res.Reserva).then((res) => {
+    //     findClient(res.Cliente).then((res) => setCliente(res));
+    //   });
+    //   // findByAccommodation(id).then((consumos) => {
+    //   //   getDiarias(id).then((diarias) => {
+    //   //     setConsumo(consumos.concat(diarias));
+    //   //   });
+    //   // });
+    // });
   }, [id]);
 
   const sum = useCallback(() => {

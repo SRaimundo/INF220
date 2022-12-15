@@ -42,4 +42,12 @@ const update = async (req: Request , res: Response) => {
     } 
 };
 
-export default {getAll, findOne, create, deleteOne, update};
+const Checkout= async (req: Request , res: Response) => {
+    try {
+        return res.status(200).json(await HotelGuest.Checkout(req.params.id, req.params.data));
+    } catch (error) {
+        return res.status(500).send({message: error});
+    } 
+};
+
+export default {getAll, findOne, create, deleteOne, update,Checkout};

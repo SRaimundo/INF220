@@ -122,3 +122,33 @@ export const consultaG = async () => {
     return [];
   }
 };
+
+export interface Gasto {
+  Soma: number;
+  Hospedagem: number;
+}
+
+export const Gasto = async (id, data) => {
+  try {
+    const response = await api.get(`/checkout/gastos/${id}/${data}`);
+    return response.data as Gasto[];
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
+};
+
+export interface Diaria {
+  Valor: number;
+  Hospedagem: number;
+}
+
+export const Diaria = async (id) => {
+  try {
+    const response = await api.get(`/checkout/diaria/${id}`);
+    return response.data as Diaria[];
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
+};

@@ -9,6 +9,8 @@ import ConsultaE from './ConsultaE';
 import ConsultaF from './ConsultaF';
 import ConsultaH from './ConsultaH';
 import Consultas from './Consultas';
+import Gasto from './gasto';
+import Diaria from './diaria';
 import PageHeader from './PageHeader';
 
 function Home() {
@@ -46,19 +48,26 @@ function Home() {
           <Grid item lg={4} xs={12}>
             <ConsultaB />
           </Grid>
+          <Grid item lg={3} xs={12}>
+            <ConsultaH />
+          </Grid>
+          <Grid item lg={3} xs={12}>
+            <Gasto />
+          </Grid>
+          <Grid item lg={3} xs={12}>
+            <Diaria />
+          </Grid>
         </Grid>
 
-        <Grid
+        {/* <Grid
           container
           direction="row"
           justifyContent="left"
           alignItems="stretch"
           spacing={3}
         >
-          <Grid item lg={3} xs={12}>
-            <ConsultaH />
-          </Grid>
-        </Grid>
+          
+        </Grid> */}
         
       </Container>
       <Footer />

@@ -28,7 +28,7 @@ import { Apartments } from 'src/models/apartments';
 import { Clients } from 'src/models/clients';
 import { Hotels } from 'src/models/hotels';
 import { Reservations } from 'src/models/reservations';
-import { findAll, remove } from 'src/services/accommodations';
+import { findAll, remove, checkout as check } from 'src/services/accommodations';
 import { findAll as findApartments } from 'src/services/apartments';
 import { findAll as findClients } from 'src/services/clients';
 import { findAll as findHotels } from 'src/services/hotels';
@@ -146,9 +146,19 @@ const AccommodationsTable = () => {
     // else alert('Erro ao deletar a hospedagem!');
   };
 
+  const atualiza = async (id) => {
+    const accommodation: Accommodations = await check(id,'2022-12-15 10:20:34');
+    // if (accommodation.Id_hospedagem === id) 
+    fetchAccommodations();
+    // else alert('Erro ao deletar a hospedagem!');
+  };
+
   const [open, setOpen] = useState(false);
+  const [open2, setOpen2] = useState(false);
   const handleOpen = () => setOpen(true);
+  const handleOpenCheckout = () => setOpen2(true);
   const handleClose = () => setOpen(false);
+  const handleCheckout = () => setOpen2(false);
 
   const [selectId, setSelectId] = useState<string>();
 
@@ -300,7 +310,7 @@ const AccommodationsTable = () => {
                             color="text.primary"
                             gutterBottom
                             noWrap
-                            children={`Data de Saída: ${accommodation.Check_in}`}
+                            children={`Data de Saída: ${accommodation.Check_out}`}
                           />
                         </>
                       }
@@ -346,17 +356,32 @@ const AccommodationsTable = () => {
                             arrow
                             children={
                               <IconButton
-                                component={NavLink}
-                                to={`/checkout/${accommodation.Id_hospedagem}`}
-                                sx={{
-                                  '&:hover': {
-                                    background: theme.colors.success.lighter,
-                                  },
-                                  color: theme.palette.success.main,
-                                }}
-                                color="inherit"
-                                size="small"
-                                children={<DoneTwoToneIcon fontSize="small" />}
+                              sx={{
+                                '&:hover': {
+                                  background: theme.colors.error.lighter,
+                                },
+                                color: theme.palette.success.main,
+                              }}
+                              color="inherit"
+                              size="small"
+                              onClick={() => {
+                                handleSelectedClientId(
+                                  accommodation.Id_hospedagem
+                                );
+                                handleOpenCheckout();
+                              }}
+                              children={<DoneTwoToneIcon fontSize="small" />}
+                                // component={NavLink}
+                                // to={`/checkout/${accommodation.Id_hospedagem}`}
+                                // sx={{
+                                //   '&:hover': {
+                                //     background: theme.colors.success.lighter,
+                                //   },
+                                //   color: theme.palette.success.main,
+                                // }}
+                                // color="inherit"
+                                // size="small"
+                                // children={<DoneTwoToneIcon fontSize="small" />}
                               />
                             }
                           />
@@ -442,6 +467,47 @@ const AccommodationsTable = () => {
                     handleClose();
                   }}
                   children="Excluir"
+                />
+              </Grid>
+            </Grid>
+          </Typography>
+        </Box>
+      </Modal>
+
+      <Modal
+        open={open2}
+        onClose={handleCheckout}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <Typography
+            id="modal-modal-title"
+            variant="h6"
+            component="h2"
+            children="Confirme Checkout"
+          />
+          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+            <Grid container>
+              <Grid item xs={6} md={6}>
+                <Button
+                  sx={{ mt: { xs: 0, md: 0 } }}
+                  variant="outlined"
+                  startIcon={<KeyboardReturnTwoToneIcon fontSize="small" />}
+                  onClick={handleCheckout}
+                  children="Retornar"
+                />
+              </Grid>
+              <Grid item xs={6} md={6}>
+                <Button
+                  variant="outlined"
+                  color="error"
+                  startIcon={<DoneTwoToneIcon />}
+                  onClick={() => {
+                    atualiza(selectId);
+                    handleCheckout();
+                  }}
+                  children="Checkout"
                 />
               </Grid>
             </Grid>

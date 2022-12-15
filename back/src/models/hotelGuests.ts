@@ -132,6 +132,17 @@ class HotelGuest{
         );
         return rows;
     }
+
+    static Checkout = async (id: any, data: any) => {
+        const conn = await connect();
+        console.log(id,data);
+        const [rows, fields] = await conn.query(`UPDATE HOSPEDAGEM
+        SET Check_out = '${data}'
+        WHERE Id_hospedagem = '${id}';`);
+        return rows;
+    }
+
+
 }
 
 export default HotelGuest;

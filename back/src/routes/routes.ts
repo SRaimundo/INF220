@@ -15,6 +15,7 @@ import vacanciesRouter from "./vacancies";
 
 import Consulta from "./consultas";
 import Consulta2 from "./consultas2";
+import Checkout from "./checkout";
 
 
 const router = express.Router();
@@ -35,6 +36,7 @@ router.use("/vacancies", vacanciesRouter);
 
 router.use("/consulta",Consulta);
 router.use("/consulta2",Consulta2);
+router.use("/checkout",Checkout);
 
 router.use((req, res, next)=> {
     const error = new Error("Recurso não encontrado");
