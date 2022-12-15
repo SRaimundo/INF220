@@ -30,6 +30,17 @@ class Consultas{
         const linhas = await conn.query(q);
         return linhas[0]; 
     }
+
+    static consultaH = async () => {
+        const conn = await connect();
+        const q =
+        `SELECT V.Id_vaga as Vaga, H.Nome as Hotel
+        FROM VAGA V, HOTEL H
+        WHERE V.Hotel = 2 AND V.Hotel = H.Id_hotel AND V.Hospedagem IS NULL`;
+        const linhas = await conn.query(q);
+        return linhas[0]; 
+    }
+
     
 };
 

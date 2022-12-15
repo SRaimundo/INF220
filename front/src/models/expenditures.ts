@@ -1,7 +1,7 @@
 export interface Expenditures {
   Id_despesa: number;
   Hospedagem: number;
-  Data: Date;
+  Data: string;
   Descricao: string;
   Valor: number;
 }
@@ -9,7 +9,7 @@ export interface Expenditures {
 export interface ResturantExpeditures{
   Id_consumo: number;
   Hospedagem: number;
-  Data: Date;
+  Data: string;
   Descricao: string;
   Valor: number;
   Entregue: boolean;

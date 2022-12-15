@@ -91,6 +91,22 @@ export const consultaF = async () => {
   }
 };
 
+export interface ConsultaH {
+  Vaga: number;
+  Hotel: string;
+}
+
+
+export const consultaH = async () => {
+  try {
+    const response = await api.get('/consulta');
+    return response.data as ConsultaH[];
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
+};
+
 export interface ConsultaG {
   filial: string;
   quantidade: string;

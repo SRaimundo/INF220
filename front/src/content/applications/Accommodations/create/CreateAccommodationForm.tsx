@@ -35,15 +35,7 @@ import { findAll as findReservations } from 'src/services/reservations';
 import * as yup from 'yup';
 
 const schema = yup.object().shape({
-  Numero: yup
-    .string()
-    .required('É obrigatório selecionar um apartamento'),
-  Id_reserva: yup.string().required('É obrigatório selecionar uma reserva'),
-  diaria: yup.number().required('É obrigatório informar um valor de diária'),
-  dataEntrada: yup
-    .date()
-    .required('É obrigatório informar uma data de entrada'),
-  dataSaida: yup.date().required('É obrigatório informar uma data de saída'),
+
 });
 
 function CreateReservationForm() {
@@ -69,8 +61,8 @@ function CreateReservationForm() {
     register('Id_hospedagem');
     register('Reserva');
     register('Quarto');
-    register('Check_in', { value: initDate });
-    register('Check_out', { value: initDate });
+    register('Check_in');
+    register('Check_out');
   }, [register]);
 
   const [openErrors, setOpenErrors] = useState(false);
@@ -124,15 +116,15 @@ function CreateReservationForm() {
       });
     };
 
-    const fetchReservationList = async () => {
-      const res = (await findReservations()).filter(
-        (reserve) => !reserve.cancelada
-      );
+    // const fetchReservationList = async () => {
+    //   const res = (await findReservations()).filter(
+    //     (reserve) => !reserve.cancelada
+    //   );
 
-      setReservationList(res);
-    };
+    //   setReservationList(res);
+    // };
     fetchApartmentList();
-    fetchReservationList();
+    // fetchReservationList();
   }, [setApartmentList, setReservationList]);
 
   useEffect(() => {
@@ -207,7 +199,47 @@ function CreateReservationForm() {
                 autoComplete="on"
                 spacing={2}
               >
-                <Grid item md={6} xs={12}>
+
+                <Grid item md={4} xs={12}>
+                  <TextField
+                    type="number"
+                    name="Reserva"
+                    fullWidth
+                    error={!!errors?.Reserva}
+                    helperText={errors?.Reserva?.message || ''}
+                    label="Insira o ID da Reserva"
+                    required
+                    onChange={(event) => setValue('Reserva', Number(event.target.value))}
+                  />
+                </Grid>
+
+                <Grid item md={4} xs={12}>
+                  <TextField
+                    type="number"
+                    name="Quarto"
+                    fullWidth
+                    error={!!errors?.Quarto}
+                    helperText={errors?.Quarto?.message || ''}
+                    label="Insira o Numero do Quarto"
+                    required
+                    onChange={(event) => setValue('Quarto', Number(event.target.value))}
+                  />
+                </Grid>
+
+                <Grid item md={4} xs={12}>
+                  <TextField
+                    type="number"
+                    name="Hotel"
+                    fullWidth
+                    error={!!errors?.Hotel}
+                    helperText={errors?.Hotel?.message || ''}
+                    label="Insira o ID da Hotel"
+                    required
+                    onChange={(event) => setValue('Hotel', Number(event.target.value))}
+                  />
+                </Grid>
+
+                {/* <Grid item md={6} xs={12}>
                   <FormControl fullWidth error={!!errors?.Reserva}>
                     <InputLabel children="Selecione a reserva" />
                     <Select
@@ -229,8 +261,8 @@ function CreateReservationForm() {
                       children={errors?.Reserva?.message || ''}
                     />
                   </FormControl>
-                </Grid>
-                <Grid item md={6} xs={12}>
+                </Grid> */}
+                {/* <Grid item md={6} xs={12}>
                   <FormControl fullWidth error={!!errors?.Quarto}>
                     <InputLabel children="Selecione o apartamento" />
                     <Select
@@ -257,7 +289,7 @@ function CreateReservationForm() {
                       children={errors?.Quarto?.message || ''}
                     />
                   </FormControl>
-                </Grid>
+                </Grid> */}
                 {/* <Grid item md={6} xs={12}>
                   <TextField
                     type="number"
@@ -293,45 +325,32 @@ function CreateReservationForm() {
                 spacing={2}
               >
                 <Grid item sm={6} xs={12}>
-                  <DateTimePicker
-                    label="Data de Chegada"
-                    value={watch().Check_in}
-                    onChange={(date) => {
-                      setValue('Check_in', date);
-                      if (watch().Check_in > watch().Check_in)
-                        setValue('Check_in', date);
-                    }}
-                    renderInput={(params) => (
-                      <TextField
-                        fullWidth
-                        {...params}
-                        error={!!errors?.Check_in}
-                        helperText={errors?.Check_in?.message || ''}
-                      />
-                    )}
-                    ampm={false}
-                    inputFormat="dd/MM/yyyy HH:mm"
-                    minDateTime={new Date()}
-                  />
-                </Grid>
-                <Grid item sm={6} xs={12}>
-                  <DateTimePicker
-                    label="Data de Saída"
-                    value={watch().Check_out}
-                    onChange={(date) => setValue('Check_out', date)}
-                    renderInput={(params) => (
-                      <TextField
-                        fullWidth
-                        {...params}
-                        error={!!errors?.Check_out}
-                        helperText={errors?.Check_out?.message || ''}
-                      />
-                    )}
-                    ampm={false}
-                    inputFormat="dd/MM/yyyy HH:mm"
-                    minDateTime={watch().Check_in}
-                  />
-                </Grid>
+                 <TextField
+                   type="string"
+                   name="Check_in"
+                   fullWidth
+                   error={!!errors?.Check_in}
+                   helperText={errors?.Check_in?.message || ''}
+                   label="Insira da data de para check_in"
+                   required
+                   onChange={(event) => setValue('Check_in', event.target.value)}
+                 />
+               </Grid>
+
+               <Grid item sm={6} xs={12}>
+                 <TextField
+                   type="string"
+                   name="Check_out"
+                   fullWidth
+                   error={!!errors?.Check_out}
+                   helperText={errors?.Check_out?.message || ''}
+                   label="Insira da data de para check_out"
+                   required
+                   onChange={(event) => setValue('Check_out', event.target.value)}
+                 />
+               </Grid>
+
+               
               </Grid>
             </CardContent>
           </Card>

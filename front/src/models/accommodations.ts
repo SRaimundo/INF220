@@ -3,6 +3,6 @@ export interface Accommodations {
   Reserva: number;
   Quarto: number;
   Hotel: number;
-  Check_in: Date;
-  Check_out: Date;
+  Check_in: string;
+  Check_out: string;
 }

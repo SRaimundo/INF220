@@ -98,40 +98,46 @@ function Consultas() {
   return (
     <Card>
       <Grid spacing={0} container>
-        <Grid item xs={12} md={6}>
-          <Box p={4}>
-            <Typography
-              sx={{ pb: 3 }}
-              variant="h4"
-              children="Filiais com mais vendas e lucros"
-            />
-            <Box display="flex" flexWrap={'wrap'}>
-              {contaList.map((conta, index) => (
-                <Box
-                  display="flex"
-                  sx={{ py: 2, mr: 3 }}
-                  alignItems="center"
-                  key={index}
-                >
-                  <AvatarSuccess
-                    sx={{ mr: 2 }}
-                    variant="rounded"
-                    children={<TrendingUp fontSize="medium" />}
-                  />
-                  <Box>
-                    <Typography variant="h4" children={conta.filial} />
-                    <Typography variant="h4" children={`R$ ${conta.vendas}`} />
-                    <Typography
-                      variant="subtitle2"
-                      noWrap
-                      children={`Em ${conta.quantidade} vendas`}
-                    />
-                  </Box>
-                </Box>
-              ))}
-            </Box>
+        {/* <Grid item xs={12} md={6}>
+          <Box key={index} display="flex">
+            <ListItem sx={{ py: 1 }}>
+              <ListItemAvatar>
+                <AvatarWrapperSuccess>
+                  <LocationCityIcon fontSize="medium" />
+                </AvatarWrapperSuccess>
+              </ListItemAvatar>
+              <ListItemText
+                primary={<Text color="black" children={`${conta.Cidade}`} />}
+                primaryTypographyProps={{
+                  variant: 'body1',
+                  fontWeight: 'bold',
+                  color: 'textPrimary',
+                  gutterBottom: true,
+                  noWrap: true,
+                }}
+              />
+            </ListItem>
+            <ListItem sx={{ py: 2 }}>
+              <ListItemText
+                primary={<Text color="black">{conta.Nome}</Text>}
+                primaryTypographyProps={{
+                  variant: 'body1',
+                  fontWeight: 'bold',
+                  color: 'textPrimary',
+                  gutterBottom: true,
+                  noWrap: true,
+                }}
+                secondary={
+                  <Text color="success">
+                    R$ {parseFloat(conta.Fatura)}
+                  </Text>
+                }
+                secondaryTypographyProps={{ variant: 'body2', noWrap: true }}
+              />
+            </ListItem>
+            <Divider />
           </Box>
-        </Grid>
+        </Grid> */}
         <Grid
           sx={{ position: 'relative' }}
           display="flex"

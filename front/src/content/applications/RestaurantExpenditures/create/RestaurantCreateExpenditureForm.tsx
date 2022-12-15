@@ -27,21 +27,12 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import Label from 'src/components/Label';
 import { MoneyMaskCustom } from 'src/components/Masks/currencyMask';
 import { Accommodations } from 'src/models/accommodations';
-import { Expenditures } from 'src/models/expenditures';
+import { ResturantExpeditures } from 'src/models/expenditures';
 import { findAll as findAccommodations } from 'src/services/accommodations';
 import { create } from 'src/services/restaurantExpenditures';
 import * as yup from 'yup';
 
 const schema = yup.object().shape({
-  Id_hospedagem: yup
-    .string()
-    .required('É obrigatório selecionar uma hospedagem'),
-  produto: yup.string().required('É obrigatório selecionar uma descrição'),
-  preco: yup.number().required('É obrigatório selecionar um valor'),
-  entregueNoQuarto: yup.boolean().default(false),
-  dataConsumo: yup
-    .date()
-    .required('É obrigatório informar uma data de consumo'),
 });
 
 function CreateReservationForm() {
@@ -53,22 +44,23 @@ function CreateReservationForm() {
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm<Expenditures>({ resolver: yupResolver(schema) });
+  } = useForm<ResturantExpeditures>({ resolver: yupResolver(schema) });
 
-  const onSubmit: SubmitHandler<Expenditures> = (data) => {
+  const onSubmit: SubmitHandler<ResturantExpeditures> = (data) => {
     create(data).then((res) => {
       setOpenConfirm(false);
-      return navigate('/expenditures/');
+      return navigate('/restaurantexpenditures/');
     });
   };
 
   useEffect(() => {
     const initDate = new Date();
-    register('Id_hospedagem');
-    register('produto');
-    register('preco');
-    register('entregueNoQuarto');
-    register('dataConsumo', { value: initDate });
+    register('Id_consumo');
+    register('Hospedagem');
+    register('Descricao');
+    register('Valor');
+    register('Entregue');
+    register('Data');
   }, [register]);
 
   const [openErrors, setOpenErrors] = useState(false);
@@ -86,7 +78,7 @@ function CreateReservationForm() {
         const id = !!accommodation.Id_hospedagem
           ? accommodation.Id_hospedagem
           : accommodation;
-        setValue('Id_hospedagem', id);
+        setValue('Id_consumo', id);
       }
     },
     [setValue]
@@ -134,90 +126,67 @@ function CreateReservationForm() {
                 autoComplete="on"
                 spacing={2}
               >
-                <Grid item md={6} xs={12}>
-                  <FormControl fullWidth error={!!errors?.Id_hospedagem}>
-                    <InputLabel children="Selecione a hospedagem" />
-                    <Select
-                      value={watch().Id_hospedagem ?? ''}
-                      label="Selecione a hospedagem"
-                      onChange={(hospedagem: SelectChangeEvent<string>) =>
-                        selectAccommodation(parseInt(hospedagem.target.value))
-                      }
-                    >
-                      {accommodationList.map((accommodation) => (
-                        <MenuItem
-                          key={accommodation.Id_hospedagem}
-                          value={accommodation.Id_hospedagem}
-                          children={`ID da Hospedagem: ${accommodation.Id_hospedagem}`}
-                        />
-                      ))}
-                    </Select>
-                    <FormHelperText
-                      children={errors?.Id_hospedagem?.message || ''}
-                    />
-                  </FormControl>
-                </Grid>
-                <Grid item sm={6} xs={12}>
-                  <DateTimePicker
-                    label="Data de Consumo"
-                    value={watch().dataConsumo}
-                    onChange={(date) => setValue('dataConsumo', date)}
-                    renderInput={(params) => (
-                      <TextField
-                        fullWidth
-                        {...params}
-                        error={!!errors?.dataConsumo}
-                        helperText={errors?.dataConsumo?.message || ''}
-                      />
-                    )}
-                    ampm={false}
-                    inputFormat="dd/MM/yyyy HH:mm"
-                    minDateTime={new Date()}
+                <Grid item md={4} xs={12}>
+                  <TextField
+                    type="number"
+                    name="Hospedagem"
+                    fullWidth
+                    error={!!errors?.Hospedagem}
+                    helperText={errors?.Hospedagem?.message || ''}
+                    label="Insira o ID da Hospedagem"
+                    required
+                    onChange={(event) => setValue('Hospedagem', Number(event.target.value))}
                   />
                 </Grid>
-                <Grid item md={6} xs={12}>
+
+                <Grid item md={4} xs={12}>
                   <TextField
                     type="string"
-                    name="item"
+                    name="Descricao"
                     fullWidth
-                    error={!!errors?.produto}
-                    helperText={errors?.produto?.message || ''}
-                    label="Descrição do Item"
+                    error={!!errors?.Descricao}
+                    helperText={errors?.Descricao?.message || ''}
+                    label="Insira descrição do produto"
                     required
-                    onChange={(event) =>
-                      setValue('produto', event.target.value)
-                    }
+                    onChange={(event) => setValue('Descricao', event.target.value)}
                   />
                 </Grid>
-                <Grid item md={6} xs={12}>
+
+                <Grid item md={4} xs={12}>
                   <TextField
-                    id="outlined-required"
-                    error={!!errors?.preco}
-                    label="Preço"
-                    required
+                    type="number"
+                    name="Valor"
                     fullWidth
-                    value={!!watch('preco') ? watch('preco').toString() : ''}
-                    onChange={(price) =>
-                      setValue('preco', parseFloat(price.target.value))
-                    }
-                    InputProps={{
-                      inputComponent: MoneyMaskCustom as any,
-                      startAdornment: (
-                        <InputAdornment position="start">R$</InputAdornment>
-                      ),
-                    }}
+                    error={!!errors?.Valor}
+                    helperText={errors?.Valor?.message || ''}
+                    label="O valor do produto"
+                    required
+                    onChange={(event) => setValue('Valor', Number(event.target.value))}
+                  />
+                </Grid>
+
+                <Grid item md={4} xs={12}>
+                  <TextField
+                    type="string"
+                    name="Data"
+                    fullWidth
+                    error={!!errors?.Data}
+                    helperText={errors?.Data?.message || ''}
+                    label="Insira data da compra"
+                    required
+                    onChange={(event) => setValue('Data', event.target.value)}
                   />
                 </Grid>
                 <Grid item xs={12}>
                   <Label
                     children="Entregue no quarto?"
-                    color={watch().entregueNoQuarto ? 'success' : 'error'}
+                    color={watch().Entregue ? 'success' : 'error'}
                   />
                   <Switch
-                    value={watch().entregueNoQuarto}
+                    value={watch().Entregue}
                     color={'success'}
                     onChange={(event) =>
-                      setValue('entregueNoQuarto', !watch().entregueNoQuarto)
+                      setValue('Entregue', !watch().Entregue)
                     }
                   />
                 </Grid>
